@@ -16,8 +16,9 @@ import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { MagicLinkSchema } from '@/lib/validators';
 
-import { FormError } from '@/components/auth/form-error';
-import { FormSuccess } from '@/components/auth/form-success';
+import { TriangleAlertIcon as IconWarning } from 'lucide-react';
+import { CheckCircleFillIcon as IconCheckCircle } from '@/components/icons';
+import { Alert, AlertTitle } from '../ui/alert';
 
 import { loginWithMagicLink } from '@/app/(auth)/actions';
 import { LoaderIcon } from 'lucide-react';
