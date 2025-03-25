@@ -4,6 +4,7 @@ import Image from 'next/image';
 import type { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { useTheme } from 'next-themes';
+import { ThemeToggle } from "./theme-toggle";
 
 import {
   DropdownMenu,
@@ -43,10 +44,13 @@ export function SidebarUserNav({ user }: { user: User }) {
             className="w-[--radix-popper-anchor-width]"
           >
             <DropdownMenuItem
-              className="cursor-pointer"
-              onSelect={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="inline-flex justify-between w-full hover:!bg-background py-1"
+              onSelect={(e) => {
+                e.preventDefault();
+              }}
             >
-              {`Toggle ${theme === 'light' ? 'dark' : 'light'} mode`}
+              <p>Theme</p>
+              <ThemeToggle mode='light-dark-system' />
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
