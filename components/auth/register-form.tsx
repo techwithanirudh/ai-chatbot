@@ -64,7 +64,7 @@ export const RegisterForm = () => {
         {status === 'hasSucceeded' && (
           <Alert className="bg-emerald-500/15 text-emerald-500 p-3 border-emerald-500/15">
             <IconCheckCircle size={16} />
-            <AlertTitle>Confirmation email has been sent!</AlertTitle>
+            <AlertTitle className='mb-0 leading-normal'>Confirmation email has been sent!</AlertTitle>
           </Alert>
         )}
         {result.serverError && (
