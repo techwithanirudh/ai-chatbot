@@ -46,7 +46,7 @@ export const MagicLinkEmail = ({ magicLink }: MagicLinkEmailProps) => (
                 </Section>
                 <Text style={paragraph}>
                     Best,
-                    <br />- AI Tutor team
+                    <br />- Chatbot team
                 </Text>
                 <Hr style={hr} />
                 <Img
@@ -59,7 +59,7 @@ export const MagicLinkEmail = ({ magicLink }: MagicLinkEmailProps) => (
                         margin: '20px 0',
                     }}
                 />
-                <Text style={footer}>AI Tutor.</Text>
+                <Text style={footer}>Chatbot.</Text>
             </Container>
         </Body>
     </Html>

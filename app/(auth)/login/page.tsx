@@ -9,7 +9,7 @@ import { abstractImages } from '@/lib/images';
 
 export const metadata: Metadata = {
   title: 'Login',
-  description: 'Login to AI Tutor',
+  description: 'Login to Chatbot',
 };
 
 export default async function SignInPage() {
