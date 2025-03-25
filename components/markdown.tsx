@@ -1,7 +1,10 @@
+import "katex/dist/katex.min.css";
 import Link from 'next/link';
 import React, { memo } from 'react';
 import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 import { CodeBlock } from './artifact/code/code-block';
 
 const components: Partial<Components> = {
@@ -93,12 +96,19 @@ const components: Partial<Components> = {
   },
 };
 
-const remarkPlugins = [remarkGfm];
+const remarkPlugins = [remarkGfm, remarkMath];
+const rehypePlugins = [rehypeKatex];
 
 const NonMemoizedMarkdown = ({ children }: { children: string }) => {
+  const processedText = children
+    .replace(/\\\[/g, `$$$`)
+    .replace(/\\\]/g, `$$$`)
+    .replace(/\\\(/g, `$$$`)
+    .replace(/\\\)/g, `$$$`);
+
   return (
-    <ReactMarkdown remarkPlugins={remarkPlugins} components={components}>
-      {children}
+    <ReactMarkdown remarkPlugins={remarkPlugins} rehypePlugins={rehypePlugins} components={components}>
+      {processedText}
     </ReactMarkdown>
   );
 };

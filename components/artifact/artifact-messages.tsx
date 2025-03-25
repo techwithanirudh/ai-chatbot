@@ -1,5 +1,5 @@
 import { PreviewMessage } from '../chat/message';
-import { useScrollToBottom } from '../use-scroll-to-bottom';
+import { useScrollToBottom } from '../../hooks/use-scroll-to-bottom';
 import type { Vote } from '@/server/db/schema';
 import type { UIMessage } from 'ai';
 import { memo } from 'react';

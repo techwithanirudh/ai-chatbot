@@ -1,10 +1,11 @@
 import type { UIMessage } from 'ai';
 import { PreviewMessage, ThinkingMessage } from './message';
-import { useScrollToBottom } from '../use-scroll-to-bottom';
+import { useScrollToBottom } from '../../hooks/use-scroll-to-bottom';
 import { memo } from 'react';
 import type { Vote } from '@/server/db/schema';
 import equal from 'fast-deep-equal';
 import type { UseChatHelpers } from '@ai-sdk/react';
+import { cn } from '@/lib/utils';
 
 interface MessagesProps {
   chatId: string;
@@ -32,7 +33,10 @@ function PureMessages({
   return (
     <div
       ref={messagesContainerRef}
-      className="flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4"
+      className={cn(
+        'flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4',
+        'relative' /* todo: fix katex bug where it messes with scroll behaviour (https://stackoverflow.com/questions/60202460/why-does-running-katex-change-my-pages-scroll-element-into-view-behavior) */,
+      )}
     >
       {messages.map((message, index) => (
         <PreviewMessage
