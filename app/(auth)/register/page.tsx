@@ -1,74 +1,83 @@
-'use client';
+import type { Metadata } from 'next';
+// import { Chat } from '@/components/icons';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useActionState, useEffect, useState } from 'react';
+import { CardWrapper } from '@/components/auth/card-wrapper';
+import { RegisterForm } from '@/components/auth/register-form';
+import { MessageSquare } from 'lucide-react';
+import { abstractImages } from '@/lib/images';
 
-import { AuthForm } from '@/components/auth-form';
-import { SubmitButton } from '@/components/submit-button';
+export const metadata: Metadata = {
+  title: 'Register',
+  description: 'Register to AI Tutor',
+};
 
-import { register, type RegisterActionState } from '../actions';
-import { toast } from '@/components/toast';
-
-export default function Page() {
-  const router = useRouter();
-
-  const [email, setEmail] = useState('');
-  const [isSuccessful, setIsSuccessful] = useState(false);
-
-  const [state, formAction] = useActionState<RegisterActionState, FormData>(
-    register,
-    {
-      status: 'idle',
-    },
-  );
-
-  useEffect(() => {
-    if (state.status === 'user_exists') {
-      toast({ type: 'error', description: 'Account already exists!' });
-    } else if (state.status === 'failed') {
-      toast({ type: 'error', description: 'Failed to create account!' });
-    } else if (state.status === 'invalid_data') {
-      toast({
-        type: 'error',
-        description: 'Failed validating your submission!',
-      });
-    } else if (state.status === 'success') {
-      toast({ type: 'success', description: 'Account created successfully!' });
-
-      setIsSuccessful(true);
-      router.refresh();
-    }
-  }, [state]);
-
-  const handleSubmit = (formData: FormData) => {
-    setEmail(formData.get('email') as string);
-    formAction(formData);
-  };
+export default function RegisterPage() {
+  const image =
+    abstractImages[Math.floor(Math.random() * abstractImages.length)];
 
   return (
-    <div className="flex h-dvh w-screen items-start pt-12 md:pt-0 md:items-center justify-center bg-background">
-      <div className="w-full max-w-md overflow-hidden rounded-2xl gap-12 flex flex-col">
-        <div className="flex flex-col items-center justify-center gap-2 px-4 text-center sm:px-16">
-          <h3 className="text-xl font-semibold dark:text-zinc-50">Sign Up</h3>
-          <p className="text-sm text-gray-500 dark:text-zinc-400">
-            Create an account with your email and password
-          </p>
+    <>
+      <div className="container relative grid h-dvh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
+        <div className="relative hidden h-full rounded-3xl overflow-hidden lg:block p-4">
+          {/* todo: use next-image optimizations and limit urls available in next config */}
+          <img
+            src={image.url}
+            className="object-cover w-full h-full rounded-3xl"
+            alt="Abstract background"
+          />
+          <div className="absolute bottom-6 left-7 text-primary-foreground">
+            <p>
+              Credit:{' '}
+              <a href={image.author.url} className="underline">
+                {image.author.name}
+              </a>
+            </p>
+          </div>
         </div>
-        <AuthForm action={handleSubmit} defaultEmail={email}>
-          <SubmitButton isSuccessful={isSuccessful}>Sign Up</SubmitButton>
-          <p className="text-center text-sm text-gray-600 mt-4 dark:text-zinc-400">
-            {'Already have an account? '}
-            <Link
-              href="/login"
-              className="font-semibold text-gray-800 hover:underline dark:text-zinc-200"
+        <div className="lg:p-8">
+          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            <div className="flex flex-col space-y-2 text-center">
+              <div className="flex items-center gap-2 justify-center">
+                <div className="rounded-lg p-2 text-primary-foreground bg-zinc-900">
+                  <MessageSquare className="size-6" />
+                </div>
+              </div>
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Create an account
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Enter your email below to create your account
+              </p>
+            </div>
+            <CardWrapper
+              backButtonLabel="Already have an account?"
+              backButtonLinkLabel="Login"
+              backButtonHref="/login"
+              showSocial
+              showCredentials
             >
-              Sign in
-            </Link>
-            {' instead.'}
-          </p>
-        </AuthForm>
+              <RegisterForm />
+            </CardWrapper>
+            {/* <p className="px-8 text-center text-sm text-muted-foreground">
+              By clicking continue, you agree to our{" "}
+              <Link
+                href="/legal/terms"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/legal/privacy"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Privacy Policy
+              </Link>
+              .
+            </p> */}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

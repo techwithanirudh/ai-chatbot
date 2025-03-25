@@ -1,10 +1,10 @@
-import { auth } from '@/app/(auth)/auth';
+import { auth } from '@/server/auth';
 import { ArtifactKind } from '@/components/artifact';
 import {
   deleteDocumentsByIdAfterTimestamp,
   getDocumentsById,
   saveDocument,
-} from '@/lib/db/queries';
+} from '@/server/db/queries';
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

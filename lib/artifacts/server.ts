@@ -4,8 +4,8 @@ import { sheetDocumentHandler } from '@/artifacts/sheet/server';
 import { textDocumentHandler } from '@/artifacts/text/server';
 import { ArtifactKind } from '@/components/artifact';
 import { DataStreamWriter } from 'ai';
-import { Document } from '../db/schema';
-import { saveDocument } from '../db/queries';
+import { Document } from '../../server/db/schema';
+import { saveDocument } from '../../server/db/queries';
 import { Session } from 'next-auth';
 
 export interface SaveDocumentProps {

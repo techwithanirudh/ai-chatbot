@@ -1,73 +1,83 @@
-'use client';
+import type { Metadata } from 'next';
+// import { Chat } from '@/components/icons';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useActionState, useEffect, useState } from 'react';
-import { toast } from '@/components/toast';
+import { CardWrapper } from '@/components/auth/card-wrapper';
+import { LoginForm } from '@/components/auth/login-form';
 
-import { AuthForm } from '@/components/auth-form';
-import { SubmitButton } from '@/components/submit-button';
+import { MessageSquare } from 'lucide-react';
+import { abstractImages } from '@/lib/images';
 
-import { login, type LoginActionState } from '../actions';
+export const metadata: Metadata = {
+  title: 'Login',
+  description: 'Login to AI Tutor',
+};
 
-export default function Page() {
-  const router = useRouter();
-
-  const [email, setEmail] = useState('');
-  const [isSuccessful, setIsSuccessful] = useState(false);
-
-  const [state, formAction] = useActionState<LoginActionState, FormData>(
-    login,
-    {
-      status: 'idle',
-    },
-  );
-
-  useEffect(() => {
-    if (state.status === 'failed') {
-      toast({
-        type: 'error',
-        description: 'Invalid credentials!',
-      });
-    } else if (state.status === 'invalid_data') {
-      toast({
-        type: 'error',
-        description: 'Failed validating your submission!',
-      });
-    } else if (state.status === 'success') {
-      setIsSuccessful(true);
-      router.refresh();
-    }
-  }, [state.status]);
-
-  const handleSubmit = (formData: FormData) => {
-    setEmail(formData.get('email') as string);
-    formAction(formData);
-  };
+export default async function SignInPage() {
+  const image =
+    abstractImages[Math.floor(Math.random() * abstractImages.length)];
 
   return (
-    <div className="flex h-dvh w-screen items-start pt-12 md:pt-0 md:items-center justify-center bg-background">
-      <div className="w-full max-w-md overflow-hidden rounded-2xl flex flex-col gap-12">
-        <div className="flex flex-col items-center justify-center gap-2 px-4 text-center sm:px-16">
-          <h3 className="text-xl font-semibold dark:text-zinc-50">Sign In</h3>
-          <p className="text-sm text-gray-500 dark:text-zinc-400">
-            Use your email and password to sign in
-          </p>
+    <>
+      <div className="container relative grid h-dvh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
+        <div className="relative hidden h-full rounded-3xl overflow-hidden lg:block p-4">
+          <img
+            src={image.url}
+            className="object-cover w-full h-full rounded-3xl"
+            alt="Abstract background"
+          />
+          <div className="absolute bottom-6 left-7 text-primary-foreground">
+            <p>
+              Credit:{' '}
+              <a href={image.author.url} className="underline">
+                {image.author.name}
+              </a>
+            </p>
+          </div>
         </div>
-        <AuthForm action={handleSubmit} defaultEmail={email}>
-          <SubmitButton isSuccessful={isSuccessful}>Sign in</SubmitButton>
-          <p className="text-center text-sm text-gray-600 mt-4 dark:text-zinc-400">
-            {"Don't have an account? "}
-            <Link
-              href="/register"
-              className="font-semibold text-gray-800 hover:underline dark:text-zinc-200"
+        <div className="lg:p-8">
+          <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            <div className="flex flex-col space-y-2 text-center">
+              <div className="flex items-center gap-2 justify-center">
+                <div className="rounded-lg p-2 text-primary-foreground bg-zinc-900">
+                  <MessageSquare className="size-6" />
+                </div>
+              </div>
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Welcome back
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Enter your email below to login to your account
+              </p>
+            </div>
+            <CardWrapper
+              backButtonLabel="No account?"
+              backButtonLinkLabel="Register"
+              backButtonHref="/register"
+              showSocial
+              showCredentials
             >
-              Sign up
-            </Link>
-            {' for free.'}
-          </p>
-        </AuthForm>
+              <LoginForm />
+            </CardWrapper>
+            {/* <p className="px-8 text-center text-sm text-muted-foreground">
+              By clicking continue, you agree to our{" "}
+              <Link
+                href="/legal/terms"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/legal/privacy"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Privacy Policy
+              </Link>
+              .
+            </p> */}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

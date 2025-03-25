@@ -2,7 +2,7 @@
 
 import { updateChatVisibility } from '@/app/(chat)/actions';
 import { VisibilityType } from '@/components/visibility-selector';
-import { Chat } from '@/lib/db/schema';
+import { Chat } from '@/server/db/schema';
 import { useMemo } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 
