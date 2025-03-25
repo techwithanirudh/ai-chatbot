@@ -8,7 +8,7 @@ import { abstractImages } from '@/lib/images';
 
 export const metadata: Metadata = {
   title: 'Register',
-  description: 'Register to AI Tutor',
+  description: 'Register to Chatbot',
 };
 
 export default function RegisterPage() {
