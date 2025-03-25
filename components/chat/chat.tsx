@@ -4,16 +4,16 @@ import type { Attachment, UIMessage } from 'ai';
 import { useChat } from '@ai-sdk/react';
 import { useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
-import { ChatHeader } from '@/components/chat-header';
+import { ChatHeader } from '@/components/chat/chat-header';
 import type { Vote } from '@/server/db/schema';
 import { cn, fetcher, generateUUID } from '@/lib/utils';
-import { Artifact } from './artifact';
+import { Artifact } from '../artifact';
 import { MultimodalInput } from './multimodal-input';
 import { Messages } from './messages';
 import { VisibilityType } from './visibility-selector';
 import { useArtifactSelector } from '@/hooks/use-artifact';
 import { toast } from 'sonner';
-import { Overview } from './overview';
+import { Overview } from '../overview';
 
 export function Chat({
   id,

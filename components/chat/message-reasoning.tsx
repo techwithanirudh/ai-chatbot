@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDownIcon, LoaderIcon } from './icons';
+import { ChevronDownIcon, LoaderIcon } from '../icons';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Markdown } from './markdown';
+import { Markdown } from '../markdown';
 
 interface MessageReasoningProps {
   isLoading: boolean;

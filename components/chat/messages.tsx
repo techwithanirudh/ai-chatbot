@@ -1,6 +1,6 @@
 import { UIMessage } from 'ai';
 import { PreviewMessage, ThinkingMessage } from './message';
-import { useScrollToBottom } from './use-scroll-to-bottom';
+import { useScrollToBottom } from '../use-scroll-to-bottom';
 import { memo } from 'react';
 import { Vote } from '@/server/db/schema';
 import equal from 'fast-deep-equal';

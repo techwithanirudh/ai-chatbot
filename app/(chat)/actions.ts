@@ -8,7 +8,7 @@ import {
   getMessageById,
   updateChatVisiblityById,
 } from '@/server/db/queries';
-import { VisibilityType } from '@/components/visibility-selector';
+import { VisibilityType } from '@/components/chat/visibility-selector';
 import { myProvider } from '@/lib/ai/providers';
 
 export async function saveChatModelAsCookie(model: string) {

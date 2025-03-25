@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 
 import { auth } from '@/server/auth';
-import { Chat } from '@/components/chat';
+import { Chat } from '@/components/chat/chat';
 import { getChatById, getMessagesByChatId } from '@/server/db/queries';
 import { DataStreamHandler } from '@/components/data-stream-handler';
 import { DEFAULT_CHAT_MODEL } from '@/lib/ai/models';
