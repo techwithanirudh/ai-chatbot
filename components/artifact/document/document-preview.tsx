@@ -2,25 +2,25 @@
 
 import {
   memo,
-  MouseEvent,
+  type MouseEvent,
   useCallback,
   useEffect,
   useMemo,
   useRef,
 } from 'react';
-import { ArtifactKind, UIArtifact } from './artifact';
-import { FileIcon, FullscreenIcon, ImageIcon, LoaderIcon } from './icons';
+import type { ArtifactKind, UIArtifact } from '..';
+import { FileIcon, FullscreenIcon, ImageIcon, LoaderIcon } from '../../icons';
 import { cn, fetcher } from '@/lib/utils';
-import { Document } from '@/server/db/schema';
+import type { Document } from '@/server/db/schema';
 import { InlineDocumentSkeleton } from './document-skeleton';
 import useSWR from 'swr';
-import { Editor } from './text-editor';
+import { Editor } from '../text/text-editor';
 import { DocumentToolCall, DocumentToolResult } from './document';
-import { CodeEditor } from './code-editor';
+import { CodeEditor } from '../code/code-editor';
 import { useArtifact } from '@/hooks/use-artifact';
 import equal from 'fast-deep-equal';
-import { SpreadsheetEditor } from './sheet-editor';
-import { ImageEditor } from './image-editor';
+import { SpreadsheetEditor } from '../sheet/sheet-editor';
+import { ImageEditor } from '../image/image-editor';
 
 interface DocumentPreviewProps {
   isReadonly: boolean;
@@ -88,13 +88,13 @@ export function DocumentPreview({
     ? previewDocument
     : artifact.status === 'streaming'
       ? {
-          title: artifact.title,
-          kind: artifact.kind,
-          content: artifact.content,
-          id: artifact.documentId,
-          createdAt: new Date(),
-          userId: 'noop',
-        }
+        title: artifact.title,
+        kind: artifact.kind,
+        content: artifact.content,
+        id: artifact.documentId,
+        createdAt: new Date(),
+        userId: 'noop',
+      }
       : null;
 
   if (!document) return <LoadingSkeleton artifactKind={artifact.kind} />;
@@ -160,18 +160,18 @@ const PureHitboxLayer = ({
         artifact.status === 'streaming'
           ? { ...artifact, isVisible: true }
           : {
-              ...artifact,
-              title: result.title,
-              documentId: result.id,
-              kind: result.kind,
-              isVisible: true,
-              boundingBox: {
-                left: boundingBox.x,
-                top: boundingBox.y,
-                width: boundingBox.width,
-                height: boundingBox.height,
-              },
+            ...artifact,
+            title: result.title,
+            documentId: result.id,
+            kind: result.kind,
+            isVisible: true,
+            boundingBox: {
+              left: boundingBox.x,
+              top: boundingBox.y,
+              width: boundingBox.width,
+              height: boundingBox.height,
             },
+          },
       );
     },
     [setArtifact, result],
@@ -250,18 +250,18 @@ const DocumentContent = ({ document }: { document: Document }) => {
     isCurrentVersion: true,
     currentVersionIndex: 0,
     status: artifact.status,
-    saveContent: () => {},
+    saveContent: () => { },
     suggestions: [],
   };
 
   return (
     <div className={containerClassName}>
       {document.kind === 'text' ? (
-        <Editor {...commonProps} onSaveContent={() => {}} />
+        <Editor {...commonProps} onSaveContent={() => { }} />
       ) : document.kind === 'code' ? (
         <div className="flex flex-1 relative w-full">
           <div className="absolute inset-0">
-            <CodeEditor {...commonProps} onSaveContent={() => {}} />
+            <CodeEditor {...commonProps} onSaveContent={() => { }} />
           </div>
         </div>
       ) : document.kind === 'sheet' ? (

@@ -1,5 +1,5 @@
-import { Artifact } from '@/components/create-artifact';
-import { CodeEditor } from '@/components/code-editor';
+import { Artifact } from '@/components/artifact/create-artifact';
+import { CodeEditor } from '@/components/artifact/code/code-editor';
 import {
   CopyIcon,
   LogsIcon,
@@ -14,7 +14,7 @@ import {
   Console,
   ConsoleOutput,
   ConsoleOutputContent,
-} from '@/components/console';
+} from '@/components/artifact/code/console';
 
 const OUTPUT_HANDLERS = {
   matplotlib: `
@@ -82,8 +82,8 @@ export const codeArtifact = new Artifact<'code', Metadata>({
         content: streamPart.content as string,
         isVisible:
           draftArtifact.status === 'streaming' &&
-          draftArtifact.content.length > 300 &&
-          draftArtifact.content.length < 310
+            draftArtifact.content.length > 300 &&
+            draftArtifact.content.length < 310
             ? true
             : draftArtifact.isVisible,
         status: 'streaming',

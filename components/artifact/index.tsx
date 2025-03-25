@@ -13,20 +13,20 @@ import useSWR, { useSWRConfig } from 'swr';
 import { useDebounceCallback, useWindowSize } from 'usehooks-ts';
 import type { Document, Vote } from '@/server/db/schema';
 import { fetcher } from '@/lib/utils';
-import { MultimodalInput } from './chat/multimodal-input';
-import { Toolbar } from './toolbar';
-import { VersionFooter } from './version-footer';
+import { MultimodalInput } from '../chat/multimodal-input';
+import { Toolbar } from './document/toolbar';
+import { VersionFooter } from './document/version-footer';
 import { ArtifactActions } from './artifact-actions';
 import { ArtifactCloseButton } from './artifact-close-button';
 import { ArtifactMessages } from './artifact-messages';
-import { useSidebar } from './ui/sidebar';
+import { useSidebar } from '../ui/sidebar';
 import { useArtifact } from '@/hooks/use-artifact';
 import { imageArtifact } from '@/artifacts/image/client';
 import { codeArtifact } from '@/artifacts/code/client';
 import { sheetArtifact } from '@/artifacts/sheet/client';
 import { textArtifact } from '@/artifacts/text/client';
 import equal from 'fast-deep-equal';
-import { UseChatHelpers } from '@ai-sdk/react';
+import type { UseChatHelpers } from '@ai-sdk/react';
 
 export const artifactDefinitions = [
   textArtifact,

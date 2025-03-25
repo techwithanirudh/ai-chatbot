@@ -5,20 +5,20 @@ import cx from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { memo, useState } from 'react';
 import type { Vote } from '@/server/db/schema';
-import { DocumentToolCall, DocumentToolResult } from '../document';
-import { PencilEditIcon, SparklesIcon } from '../icons';
-import { Markdown } from '../markdown';
+import { DocumentToolCall, DocumentToolResult } from '../../artifact/document/document';
+import { PencilEditIcon, SparklesIcon } from '../../icons';
+import { Markdown } from '../../markdown';
 import { MessageActions } from './message-actions';
-import { PreviewAttachment } from './preview-attachment';
-import { Weather } from '../weather';
+import { PreviewAttachment } from '../preview-attachment';
+import { Weather } from '../../tools/weather';
 import equal from 'fast-deep-equal';
 import { cn } from '@/lib/utils';
-import { Button } from '../ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+import { Button } from '../../ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip';
 import { MessageEditor } from './message-editor';
-import { DocumentPreview } from '../document-preview';
+import { DocumentPreview } from '../../artifact/document/document-preview';
 import { MessageReasoning } from './message-reasoning';
-import { UseChatHelpers } from '@ai-sdk/react';
+import type { UseChatHelpers } from '@ai-sdk/react';
 
 const PurePreviewMessage = ({
   chatId,

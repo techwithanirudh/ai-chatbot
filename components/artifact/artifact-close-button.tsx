@@ -1,6 +1,6 @@
 import { memo } from 'react';
-import { CrossIcon } from './icons';
-import { Button } from './ui/button';
+import { CrossIcon } from '../icons';
+import { Button } from '../ui/button';
 import { initialArtifactData, useArtifact } from '@/hooks/use-artifact';
 
 function PureArtifactCloseButton() {
@@ -15,9 +15,9 @@ function PureArtifactCloseButton() {
         setArtifact((currentArtifact) =>
           currentArtifact.status === 'streaming'
             ? {
-                ...currentArtifact,
-                isVisible: false,
-              }
+              ...currentArtifact,
+              isVisible: false,
+            }
             : { ...initialArtifactData, status: 'idle' },
         );
       }}

@@ -1,11 +1,11 @@
-import { PreviewMessage } from './chat/message';
-import { useScrollToBottom } from './use-scroll-to-bottom';
-import { Vote } from '@/server/db/schema';
-import { UIMessage } from 'ai';
+import { PreviewMessage } from '../chat/message';
+import { useScrollToBottom } from '../use-scroll-to-bottom';
+import type { Vote } from '@/server/db/schema';
+import type { UIMessage } from 'ai';
 import { memo } from 'react';
 import equal from 'fast-deep-equal';
-import { UIArtifact } from './artifact';
-import { UseChatHelpers } from '@ai-sdk/react';
+import type { UIArtifact } from '.';
+import type { UseChatHelpers } from '@ai-sdk/react';
 
 interface ArtifactMessagesProps {
   chatId: string;
