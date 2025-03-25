@@ -16,8 +16,9 @@ import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { MagicLinkSchema } from '@/lib/validators';
 
-import { FormError } from '@/components/auth/form-error';
-import { FormSuccess } from '@/components/auth/form-success';
+import { TriangleAlertIcon as IconWarning } from 'lucide-react';
+import { CheckCircleFillIcon as IconCheckCircle } from '@/components/icons';
+import { Alert, AlertTitle } from '../ui/alert';
 
 import { loginWithMagicLink } from '@/app/(auth)/actions';
 import { LoaderIcon } from 'lucide-react';
@@ -45,7 +46,6 @@ export const LoginForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                {/* <FormLabel>Email address</FormLabel> */}
                 <FormControl>
                   <Input
                     {...field}
@@ -61,9 +61,17 @@ export const LoginForm = () => {
         </div>
 
         {status === 'hasSucceeded' && (
-          <FormSuccess message={'Confirmation email has been sent!'} />
+          <Alert className="bg-emerald-500/15 text-emerald-500 p-3 border-emerald-500/15">
+            <IconCheckCircle size={16} />
+            <AlertTitle className='mb-0 leading-normal'>Confirmation email has been sent!</AlertTitle>
+          </Alert>
         )}
-        <FormError message={result.serverError} />
+        {result.serverError && (
+          <Alert className="bg-destructive/15 text-destructive dark:bg-destructive dark:text-destructive-foreground p-3 border-destructive/15 dark:border-destructive">
+            <IconWarning className='size-4' />
+            <AlertTitle className='mb-0 leading-normal'>{result.serverError}</AlertTitle>
+          </Alert>
+        )}
 
         <Button
           disabled={status === 'executing'}

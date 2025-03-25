@@ -1,7 +1,7 @@
-import { Artifact } from '@/components/create-artifact';
-import { DiffView } from '@/components/diffview';
-import { DocumentSkeleton } from '@/components/document-skeleton';
-import { Editor } from '@/components/text-editor';
+import { Artifact } from '@/components/artifact/create-artifact';
+import { DiffView } from '@/components/artifact/document/diffview';
+import { DocumentSkeleton } from '@/components/artifact/document/document-skeleton';
+import { Editor } from '@/components/artifact/text/text-editor';
 import {
   ClockRewind,
   CopyIcon,
@@ -10,7 +10,7 @@ import {
   RedoIcon,
   UndoIcon,
 } from '@/components/icons';
-import { Suggestion } from '@/server/db/schema';
+import type { Suggestion } from '@/server/db/schema';
 import { toast } from 'sonner';
 import { getSuggestions } from '../actions';
 
@@ -47,8 +47,8 @@ export const textArtifact = new Artifact<'text', TextArtifactMetadata>({
           content: draftArtifact.content + (streamPart.content as string),
           isVisible:
             draftArtifact.status === 'streaming' &&
-            draftArtifact.content.length > 400 &&
-            draftArtifact.content.length < 450
+              draftArtifact.content.length > 400 &&
+              draftArtifact.content.length < 450
               ? true
               : draftArtifact.isVisible,
           status: 'streaming',
@@ -91,8 +91,8 @@ export const textArtifact = new Artifact<'text', TextArtifactMetadata>({
           />
 
           {metadata &&
-          metadata.suggestions &&
-          metadata.suggestions.length > 0 ? (
+            metadata.suggestions &&
+            metadata.suggestions.length > 0 ? (
             <div className="md:hidden h-dvh w-12 shrink-0" />
           ) : null}
         </div>
