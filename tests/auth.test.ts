@@ -6,7 +6,7 @@ import { test, expect, Page } from '@playwright/test';
 test.use({ storageState: { cookies: [], origins: [] } });
 
 const testEmail = `test-${getUnixTime(new Date())}@playwright.com`;
-const testPassword = generateId(16);
+const testPassword = process.env.TEST_PASSWORD ?? 'password';
 
 class AuthPage {
   constructor(private page: Page) {}
@@ -39,8 +39,8 @@ class AuthPage {
     await this.page.getByRole('button', { name: 'Sign In' }).click();
   }
 
-  async expectToastToContain(text: string) {
-    await expect(this.page.getByTestId('toast')).toContainText(text);
+  async expectAlertToContain(text: string) {
+    await expect(this.page.getByTestId('alert')).toContainText(text);
   }
 }
 
@@ -60,12 +60,12 @@ test.describe
     test('register a test account', async ({ page }) => {
       await authPage.register(testEmail, testPassword);
       await expect(page).toHaveURL('/');
-      await authPage.expectToastToContain('Account created successfully!');
+      await authPage.expectAlertToContain('Account created successfully!');
     });
 
     test('register test account with existing email', async () => {
       await authPage.register(testEmail, testPassword);
-      await authPage.expectToastToContain('Account already exists!');
+      await authPage.expectAlertToContain('Account already exists!');
     });
 
     test('log into account', async ({ page }) => {

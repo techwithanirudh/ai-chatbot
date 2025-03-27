@@ -2,7 +2,7 @@
 
 import { useAction } from 'next-safe-action/hooks';
 
-import type { MagicLink } from '@/lib/validators';
+import type { Register } from '@/lib/validators';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -14,27 +14,28 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
-import { MagicLinkSchema } from '@/lib/validators';
+import { RegisterSchema } from '@/lib/validators';
 
 import { TriangleAlertIcon as IconWarning } from 'lucide-react';
 import { CheckCircleFillIcon as IconCheckCircle } from '@/components/icons';
 
-import { loginWithMagicLink } from '@/app/(auth)/actions';
+import { registerWithPassword } from '@/app/(auth)/actions';
 
 import { LoaderIcon } from 'lucide-react';
 import { Alert, AlertTitle } from '../ui/alert';
 
 export const RegisterForm = () => {
   const form = useForm({
-    resolver: zodResolver(MagicLinkSchema),
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
       email: '',
+      password: '',
     },
   });
 
-  const { execute, result, status } = useAction(loginWithMagicLink);
+  const { execute, result, status } = useAction(registerWithPassword);
 
-  const onSubmit = (values: MagicLink) => {
+  const onSubmit = (values: Register) => {
     execute(values);
   };
 
@@ -59,16 +60,33 @@ export const RegisterForm = () => {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input
+                    {...field}
+                    disabled={status === 'executing'}
+                    placeholder="Password"
+                    type="password"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
 
         {status === 'hasSucceeded' && (
-          <Alert className="bg-emerald-500/15 text-emerald-500 p-3 border-emerald-500/15">
+          <Alert className="bg-emerald-500/15 text-emerald-500 p-3 border-emerald-500/15" data-testid="alert">
             <IconCheckCircle size={16} />
-            <AlertTitle className='mb-0 leading-normal'>Confirmation email has been sent!</AlertTitle>
+            <AlertTitle className='mb-0 leading-normal'>Account created successfully!</AlertTitle>
           </Alert>
         )}
         {result.serverError && (
-          <Alert className="bg-destructive/15 text-destructive dark:bg-destructive dark:text-destructive-foreground p-3 border-destructive/15 dark:border-destructive">
+          <Alert className="bg-destructive/15 text-destructive dark:bg-destructive dark:text-destructive-foreground p-3 border-destructive/15 dark:border-destructive" data-testid="alert">
             <IconWarning className='size-4' />
             <AlertTitle className='mb-0 leading-normal'>{result.serverError}</AlertTitle>
           </Alert>
@@ -82,7 +100,7 @@ export const RegisterForm = () => {
           {status === 'executing' && (
             <LoaderIcon className="mr-2 size-4 animate-spin" />
           )}
-          Continue with Email
+          Sign Up
         </Button>
       </form>
     </Form>

@@ -2,10 +2,11 @@ import type { Metadata } from 'next';
 // import { Chat } from '@/components/icons';
 
 import { CardWrapper } from '@/components/auth/card-wrapper';
-import { LoginForm } from '@/components/auth/login-form';
+import { MagicLinkForm } from '@/components/auth/magic-form';
 
 import { MessageSquare } from 'lucide-react';
 import { abstractImages } from '@/lib/images';
+import { LoginForm } from '@/components/auth/login-form';
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -56,7 +57,9 @@ export default async function SignInPage() {
               showSocial
               showCredentials
             >
-              <LoginForm />
+              {process.env.NODE_ENV === 'development' ?
+                <LoginForm /> : <MagicLinkForm />
+              }
             </CardWrapper>
             {/* <p className="px-8 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{" "}

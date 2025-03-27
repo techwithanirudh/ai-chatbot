@@ -2,7 +2,7 @@
 
 import { useAction } from 'next-safe-action/hooks';
 
-import type { SignIn } from '@/lib/validators';
+import type { MagicLink } from '@/lib/validators';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -14,27 +14,26 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
-import { SignInSchema } from '@/lib/validators';
+import { MagicLinkSchema } from '@/lib/validators';
 
 import { TriangleAlertIcon as IconWarning } from 'lucide-react';
 import { CheckCircleFillIcon as IconCheckCircle } from '@/components/icons';
 import { Alert, AlertTitle } from '../ui/alert';
 
-import { signInWithPassword } from '@/app/(auth)/actions';
+import { signInWithMagicLink } from '@/app/(auth)/actions';
 import { LoaderIcon } from 'lucide-react';
 
-export const LoginForm = () => {
+export const MagicLinkForm = () => {
   const form = useForm({
-    resolver: zodResolver(SignInSchema),
+    resolver: zodResolver(MagicLinkSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
-  const { execute, result, status } = useAction(signInWithPassword);
+  const { execute, result, status } = useAction(signInWithMagicLink);
 
-  const onSubmit = (values: SignIn) => {
+  const onSubmit = (values: MagicLink) => {
     execute(values);
   };
 
@@ -59,29 +58,12 @@ export const LoginForm = () => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input
-                    {...field}
-                    disabled={status === 'executing'}
-                    placeholder="Password"
-                    type="password"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
         </div>
 
         {status === 'hasSucceeded' && (
           <Alert className="bg-emerald-500/15 text-emerald-500 p-3 border-emerald-500/15" data-testid="alert">
             <IconCheckCircle size={16} />
-            <AlertTitle className='mb-0 leading-normal'>Successfully logged in!</AlertTitle>
+            <AlertTitle className='mb-0 leading-normal'>Confirmation email has been sent!</AlertTitle>
           </Alert>
         )}
         {result.serverError && (
@@ -99,7 +81,7 @@ export const LoginForm = () => {
           {status === 'executing' && (
             <LoaderIcon className="mr-2 size-4 animate-spin" />
           )}
-          Sign In
+          Continue with Email
         </Button>
       </form>
     </Form>

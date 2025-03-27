@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 
 import { CardWrapper } from '@/components/auth/card-wrapper';
 import { RegisterForm } from '@/components/auth/register-form';
+import { MagicLinkForm } from '@/components/auth/magic-form';
 import { MessageSquare } from 'lucide-react';
 import { abstractImages } from '@/lib/images';
 
@@ -56,7 +57,9 @@ export default function RegisterPage() {
               showSocial
               showCredentials
             >
-              <RegisterForm />
+              {process.env.NODE_ENV === 'development' ?
+                <RegisterForm /> : <MagicLinkForm />
+              }
             </CardWrapper>
             {/* <p className="px-8 text-center text-sm text-muted-foreground">
               By clicking continue, you agree to our{" "}
