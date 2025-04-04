@@ -51,6 +51,7 @@ export const CardWrapper = ({
             className="flex w-full flex-row items-center justify-center gap-2 h-auto hover:no-underline hover:text-muted-foreground"
             variant="link"
             onClick={toggleAuthMode}
+            data-testid="toggle-auth-mode"
           >
             {authMode === "magic" ? "Sign in with password" : "Sign in with magic link"}
           </Button>

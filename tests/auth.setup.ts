@@ -9,8 +9,9 @@ setup('authenticate', async ({ page }) => {
   const testPassword = process.env.TEST_PASSWORD ?? 'password';
 
   await page.goto('http://localhost:3000/register');
-  await page.getByPlaceholder('user@acme.com').click();
-  await page.getByPlaceholder('user@acme.com').fill(testEmail);
+  await page.getByTestId('toggle-auth-mode').click();
+  await page.getByPlaceholder('Email address').click();
+  await page.getByPlaceholder('Email address').fill(testEmail);
   await page.getByLabel('Password').click();
   await page.getByLabel('Password').fill(testPassword);
   await page.getByRole('button', { name: 'Sign Up' }).click();

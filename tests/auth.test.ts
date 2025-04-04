@@ -23,8 +23,9 @@ class AuthPage {
 
   async register(email: string, password: string) {
     await this.gotoRegister();
-    await this.page.getByPlaceholder('user@acme.com').click();
-    await this.page.getByPlaceholder('user@acme.com').fill(email);
+    await this.page.getByTestId('toggle-auth-mode').click();
+    await this.page.getByPlaceholder('Email address').click();
+    await this.page.getByPlaceholder('Email address').fill(email);
     await this.page.getByLabel('Password').click();
     await this.page.getByLabel('Password').fill(password);
     await this.page.getByRole('button', { name: 'Sign Up' }).click();
@@ -32,8 +33,9 @@ class AuthPage {
 
   async login(email: string, password: string) {
     await this.gotoLogin();
-    await this.page.getByPlaceholder('user@acme.com').click();
-    await this.page.getByPlaceholder('user@acme.com').fill(email);
+    await this.page.getByTestId('toggle-auth-mode').click();
+    await this.page.getByPlaceholder('Email address').click();
+    await this.page.getByPlaceholder('Email address').fill(email);
     await this.page.getByLabel('Password').click();
     await this.page.getByLabel('Password').fill(password);
     await this.page.getByRole('button', { name: 'Sign In' }).click();
@@ -54,7 +56,7 @@ test.describe
 
     test('redirect to login page when unauthenticated', async ({ page }) => {
       await page.goto('/');
-      await expect(page.getByRole('heading')).toContainText('Sign In');
+      await expect(page.getByRole('heading')).toContainText('Welcome Back');
     });
 
     test('register a test account', async ({ page }) => {
