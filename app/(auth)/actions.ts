@@ -2,13 +2,14 @@
 import 'server-only';
 
 import { actionClient, ActionError } from '@/lib/safe-action';
-import { MagicLinkSchema, RegisterSchema, SignInSchema } from '@/lib/validators';
+import {
+  MagicLinkSchema,
+  RegisterSchema,
+  SignInSchema,
+} from '@/lib/validators';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/server/auth';
-import { revalidatePath } from 'next/cache';
 import { headers } from 'next/headers';
-
-const DEFAULT_LOGIN_REDIRECT = '/';
 
 export const signInWithMagicLink = actionClient
   .schema(MagicLinkSchema)
@@ -24,35 +25,29 @@ export const signInWithMagicLink = actionClient
 
 export const signInWithPassword = actionClient
   .schema(SignInSchema)
-  .action(async ({ parsedInput: { email, password }}) => {
-    const { error } = await signIn('credentials', {
+  .action(async ({ parsedInput: { email, password } }) => {
+    const res = (await signIn('credentials', {
       email,
       password,
       redirect: false,
-    });
+    })) as string;
 
-    if (error) throw error;
-
-    revalidatePath('/');
-    redirect(DEFAULT_LOGIN_REDIRECT);
+    if (res) redirect(res);
   });
 
 export const registerWithPassword = actionClient
   .schema(RegisterSchema)
-  .action(async ({ parsedInput: { email, password }}) => {
+  .action(async ({ parsedInput: { email, password } }) => {
     const parsedHeaders = await headers();
     const origin = parsedHeaders.get('origin');
 
-    const { error } = await signIn('credentials', {
+    const res = (await signIn('credentials', {
       email,
       password,
       redirect: false,
-    });
+    })) as string;
 
-    if (error) throw error;
-
-    revalidatePath('/');
-    redirect(DEFAULT_LOGIN_REDIRECT);
+    if (res) redirect(res);
   });
 
 export const signInWithGoogle = async () => {
