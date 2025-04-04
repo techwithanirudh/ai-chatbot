@@ -2,7 +2,7 @@
 import 'server-only';
 import { cookies } from 'next/headers';
 
-export async function getBaasApiKey() {
+export async function auth() {
     const cookieStore = await cookies();
     const jwt = cookieStore.get('jwt')?.value;
 
@@ -19,7 +19,9 @@ export async function getBaasApiKey() {
         },
     );
 
-    if (!response.ok) return null;
-    const data = await response.json();
-    return data.api_key;
+    if (!response.ok) return { jwt: null, apiKey: null };
+    const data = await response.json() as {
+        api_key?: string;
+    };
+    return { jwt, apiKey: data?.api_key ?? null };
 }

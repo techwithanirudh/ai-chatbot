@@ -1,7 +1,8 @@
 import {
-  UIMessage,
+  type UIMessage,
   appendResponseMessages,
   createDataStreamResponse,
+  experimental_createMCPClient as createMCPClient,
   smoothStream,
   streamText,
 } from 'ai';
@@ -25,7 +26,7 @@ import { requestSuggestions } from '@/lib/ai/tools/request-suggestions';
 import { getWeather } from '@/lib/ai/tools/get-weather';
 import { isProductionEnvironment } from '@/lib/constants';
 import { myProvider } from '@/lib/ai/providers';
-import { getBaasApiKey } from '@/server/meetingbaas';
+import * as meetingBaas from '@/server/meetingbaas';
 
 export const maxDuration = 60;
 
@@ -41,8 +42,8 @@ export async function POST(request: Request) {
       selectedChatModel: string;
     } = await request.json();
 
-    const baasApiKey = await getBaasApiKey();
     const session = await auth();
+    const baasApiKey = await meetingBaas.auth();
 
     if (!session || !session.user || !session.user.id) {
       return new Response('Unauthorized', { status: 401 });
@@ -81,9 +82,25 @@ export async function POST(request: Request) {
       ],
     });
 
-    console.log('baasKey', baasApiKey)
+
+    const client = await createMCPClient({
+      transport: {
+        type: 'sse',
+        url: 'https://mcp.meetingbaas.com/sse',
+        headers: {
+          'x-meeting-baas-api-key': baasApiKey
+        }
+      },
+      onUncaughtError: (error) => {
+        console.error('MCP Client error:', error);
+      },
+    });
+
+    const toolSet = await client.tools();
+
     return createDataStreamResponse({
-      execute: (dataStream) => {
+      execute: async (dataStream) => {
+
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
           system: systemPrompt({ selectedChatModel }),
@@ -93,11 +110,11 @@ export async function POST(request: Request) {
             selectedChatModel === 'chat-model-reasoning'
               ? []
               : [
-                  'getWeather',
-                  'createDocument',
-                  'updateDocument',
-                  'requestSuggestions',
-                ],
+                'getWeather',
+                'createDocument',
+                'updateDocument',
+                'requestSuggestions',
+              ],
           experimental_transform: smoothStream({ chunking: 'word' }),
           experimental_generateMessageId: generateUUID,
           tools: {
@@ -108,6 +125,7 @@ export async function POST(request: Request) {
               session,
               dataStream,
             }),
+            ...toolSet
           },
           onFinish: async ({ response }) => {
             if (session.user?.id) {

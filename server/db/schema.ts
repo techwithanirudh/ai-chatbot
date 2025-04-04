@@ -10,7 +10,6 @@ import {
   boolean,
   pgTableCreator,
   integer,
-  jsonb,
 } from 'drizzle-orm/pg-core';
 import { relations, } from 'drizzle-orm';
 
