@@ -49,4 +49,5 @@ export const authConfig = {
       return true;
     },
   },
+  debug: process.env.NODE_ENV === 'development',
 } satisfies NextAuthConfig;
