@@ -25,6 +25,7 @@ import { requestSuggestions } from '@/lib/ai/tools/request-suggestions';
 import { getWeather } from '@/lib/ai/tools/get-weather';
 import { isProductionEnvironment } from '@/lib/constants';
 import { myProvider } from '@/lib/ai/providers';
+import { getBaasApiKey } from '@/server/meetingbaas';
 
 export const maxDuration = 60;
 
@@ -40,6 +41,7 @@ export async function POST(request: Request) {
       selectedChatModel: string;
     } = await request.json();
 
+    const baasApiKey = await getBaasApiKey();
     const session = await auth();
 
     if (!session || !session.user || !session.user.id) {
@@ -79,6 +81,7 @@ export async function POST(request: Request) {
       ],
     });
 
+    console.log('baasKey', baasApiKey)
     return createDataStreamResponse({
       execute: (dataStream) => {
         const result = streamText({
