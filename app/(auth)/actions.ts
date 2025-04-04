@@ -19,7 +19,7 @@ export const signInWithMagicLink = actionClient
   });
 
 export const signInWithKeycloak = async () => {
-  const res = (await signIn('keycloack', {
+  const res = (await signIn('keycloak', {
     redirect: false,
   })) as string;
 
