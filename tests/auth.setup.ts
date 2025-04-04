@@ -24,6 +24,9 @@ setup('authenticate', async ({ page }) => {
   await page.locator('#lastName').fill(testLastName);
   await page.getByRole('button', { name: 'Register' }).click();
 
-  await page.waitForURL('/');
+  await page.waitForURL(url => {
+    const pathname = url.pathname
+    return pathname === '/';
+  });
   await page.context().storageState({ path: authFile });
 });

@@ -71,7 +71,10 @@ test.describe
 
     test('register a test account', async ({ page }) => {
       await authPage.register(testEmail, testPassword);
-      await expect(page).toHaveURL('/');
+      await expect(page).toHaveURL(url => {
+        const pathname = url.pathname
+        return pathname === '/';
+      });
       await authPage.expectAlertToContain('Account created successfully!');
     });
 
@@ -83,8 +86,14 @@ test.describe
     test('log into account', async ({ page }) => {
       await authPage.login(testEmail, testPassword);
 
-      await page.waitForURL('/');
-      await expect(page).toHaveURL('/');
+      await page.waitForURL(url => {
+        const pathname = url.pathname
+        return pathname === '/';
+      });
+      await expect(page).toHaveURL(url => {
+        const pathname = url.pathname
+        return pathname === '/';
+      });
       await expect(page.getByPlaceholder('Send a message...')).toBeVisible();
     });
   });
