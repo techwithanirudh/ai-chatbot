@@ -9,9 +9,9 @@ You can read the API reference for the `parts` property [here](https://sdk.verce
 Your existing project must already have messages stored in the database. To migrate your messages to use `parts`, you will have to create new tables for `Message` and `Vote`, backfill the new tables with transformed messages, and delete (optional) the old tables.
 
 These are the following steps:
-1. Create tables `Message_v2` and `Vote_v2` with updated schemas at `/lib/db/schema.ts`
+1. Create tables `Message_v2` and `Vote_v2` with updated schemas at `/server/db/schema.ts`
 2. Update the `Message` component at `/components/message.tsx` to use parts and render content.
-3. Run migration script at `src/lib/db/helpers/01-migrate-to-parts.ts`
+3. Run migration script at `src/server/db/helpers/01-migrate-to-parts.ts`
 
 ### 1. Creating Tables with Updated Schemas
 
@@ -19,7 +19,7 @@ You will mark the earlier tables as deprecated and create two new tables, `Messa
 
 Before creating the new tables, you will need to update the variables of existing tables to indicate that they are deprecated.
 
-```tsx title="/lib/db/schema.ts"
+```tsx title="/server/db/schema.ts"
 export const messageDeprecated = pgTable("Message", {
   id: uuid("id").primaryKey().notNull().defaultRandom(),
   chatId: uuid("chatId")
@@ -55,7 +55,7 @@ export type VoteDeprecated = InferSelectModel<typeof voteDeprecated>;
 
 After deprecating the current table schemas, you can now proceed to create schemas for the new tables.
 
-```ts title="/lib/db/schema.ts"
+```ts title="/server/db/schema.ts"
 export const message = pgTable("Message_v2", {
   id: uuid("id").primaryKey().notNull().defaultRandom(),
   chatId: uuid("chatId")
@@ -237,7 +237,7 @@ At this point, you can deploy your application so new messages can be stored in 
 To restore messages of previous chat conversations, you can run the following script that applies a transformation to the old messages and stores them in the new format.
 
 ```zsh title="shell"
-pnpm exec tsx lib/db/helpers/01-core-to-parts.ts
+pnpm exec tsx server/db/helpers/01-core-to-parts.ts
 ```
 
 This script will take some time to complete based on the number of messages to be migrated. After completion, you can verify that the messages have been successfully migrated by checking the database.
