@@ -222,7 +222,7 @@ export const documentHandlersByArtifactKind: Array<DocumentHandler> = [
 export const artifactKinds = [..., "custom"] as const;
 ```
 
-Specify it in document schema at `server/db/schema.ts`.
+Specify it in the document schema at `server/db/schema.ts`.
 
 ```ts
 export const document = pgTable(

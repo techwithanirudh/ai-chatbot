@@ -9,6 +9,7 @@ You can read the API reference for the `parts` property [here](https://sdk.verce
 Your existing project must already have messages stored in the database. To migrate your messages to use `parts`, you will have to create new tables for `Message` and `Vote`, backfill the new tables with transformed messages, and delete (optional) the old tables.
 
 These are the following steps:
+
 1. Create tables `Message_v2` and `Vote_v2` with updated schemas at `/server/db/schema.ts`
 2. Update the `Message` component at `/components/message.tsx` to use parts and render content.
 3. Run migration script at `src/server/db/helpers/01-migrate-to-parts.ts`

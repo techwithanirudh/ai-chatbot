@@ -1,49 +1,58 @@
 import { test, expect, type Page } from '@playwright/test';
+import { generateId } from 'ai';
+import { getUnixTime } from 'date-fns';
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
-if (!process.env.TEST_KEYCLOAK_USERNAME || !process.env.TEST_KEYCLOAK_PASSWORD) throw new Error("Missing TEST_KEYCLOAK_USERNAME or TEST_KEYCLOAK_PASSWORD environment variables");
-const testUsername = process.env.TEST_KEYCLOAK_USERNAME as string;
-const testPassword = process.env.TEST_KEYCLOAK_PASSWORD as string;
+const [testFirstName, testLastName] = ['John', 'Doe'];
+const testUsername = `test-${getUnixTime(new Date())}`;
+const testEmail = `${testUsername}@playwright.com`;
+const testPassword = generateId(16);
 
 class AuthPage {
   constructor(private page: Page) {}
 
   async gotoLogin() {
     await this.page.goto('/login');
-    await expect(this.page.getByRole('heading')).toContainText('Sign In');
+    await expect(this.page.getByRole('heading')).toContainText('Welcome Back');
   }
 
   async gotoRegister() {
     await this.page.goto('/register');
-    await expect(this.page.getByRole('heading')).toContainText('Sign Up');
+    await expect(this.page.getByRole('heading')).toContainText('Create an account');
   }
 
   async register(username: string, password: string) {
     await this.gotoRegister();
+
     await this.page.getByRole('button', { name: 'Continue with Keycloak' }).click();
-    await this.page.getByText("Username or email").waitFor()
-    await this.page
-      .getByLabel("Username or email")
-      .fill(username)
-    await this.page.locator("#password").fill(password);
-    await this.page.getByRole('button', { name: 'Sign Up' }).click();
-    await this.page.waitForURL("http://localhost:3000")
+    await this.page.getByText('Username or email').waitFor();
+    await this.page.getByRole('link', { name: 'Register' }).click();
+    await this.page.locator('#username').fill(testEmail);
+    await this.page.locator('#password').fill(testPassword);
+    await this.page.locator('#password-confirm').fill(testPassword);
+    await this.page.locator('#email').fill(testEmail);
+    await this.page.locator('#firstName').fill(testFirstName);
+    await this.page.locator('#lastName').fill(testLastName);
+
+    await this.page.getByRole('button', { name: 'Register' }).click();  
   }
 
-  async login(username: string, password: string) {
+  async login(email: string, password: string) {
     await this.gotoLogin();
+
     await this.page.getByRole('button', { name: 'Continue with Keycloak' }).click();
     await this.page.getByText("Username or email").waitFor()
     await this.page
       .getByLabel("Username or email")
-      .fill(username)
+      .fill(email)
     await this.page.locator("#password").fill(password);
+  
     await this.page.getByRole('button', { name: 'Sign In' }).click();
   }
 
   async expectAlertToContain(text: string) {
-    await expect(this.page.getByTestId('alert')).toContainText(text);
+    await expect(this.page.locator('#input-error-email')).toContainText(text);
   }
 }
 
@@ -60,19 +69,19 @@ test.describe
       await expect(page.getByRole('heading')).toContainText('Welcome Back');
     });
 
-    // test('register a test account', async ({ page }) => {
-    //   await authPage.register(testUsername, testPassword);
-    //   await expect(page).toHaveURL('/');
-    //   await authPage.expectAlertToContain('Account created successfully!');
-    // });
+    test('register a test account', async ({ page }) => {
+      await authPage.register(testEmail, testPassword);
+      await expect(page).toHaveURL('/');
+      await authPage.expectAlertToContain('Account created successfully!');
+    });
 
-    // test('register test account with existing email', async () => {
-    //   await authPage.register(testUsername, testPassword);
-    //   await authPage.expectAlertToContain('Account already exists!');
-    // });
+    test('register test account with existing email', async () => {
+      await authPage.register(testEmail, testPassword);
+      await authPage.expectAlertToContain('Email already exists.');
+    });
 
     test('log into account', async ({ page }) => {
-      await authPage.login(testUsername, testPassword);
+      await authPage.login(testEmail, testPassword);
 
       await page.waitForURL('/');
       await expect(page).toHaveURL('/');
