@@ -20,7 +20,7 @@ import { relations, } from 'drizzle-orm';
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = pgTableCreator((name) => `aitutor_${name}`);
+export const createTable = pgTableCreator((name) => `ai-chatbot_${name}`);
 
 // users
 export const user = createTable('user', {
