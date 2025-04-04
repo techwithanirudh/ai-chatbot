@@ -2,11 +2,9 @@ import type { Metadata } from 'next';
 // import { Chat } from '@/components/icons';
 
 import { CardWrapper } from '@/components/auth/card-wrapper';
-import { RegisterForm } from '@/components/auth/register-form';
 import { MagicLinkForm } from '@/components/auth/magic-form';
 import { MessageSquare } from 'lucide-react';
 import { abstractImages } from '@/lib/images';
-import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Register',
@@ -56,10 +54,9 @@ export default function RegisterPage() {
               backButtonLinkLabel="Login"
               backButtonHref="/login"
               showSocial
-              showMagicLink
-              showCredentials={process.env.NODE_ENV === 'development'}
+              showCredentials
             >
-              <RegisterForm />
+              <MagicLinkForm />
             </CardWrapper>
           </div>
         </div>

@@ -6,7 +6,6 @@ import { MagicLinkForm } from '@/components/auth/magic-form';
 
 import { MessageSquare } from 'lucide-react';
 import { abstractImages } from '@/lib/images';
-import { LoginForm } from '@/components/auth/login-form';
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -55,10 +54,9 @@ export default async function SignInPage() {
               backButtonLinkLabel="Register"
               backButtonHref="/register"
               showSocial
-              showMagicLink
-              showCredentials={process.env.NODE_ENV === 'development'}
+              showCredentials
             >
-              <LoginForm />
+              <MagicLinkForm />
             </CardWrapper>
           </div>
         </div>
