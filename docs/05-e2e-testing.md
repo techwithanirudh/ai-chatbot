@@ -93,15 +93,6 @@ In Keycloak, create a new user for E2E tests:
 - Set the initial password (`e2e_tester_password`) under the **Credentials** tab.
 - Disable **Temporary** to ensure the password is permanent.
 
-Update `.env` file with test credentials:
-
-```env
-# E2E Testing Credentials
-TEST_KEYCLOAK_USERNAME=e2e_tester
-TEST_KEYCLOAK_EMAIL=e2e_tester@techwithanirudh.com
-TEST_KEYCLOAK_PASSWORD=e2e_tester_password
-```
-
 ![Create user](https://www.keycloak.org/resources/images/guides/add-user.png)
 
 ![Set password](https://www.keycloak.org/resources/images/guides/set-password.png)
