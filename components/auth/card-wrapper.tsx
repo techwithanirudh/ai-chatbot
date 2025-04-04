@@ -53,7 +53,7 @@ export const CardWrapper = ({
             onClick={toggleAuthMode}
             data-testid="toggle-auth-mode"
           >
-            {authMode === "magic" ? "Sign in with password" : "Sign in with magic link"}
+            {authMode === "magic" ? "Authenticate with password" : "Authenticate with magic link"}
           </Button>
         )}
       </div>

@@ -5,8 +5,8 @@ import { test, expect, Page } from '@playwright/test';
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
-const testEmail = `test-${getUnixTime(new Date())}@playwright.com`;
-const testPassword = process.env.TEST_PASSWORD ?? 'password';
+const testEmail = process.env.TEST_KEYCLOAK_USERNAME ?? `test-${getUnixTime(new Date())}`;
+const testPassword = process.env.TEST_KEYCLOAK_PASSWORD ?? generateId(16);
 
 class AuthPage {
   constructor(private page: Page) {}

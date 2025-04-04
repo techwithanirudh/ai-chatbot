@@ -1,12 +1,13 @@
 import path from 'path';
 import { getUnixTime } from 'date-fns';
 import { expect, test as setup } from '@playwright/test';
+import { generateId } from 'ai';
 
 const authFile = path.join(__dirname, '../playwright/.auth/session.json');
 
 setup('authenticate', async ({ page }) => {
-  const testEmail = `test-${getUnixTime(new Date())}@playwright.com`;
-  const testPassword = process.env.TEST_PASSWORD ?? 'password';
+  const testEmail = process.env.TEST_KEYCLOAK_USERNAME ?? `test-${getUnixTime(new Date())}`;
+  const testPassword = process.env.TEST_KEYCLOAK_PASSWORD ?? generateId(16);
 
   await page.goto('http://localhost:3000/register');
   await page.getByTestId('toggle-auth-mode').click();

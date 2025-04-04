@@ -25,9 +25,9 @@ export const signInWithMagicLink = actionClient
 
 export const signInWithPassword = actionClient
   .schema(SignInSchema)
-  .action(async ({ parsedInput: { email, password } }) => {
-    const res = (await signIn('credentials', {
-      email,
+  .action(async ({ parsedInput: { username, password } }) => {
+    const res = (await signIn('keycloak', {
+      username,
       password,
       redirect: false,
     })) as string;
@@ -37,12 +37,12 @@ export const signInWithPassword = actionClient
 
 export const registerWithPassword = actionClient
   .schema(RegisterSchema)
-  .action(async ({ parsedInput: { email, password } }) => {
+  .action(async ({ parsedInput: { username, password } }) => {
     const parsedHeaders = await headers();
     const origin = parsedHeaders.get('origin');
 
-    const res = (await signIn('credentials', {
-      email,
+    const res = (await signIn('keycloak', {
+      username,
       password,
       redirect: false,
     })) as string;

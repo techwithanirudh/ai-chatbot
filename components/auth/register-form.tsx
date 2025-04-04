@@ -28,7 +28,7 @@ export const RegisterForm = () => {
   const form = useForm({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -45,15 +45,15 @@ export const RegisterForm = () => {
         <div className="space-y-2">
           <FormField
             control={form.control}
-            name="email"
+            name="username"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={status === 'executing'}
-                    placeholder="Email address"
-                    type="email"
+                    placeholder="Username"
+                    type="text"
                   />
                 </FormControl>
                 <FormMessage />

@@ -27,7 +27,7 @@ export const LoginForm = () => {
   const form = useForm({
     resolver: zodResolver(SignInSchema),
     defaultValues: {
-      email: '',
+      username: '',
       password: '',
     },
   });
@@ -44,15 +44,15 @@ export const LoginForm = () => {
         <div className="space-y-2">
           <FormField
             control={form.control}
-            name="email"
+            name="username"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
                   <Input
                     {...field}
                     disabled={status === 'executing'}
-                    placeholder="Email address"
-                    type="email"
+                    placeholder="Username"
+                    type="text"
                   />
                 </FormControl>
                 <FormMessage />
