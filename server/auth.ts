@@ -26,7 +26,7 @@ export const {
       from: process.env.AUTH_RESEND_FROM,
       sendVerificationRequest,
     }),
-    ...providers,
+    // ...providers,
   ],
   debug: process.env.NODE_ENV === 'development',
 });

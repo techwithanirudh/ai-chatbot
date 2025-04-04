@@ -2,13 +2,23 @@
 import { Button } from '@/components/ui/button';
 import { signInWithGoogle, signInWithKeycloak } from '@/app/(auth)/actions';
 import { LogoKeycloak, LogoGoogle } from '../icons';
-import { useActionState } from 'react';
+import { useActionState, useState, useEffect } from 'react';
 import { LoaderIcon } from 'lucide-react';
 import { getProviders } from 'next-auth/react';
 
-export const Social = async () => {
-  const providers = await getProviders();
-  
+export const Social = () => {  
+  const [providers, setProviders] = useState<Awaited<ReturnType<typeof getProviders>> | null>(null)
+ 
+  useEffect(() => {
+    async function fetchProviders() {
+      const res = await getProviders();
+      setProviders(res)
+    }
+    fetchProviders()
+  }, [])
+ 
+  if (!providers) return <div>Loading...</div>
+ 
   return (
     <form className="flex w-full flex-col items-center gap-2">
       {providers?.google && (
