@@ -18,13 +18,12 @@ import { MagicLinkSchema } from '@/lib/validators';
 
 import { TriangleAlertIcon as IconWarning } from 'lucide-react';
 import { CheckCircleFillIcon as IconCheckCircle } from '@/components/icons';
-
-import { loginWithMagicLink } from '@/app/(auth)/actions';
-
-import { LoaderIcon } from 'lucide-react';
 import { Alert, AlertTitle } from '../ui/alert';
 
-export const RegisterForm = () => {
+import { signInWithMagicLink } from '@/app/(auth)/actions';
+import { LoaderIcon } from 'lucide-react';
+
+export const MagicLinkForm = () => {
   const form = useForm({
     resolver: zodResolver(MagicLinkSchema),
     defaultValues: {
@@ -32,7 +31,7 @@ export const RegisterForm = () => {
     },
   });
 
-  const { execute, result, status } = useAction(loginWithMagicLink);
+  const { execute, result, status } = useAction(signInWithMagicLink);
 
   const onSubmit = (values: MagicLink) => {
     execute(values);
@@ -62,13 +61,13 @@ export const RegisterForm = () => {
         </div>
 
         {status === 'hasSucceeded' && (
-          <Alert className="bg-emerald-500/15 text-emerald-500 p-3 border-emerald-500/15">
+          <Alert className="bg-emerald-500/15 text-emerald-500 p-3 border-emerald-500/15" data-testid="alert">
             <IconCheckCircle size={16} />
             <AlertTitle className='mb-0 leading-normal'>Confirmation email has been sent!</AlertTitle>
           </Alert>
         )}
         {result.serverError && (
-          <Alert className="bg-destructive/15 text-destructive dark:bg-destructive dark:text-destructive-foreground p-3 border-destructive/15 dark:border-destructive">
+          <Alert className="bg-destructive/15 text-destructive dark:bg-destructive dark:text-destructive-foreground p-3 border-destructive/15 dark:border-destructive" data-testid="alert">
             <IconWarning className='size-4' />
             <AlertTitle className='mb-0 leading-normal'>{result.serverError}</AlertTitle>
           </Alert>
@@ -88,3 +87,4 @@ export const RegisterForm = () => {
     </Form>
   );
 };
+

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 // import { Chat } from '@/components/icons';
 
 import { CardWrapper } from '@/components/auth/card-wrapper';
-import { LoginForm } from '@/components/auth/login-form';
+import { MagicLinkForm } from '@/components/auth/magic-form';
 
 import { MessageSquare } from 'lucide-react';
 import { abstractImages } from '@/lib/images';
@@ -56,25 +56,8 @@ export default async function SignInPage() {
               showSocial
               showCredentials
             >
-              <LoginForm />
+              <MagicLinkForm />
             </CardWrapper>
-            {/* <p className="px-8 text-center text-sm text-muted-foreground">
-              By clicking continue, you agree to our{" "}
-              <Link
-                href="/legal/terms"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="/legal/privacy"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Privacy Policy
-              </Link>
-              .
-            </p> */}
           </div>
         </div>
       </div>

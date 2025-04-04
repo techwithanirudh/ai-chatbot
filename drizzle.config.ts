@@ -13,5 +13,5 @@ export default defineConfig({
     // biome-ignore lint: Forbidden non-null assertion.
     url: process.env.POSTGRES_URL!,
   },
-  tablesFilter: ['aitutor_*'],
+  tablesFilter: ['ai-chatbot_*'],
 });
