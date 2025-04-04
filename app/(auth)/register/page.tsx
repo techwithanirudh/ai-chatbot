@@ -6,6 +6,7 @@ import { RegisterForm } from '@/components/auth/register-form';
 import { MagicLinkForm } from '@/components/auth/magic-form';
 import { MessageSquare } from 'lucide-react';
 import { abstractImages } from '@/lib/images';
+import { Button } from '@/components/ui/button';
 
 export const metadata: Metadata = {
   title: 'Register',
@@ -55,29 +56,11 @@ export default function RegisterPage() {
               backButtonLinkLabel="Login"
               backButtonHref="/login"
               showSocial
-              showCredentials
+              showMagicLink
+              showCredentials={process.env.NODE_ENV === 'development'}
             >
-              {process.env.NODE_ENV === 'development' ?
-                <RegisterForm /> : <MagicLinkForm />
-              }
+              <RegisterForm />
             </CardWrapper>
-            {/* <p className="px-8 text-center text-sm text-muted-foreground">
-              By clicking continue, you agree to our{" "}
-              <Link
-                href="/legal/terms"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="/legal/privacy"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Privacy Policy
-              </Link>
-              .
-            </p> */}
           </div>
         </div>
       </div>

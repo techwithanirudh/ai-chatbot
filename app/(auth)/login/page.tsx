@@ -55,29 +55,11 @@ export default async function SignInPage() {
               backButtonLinkLabel="Register"
               backButtonHref="/register"
               showSocial
-              showCredentials
+              showMagicLink
+              showCredentials={process.env.NODE_ENV === 'development'}
             >
-              {process.env.NODE_ENV === 'development' ?
-                <LoginForm /> : <MagicLinkForm />
-              }
+              <LoginForm />
             </CardWrapper>
-            {/* <p className="px-8 text-center text-sm text-muted-foreground">
-              By clicking continue, you agree to our{" "}
-              <Link
-                href="/legal/terms"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link
-                href="/legal/privacy"
-                className="underline underline-offset-4 hover:text-primary"
-              >
-                Privacy Policy
-              </Link>
-              .
-            </p> */}
           </div>
         </div>
       </div>
