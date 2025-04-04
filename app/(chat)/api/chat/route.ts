@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     } = await request.json();
 
     const session = await auth();
-    const baasApiKey = await meetingBaas.auth();
+    const baasSession = await meetingBaas.auth();
 
     if (!session || !session.user || !session.user.id) {
       return new Response('Unauthorized', { status: 401 });
@@ -88,7 +88,7 @@ export async function POST(request: Request) {
         type: 'sse',
         url: 'https://mcp.meetingbaas.com/sse',
         headers: {
-          'x-meeting-baas-api-key': baasApiKey
+          'x-meeting-baas-api-key': baasSession?.apiKey ?? '',
         }
       },
       onUncaughtError: (error) => {
