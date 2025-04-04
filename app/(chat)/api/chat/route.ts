@@ -162,6 +162,11 @@ export async function POST(request: Request) {
                 console.error('Failed to save chat');
               }
             }
+
+            client.close();
+          },
+          onError: async () => {
+            client.close();
           },
           experimental_telemetry: {
             isEnabled: isProductionEnvironment,
@@ -176,6 +181,7 @@ export async function POST(request: Request) {
         });
       },
       onError: () => {
+        client.close();
         return 'Oops, an error occured!';
       },
     });
