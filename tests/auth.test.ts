@@ -1,12 +1,10 @@
-// todo: fix
-import { generateId } from 'ai';
-import { getUnixTime } from 'date-fns';
 import { test, expect, type Page } from '@playwright/test';
 
 test.use({ storageState: { cookies: [], origins: [] } });
 
-const testUsername = process.env.TEST_KEYCLOAK_USERNAME ?? `test-${getUnixTime(new Date())}`;
-const testPassword = process.env.TEST_KEYCLOAK_PASSWORD ?? generateId(16);
+if (!process.env.TEST_KEYCLOAK_USERNAME || !process.env.TEST_KEYCLOAK_PASSWORD) throw new Error("Missing TEST_KEYCLOAK_USERNAME or TEST_KEYCLOAK_PASSWORD environment variables");
+const testUsername = process.env.TEST_KEYCLOAK_USERNAME as string;
+const testPassword = process.env.TEST_KEYCLOAK_PASSWORD as string;
 
 class AuthPage {
   constructor(private page: Page) {}
