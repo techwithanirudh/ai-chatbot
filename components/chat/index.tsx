@@ -13,7 +13,7 @@ import { Messages } from './messages';
 import type { VisibilityType } from './visibility-selector';
 import { useArtifactSelector } from '@/hooks/use-artifact';
 import { toast } from 'sonner';
-import { Overview } from '../overview';
+import { Greeting } from '../greeting';
 import { unstable_serialize } from 'swr/infinite';
 import { getChatHistoryPaginationKey } from '@/components/sidebar/sidebar-history';
 
@@ -81,7 +81,7 @@ export function Chat({
           })}
         >
           {messages.length === 0 ? (
-            <Overview />
+            <Greeting />
           ) : (
             <Messages
               chatId={id}
