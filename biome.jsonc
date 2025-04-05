@@ -4,7 +4,7 @@
     "ignoreUnknown": false,
     "ignore": [
       "**/pnpm-lock.yaml",
-      "lib/db/migrations",
+      "server/db/migrations",
       "lib/editor/react-renderer.tsx",
       "node_modules",
       ".next",
