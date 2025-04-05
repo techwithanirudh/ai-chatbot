@@ -21,7 +21,6 @@ import { CheckCircleFillIcon as IconCheckCircle } from '@/components/icons';
 import { Alert, AlertTitle } from '../ui/alert';
 
 import { signInWithMagicLink } from '@/app/(auth)/actions';
-import { LoaderIcon } from 'lucide-react';
 
 export const MagicLinkForm = () => {
   const form = useForm({
