@@ -6,12 +6,12 @@ import Keycloak from "next-auth/providers/keycloak"
 import { sendVerificationRequest } from '@/lib/magic-link';
 
 import { authConfig } from './auth.config';
+import { isTestEnvironment } from '@/lib/constants';
 
 const providers = []
-if (process.env.NODE_ENV === "development") {
+if (process.env.NODE_ENV === "development" || isTestEnvironment) {
   providers.push(Keycloak)
 }
-
 
 export const {
   handlers: { GET, POST },
