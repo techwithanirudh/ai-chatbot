@@ -1,16 +1,6 @@
 # Baas Chat
 
-<p align="center">
-  An Open-Source AI Chatbot w/ MeetingBaas Integrated - Fork of [Vercel's AI Chatbot](https://github.com/techwithanirudh/ai-chatbot)
-</p>
-
-<p align="center">
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#model-providers"><strong>Model Providers</strong></a> ·
-  <a href="#deploy-your-own"><strong>Deploy Your Own</strong></a> ·
-  <a href="#running-locally"><strong>Running locally</strong></a>
-</p>
-<br/>
+An Open-Source AI Chatbot w/ MeetingBaas Integrated - Fork of [Vercel's AI Chatbot](https://github.com/techwithanirudh/ai-chatbot)
 
 ## Features
 
