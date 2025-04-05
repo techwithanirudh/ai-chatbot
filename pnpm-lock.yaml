@@ -92,9 +92,6 @@ importers:
       ai:
         specifier: 4.2.2
         version: 4.2.2(react@19.0.0-rc-45804af1-20241021)(zod@3.24.2)
-      bcrypt-ts:
-        specifier: ^5.0.2
-        version: 5.0.3
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.1
@@ -1983,10 +1980,6 @@ packages:
 
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
-
-  bcrypt-ts@5.0.3:
-    resolution: {integrity: sha512-2FcgD12xPbwCoe5i9/HK0jJ1xA1m+QfC1e6htG9Bl/hNOnLyaFmQSlqLKcfe3QdnoMPKpKEGFCbESBTg+SJNOw==}
-    engines: {node: '>=18'}
 
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
@@ -5725,8 +5718,6 @@ snapshots:
   bail@2.0.2: {}
 
   balanced-match@1.0.2: {}
-
-  bcrypt-ts@5.0.3: {}
 
   binary-extensions@2.3.0: {}
 
