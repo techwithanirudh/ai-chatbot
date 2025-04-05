@@ -27,6 +27,7 @@ import { getWeather } from '@/lib/ai/tools/get-weather';
 import { isProductionEnvironment } from '@/lib/constants';
 import { myProvider } from '@/lib/ai/providers';
 import * as meetingBaas from '@/server/meetingbaas';
+import { toolsSchemas as mcpToolsSchemas } from '@/lib/ai/tools/mcp';
 
 export const maxDuration = 60;
 
@@ -96,11 +97,9 @@ export async function POST(request: Request) {
       },
     });
 
-    const toolSet = await client.tools();
-
+    const toolSet = await client.tools({ schemas: mcpToolsSchemas });
     return createDataStreamResponse({
       execute: async (dataStream) => {
-
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
           system: systemPrompt({ selectedChatModel }),
@@ -114,6 +113,22 @@ export async function POST(request: Request) {
                 'createDocument',
                 'updateDocument',
                 'requestSuggestions',
+                // mcp tools
+                'joinMeeting',
+                'leaveMeeting',
+                'getMeetingData',
+                'deleteData',
+                'createCalendar',
+                'listCalendars',
+                'getCalendar',
+                'deleteCalendar',
+                'resyncAllCalendars',
+                'botsWithMetadata',
+                'listEvents',
+                'scheduleRecordEvent',
+                'unscheduleRecordEvent',
+                'updateCalendar',
+                'echo'
               ],
           experimental_transform: smoothStream({ chunking: 'word' }),
           experimental_generateMessageId: generateUUID,
