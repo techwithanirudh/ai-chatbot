@@ -1,10 +1,10 @@
-<a href="https://chat.vercel.ai/">
+<a href="https://chat.meetingbaas.com/">
   <img alt="Next.js 14 and App Router-ready AI chatbot." src="app/(chat)/opengraph-image.png">
-  <h1 align="center">Next.js AI Chatbot</h1>
+  <h1 align="center">Baas Chat</h1>
 </a>
 
 <p align="center">
-  An Open-Source AI Chatbot Template Built With Next.js and the AI SDK by Vercel.
+  An Open-Source AI Chatbot w/ MeetingBaas Integrated - Fork of [Vercel's AI Chatbot](https://github.com/techwithanirudh/ai-chatbot)
 </p>
 
 <p align="center">
@@ -17,6 +17,9 @@
 
 ## Features
 
+- [MeetingBaas](https://meetingbaas.com)
+  - Unified API for integrating with Google Meet, Zoom, and Microsoft Teams meetings
+  - Automated recording, transcription, and LLM summaries through simple API endpoints
 - [Next.js](https://nextjs.org) App Router
   - Advanced routing for seamless navigation and performance
   - React Server Components (RSCs) and Server Actions for server-side rendering and increased performance
