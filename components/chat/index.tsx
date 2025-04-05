@@ -14,6 +14,8 @@ import type { VisibilityType } from './visibility-selector';
 import { useArtifactSelector } from '@/hooks/use-artifact';
 import { toast } from 'sonner';
 import { Overview } from '../overview';
+import { unstable_serialize } from 'swr/infinite';
+import { getChatHistoryPaginationKey } from '@/components/sidebar/sidebar-history';
 
 export function Chat({
   id,
@@ -48,7 +50,7 @@ export function Chat({
     sendExtraMessageFields: true,
     generateId: generateUUID,
     onFinish: () => {
-      mutate('/api/history');
+      mutate(unstable_serialize(getChatHistoryPaginationKey));
     },
     onError: () => {
       toast.error('An error occured, please try again!');
