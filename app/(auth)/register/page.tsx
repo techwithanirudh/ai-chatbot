@@ -6,6 +6,8 @@ import { MagicLinkForm } from '@/components/auth/magic-form';
 import { MessageSquare } from 'lucide-react';
 import { abstractImages } from '@/lib/images';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Register',
   description: 'Register to Chatbot',

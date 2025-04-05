@@ -4,13 +4,15 @@ import type { Metadata } from 'next';
 import { CardWrapper } from '@/components/auth/card-wrapper';
 import { MagicLinkForm } from '@/components/auth/magic-form';
 
-import { MessageSquare } from 'lucide-react';
 import { abstractImages } from '@/lib/images';
+import { MessageSquare } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Login',
   description: 'Login to Chatbot',
 };
+
+export const dynamic = 'force-dynamic';
 
 export default async function SignInPage() {
   const image =
