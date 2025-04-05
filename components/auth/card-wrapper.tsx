@@ -2,7 +2,6 @@ import { cn } from '@/lib/utils';
 
 import { BackButton } from '@/components/auth/back-button';
 import { Social } from '@/components/auth/social';
-import { getProviders } from 'next-auth/react';
 
 interface CardWrapperProps {
   children: React.ReactNode;
