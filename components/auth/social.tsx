@@ -2,35 +2,11 @@
 import { Button } from '@/components/ui/button';
 import { signInWithGoogle, signInWithKeycloak } from '@/app/(auth)/actions';
 import { LogoKeycloak, LogoGoogle } from '../icons';
-import { useActionState, useState, useEffect } from 'react';
+import { useActionState,  } from 'react';
 import { LoaderIcon } from 'lucide-react';
-import { getProviders } from 'next-auth/react';
-import { Skeleton } from '../ui/skeleton';
+import type { getProviders } from 'next-auth/react';
 
-function SocialProvidersSkeleton() {
-  return (
-    <div className="flex w-full flex-col items-center gap-2">
-      <Skeleton className="h-11 w-full border border-border" />
-      <Skeleton className="h-11 w-full border border-border" />
-    </div>
-  )
-}
-
-export const Social = () => {  
-  const [providers, setProviders] = useState<Awaited<ReturnType<typeof getProviders>> | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    async function fetchProviders() {
-      const res = await getProviders();
-      setIsLoading(false);
-      setProviders(res)
-    }
-    fetchProviders()
-  }, [])
- 
-  if (isLoading) return <SocialProvidersSkeleton />
- 
+export const Social = ({ providers }: { providers: Awaited<ReturnType<typeof getProviders>> | null }) => {
   return (
     <form className="flex w-full flex-col items-center gap-2">
       {providers?.google && (
