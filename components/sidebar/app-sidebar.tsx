@@ -27,17 +27,30 @@ export function AppSidebar({ user }: { user: User | undefined }) {
       <SidebarHeader>
         <SidebarMenu>
           <div className="flex flex-row justify-between items-center">
-            <Link
-              href="/"
-              onClick={() => {
-                setOpenMobile(false);
-              }}
-              className="flex flex-row gap-3 items-center"
-            >
-              <span className="text-lg font-semibold px-2 hover:bg-muted rounded-md cursor-pointer">
-                Chatbot
-              </span>
-            </Link>
+            <div className="flex flex-col items-start px-2">
+              <Link
+                href="/"
+                onClick={() => {
+                  setOpenMobile(false);
+                }}
+                className="flex flex-row gap-3 items-center"
+              >
+                <span className="text-lg font-semibold hover:bg-muted  rounded-md cursor-pointer">
+                  Chatbot
+                </span>
+              </Link>
+              <Link
+                href="https://techwithanirudh.coom/"
+                onClick={() => {
+                  setOpenMobile(false);
+                }}
+                className="flex flex-row gap-3 items-center"
+              >
+                <span className="text-sm text-muted-foreground leading-3">
+                  by Tech with Anirudh
+                </span>
+              </Link>
+            </div>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button

@@ -1,17 +1,16 @@
 'use client';
-
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useWindowSize } from 'usehooks-ts';
 
 import { ModelSelector } from '@/components/chat/model-selector';
 import { SidebarToggle } from '@/components/sidebar/sidebar-toggle';
 import { Button } from '@/components/ui/button';
-import { PlusIcon, VercelIcon } from '../icons';
+import { PlusIcon, GitIcon } from '../icons';
 import { useSidebar } from '../ui/sidebar';
 import { memo } from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 import { type VisibilityType, VisibilitySelector } from './visibility-selector';
+import Link from 'next/link';
 
 function PureChatHeader({
   chatId,
@@ -67,6 +66,21 @@ function PureChatHeader({
         />
       )}
 
+      <Button
+        variant="outline"
+        className="hidden md:flex py-1.5 px-2 h-fit md:h-[34px] order-4 md:ml-auto"
+        asChild
+      >
+        <Link
+          href="https://github.com/techwithanirudh/ai-chatbot"
+          target="_blank"
+        >
+          <span className="flex items-center gap-2">
+            <GitIcon />
+            Star on GitHub
+          </span>
+        </Link>
+      </Button>
     </header>
   );
 }
