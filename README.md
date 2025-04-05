@@ -1,7 +1,4 @@
-<a href="https://chat.meetingbaas.com/">
-  <img alt="Next.js 14 and App Router-ready AI chatbot." src="app/(chat)/opengraph-image.png">
-  <h1 align="center">Baas Chat</h1>
-</a>
+# Baas Chat
 
 <p align="center">
   An Open-Source AI Chatbot w/ MeetingBaas Integrated - Fork of [Vercel's AI Chatbot](https://github.com/techwithanirudh/ai-chatbot)
