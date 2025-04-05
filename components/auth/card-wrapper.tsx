@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 
 import { BackButton } from '@/components/auth/back-button';
 import { Social } from '@/components/auth/social';
+import { baseUrl } from '@/lib/constants';
 
 interface CardWrapperProps {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ interface CardWrapperProps {
   className?: string;
 }
 
-export const CardWrapper = ({
+export const CardWrapper = async ({
   children,
   backButtonLabel,
   backButtonLinkLabel,
@@ -22,6 +23,8 @@ export const CardWrapper = ({
   showCredentials,
   className,
 }: CardWrapperProps) => {
+  const providers = await fetch(new URL('/api/auth/providers', baseUrl.href)).then((res) => res.json());
+
   return (
     <div className={cn('grid gap-6', className)}>
       {showCredentials && (
@@ -40,7 +43,7 @@ export const CardWrapper = ({
         </>
       )}
 
-      {showSocial && <Social />}
+      {showSocial && <Social providers={providers} />}
 
       <BackButton
         label={backButtonLabel}
