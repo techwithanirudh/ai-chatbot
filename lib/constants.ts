@@ -5,3 +5,8 @@ export const isTestEnvironment = Boolean(
     process.env.PLAYWRIGHT ||
     process.env.CI_PLAYWRIGHT,
 );
+
+export const baseUrl =
+  !isProductionEnvironment || !process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? new URL('http://localhost:3000')
+    : new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
