@@ -11,7 +11,7 @@ function SocialProvidersSkeleton() {
   return (
     <div className="flex w-full flex-col items-center gap-2">
       <Skeleton className="h-11 w-full border border-border" />
-      {/* <Skeleton className="h-11 w-full" /> */}
+      <Skeleton className="h-11 w-full border border-border" />
     </div>
   )
 }
