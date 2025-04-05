@@ -1,7 +1,6 @@
 # Next.js AI Chatbot (Upgraded) 
-An upgraded version of Vercel's AI Chatbot template, Built With Next.js and the AI SDK.
 
-<br/>
+An upgraded version of Vercel's AI Chatbot template, Built With Next.js and the AI SDK.
 
 ## Features
 
@@ -23,7 +22,7 @@ An upgraded version of Vercel's AI Chatbot template, Built With Next.js and the 
   - Support for several providers like Keycloak, Resend, and Google Authentication.
 
 
-## 🔧 Upgrades
+## Upgrades
 
 This enhanced version of the AI Chatbot template includes several key upgrades to improve authentication, UX, and functionality:
 
