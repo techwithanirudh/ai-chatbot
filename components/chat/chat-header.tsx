@@ -10,6 +10,8 @@ import { useSidebar } from '../ui/sidebar';
 import { memo } from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 import { type VisibilityType, VisibilitySelector } from './visibility-selector';
+import Link from 'next/link';
+import { FishIcon, GithubIcon } from 'lucide-react';
 
 function PureChatHeader({
   chatId,
@@ -65,6 +67,34 @@ function PureChatHeader({
         />
       )}
 
+      <Button
+        variant="outline"
+        className="hidden md:flex py-1.5 px-2 h-fit md:h-[34px] order-4 md:ml-auto"
+        asChild
+      >
+        <Link
+          href="https://github.com/Meeting-Baas/ai-chat"
+          target="_blank"
+        >
+          <span className="flex items-center gap-2">
+            <GithubIcon />
+            Star on GitHub
+          </span>
+        </Link>
+      </Button>
+
+      <Button
+        variant="outline"
+        className="hidden md:flex py-1.5 px-2 h-fit md:h-[34px] order-4 "
+        asChild
+      >
+        <Link href="https://meetingbaas.com/" target="_blank">
+          <span className="flex items-center gap-2">
+            <FishIcon />
+            Get MeetingBaas API Key
+          </span>
+        </Link>
+      </Button>
     </header>
   );
 }

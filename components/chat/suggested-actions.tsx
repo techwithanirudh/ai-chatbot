@@ -13,24 +13,24 @@ interface SuggestedActionsProps {
 function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
   const suggestedActions = [
     {
-      title: 'What are the advantages',
-      label: 'of using Next.js?',
-      action: 'What are the advantages of using Next.js?',
+      title: 'What meeting platforms does',
+      label: 'MeetingBaas\'s API support?',
+      action: 'What meeting platforms does MeetingBaas\'s API support?',
     },
     {
       title: 'Write code to',
-      label: `demonstrate djikstra's algorithm`,
-      action: `Write code to demonstrate djikstra's algorithm`,
+      label: 'send a Google Meet meeting bot',
+      action: `Write code to send a Google Meet meeting bot`,
     },
     {
-      title: 'Help me write an essay',
-      label: `about silicon valley`,
+      title: 'How does MeetingBaas\'s',
+      label: `webhook data look like?`,
       action: `Help me write an essay about silicon valley`,
     },
     {
-      title: 'What is the weather',
-      label: 'in San Francisco?',
-      action: 'What is the weather in San Francisco?',
+      title: 'List all the meetings',
+      label: 'in my calendar',
+      action: 'List all the meetings in my calendar',
     },
   ];
 
