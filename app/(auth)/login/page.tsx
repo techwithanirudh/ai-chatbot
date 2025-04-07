@@ -24,7 +24,7 @@ export default async function SignInPage() {
         <div className="relative hidden h-full rounded-3xl overflow-hidden lg:block p-4">
           <img
             src={image.url}
-            className="object-cover w-full h-full rounded-3xl"
+            className="object-cover size-full rounded-3xl"
             alt="Abstract background"
           />
           <div className="absolute bottom-6 left-7 text-primary-foreground">
