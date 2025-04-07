@@ -89,7 +89,7 @@ export async function POST(request: Request) {
         type: 'sse',
         url: 'https://mcp.meetingbaas.com/sse',
         headers: {
-          'x-meeting-baas-api-key': baasSession?.apiKey ?? '',
+          'x-meeting-baas-api-key': baasSession?.apiKey ?? 'invalid-api-key',
         }
       },
       onUncaughtError: (error) => {
@@ -180,7 +180,8 @@ export async function POST(request: Request) {
           sendReasoning: true,
         });
       },
-      onError: () => {
+      onError: (error) => {
+        console.error('Error in data stream:', error);
         client.close();
         return 'Oops, an error occured!';
       },
