@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   description: 'Login to Chatbot',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default async function SignInPage() {
   const image =
     abstractImages[Math.floor(Math.random() * abstractImages.length)];

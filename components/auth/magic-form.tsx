@@ -16,7 +16,7 @@ import { useForm } from 'react-hook-form';
 import { Input } from '@/components/ui/input';
 import { MagicLinkSchema } from '@/lib/validators';
 
-import { TriangleAlertIcon as IconWarning , LoaderIcon } from 'lucide-react';
+import { TriangleAlertIcon as IconWarning, LoaderIcon } from 'lucide-react';
 import { CheckCircleFillIcon as IconCheckCircle } from '@/components/icons';
 import { Alert, AlertTitle } from '../ui/alert';
 
