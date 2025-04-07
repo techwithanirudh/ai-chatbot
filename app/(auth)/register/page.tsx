@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   description: 'Register to Chatbot',
 };
 
+export const dynamic = 'force-dynamic';
+
 export default function RegisterPage() {
   const image =
     abstractImages[Math.floor(Math.random() * abstractImages.length)];
