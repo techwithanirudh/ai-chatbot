@@ -19,8 +19,7 @@ import { MessageEditor } from './message-editor';
 import { DocumentPreview } from '../../artifact/document/document-preview';
 import { MessageReasoning } from './message-reasoning';
 import type { UseChatHelpers } from '@ai-sdk/react';
-import { activeTools as mcpActiveTools } from '@/lib/ai/tools/mcp';
-import { MCPDetails } from '@/components/tools/mcp';
+import { ToolDetails } from '@/components/tools/tool-details';
 import { FishIcon } from 'lucide-react';
 
 const PurePreviewMessage = ({
@@ -165,12 +164,6 @@ const PurePreviewMessage = ({
                     >
                       {toolName === 'getWeather' ? (
                         <Weather />
-                      ) : mcpActiveTools.includes(toolName) ? (
-                        <MCPDetails
-                          toolName={toolName}
-                          isLoading={true}
-                          args={args}
-                        />
                       ) : toolName === 'createDocument' ? (
                         <DocumentPreview isReadonly={isReadonly} args={args} />
                       ) : toolName === 'updateDocument' ? (
@@ -185,7 +178,13 @@ const PurePreviewMessage = ({
                           args={args}
                           isReadonly={isReadonly}
                         />
-                      ) : null}
+                      ) : (
+                        <ToolDetails
+                          toolName={toolName}
+                          isLoading={isLoading}
+                          args={args}
+                        />
+                      )}
                     </div>
                   );
                 }
@@ -214,14 +213,13 @@ const PurePreviewMessage = ({
                           result={result}
                           isReadonly={isReadonly}
                         />
-                      ) : mcpActiveTools.includes(toolName) ? (
-                        <MCPDetails
+                      ) : (
+                        <ToolDetails
                           toolName={toolName}
+                          isLoading={isLoading}
                           result={result}
                           args={args}
                         />
-                      ) : (
-                        <pre>{JSON.stringify(result, null, 2)}</pre>
                       )}
                     </div>
                   );
