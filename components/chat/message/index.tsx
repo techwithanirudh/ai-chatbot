@@ -19,6 +19,8 @@ import { MessageEditor } from './message-editor';
 import { DocumentPreview } from '../../artifact/document/document-preview';
 import { MessageReasoning } from './message-reasoning';
 import type { UseChatHelpers } from '@ai-sdk/react';
+import { activeTools as mcpActiveTools } from '@/lib/ai/tools/mcp';
+import { MCPDetails } from '@/components/tools/mcp';
 
 const PurePreviewMessage = ({
   chatId,
@@ -162,6 +164,12 @@ const PurePreviewMessage = ({
                     >
                       {toolName === 'getWeather' ? (
                         <Weather />
+                      ) : mcpActiveTools.includes(toolName) ? (
+                        <MCPDetails
+                          toolName={toolName}
+                          isReadonly={isReadonly}
+                          args={args}
+                        />
                       ) : toolName === 'createDocument' ? (
                         <DocumentPreview isReadonly={isReadonly} args={args} />
                       ) : toolName === 'updateDocument' ? (
@@ -182,7 +190,7 @@ const PurePreviewMessage = ({
                 }
 
                 if (state === 'result') {
-                  const { result } = toolInvocation;
+                  const { result, args } = toolInvocation;
 
                   return (
                     <div key={toolCallId}>
@@ -203,6 +211,13 @@ const PurePreviewMessage = ({
                         <DocumentToolResult
                           type="request-suggestions"
                           result={result}
+                          isReadonly={isReadonly}
+                        />
+                      ) : mcpActiveTools.includes(toolName) ? (
+                        <MCPDetails
+                          toolName={toolName}
+                          result={result}
+                          args={args}
                           isReadonly={isReadonly}
                         />
                       ) : (
