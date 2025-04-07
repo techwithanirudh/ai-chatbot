@@ -23,14 +23,14 @@ export function MCPDetails({
 }: MCPDetailsProps) {
   return (
     <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="item-1">
-        <AccordionTrigger className="hover:no-underline">
+      <AccordionItem value="item-1" className='border-none'>
+        <AccordionTrigger className="hover:no-underline border rounded-md px-4  bg-card text-card-foreground">
           <div className="text-sm font-medium text-muted-foreground">
             Called MCP tool: {toolName}
           </div>
         </AccordionTrigger>
         <AccordionContent>
-          <div className="flex flex-col gap-4 p-4 border rounded-md bg-muted">
+          <div className="flex flex-col gap-4 p-4 mt-2 border rounded-md  bg-card text-card-foreground">
             {args ? (
               <div>
                 <h3 className="text-lg font-semibold mb-2">Arguments</h3>
