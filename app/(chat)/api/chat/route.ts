@@ -108,13 +108,7 @@ export async function POST(request: Request) {
           experimental_activeTools:
             selectedChatModel === 'chat-model-reasoning'
               ? []
-              : [
-                'getWeather',
-                'createDocument',
-                'updateDocument',
-                'requestSuggestions',
-                ...mcpActiveTools as any[]
-              ],
+              : undefined, // include all tools
           experimental_transform: smoothStream({ chunking: 'word' }),
           experimental_generateMessageId: generateUUID,
           tools: {
