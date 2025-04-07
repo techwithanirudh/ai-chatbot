@@ -22,8 +22,8 @@ export function MCPDetails({
   args,
 }: MCPDetailsProps) {
   return (
-    <Accordion type="single" collapsible className="w-full">
-      <AccordionItem value="item-1" className='border-none'>
+    <Accordion type="single" collapsible className="w-full" defaultValue={toolName}>
+      <AccordionItem value={toolName} className='border-none'>
         <AccordionTrigger className="hover:no-underline border rounded-md px-4  bg-card text-card-foreground">
           <div className="text-sm font-medium text-muted-foreground">
             Called MCP tool: {toolName}
@@ -34,17 +34,17 @@ export function MCPDetails({
             <div>
               <h3 className="text-lg font-semibold mb-2">Arguments</h3>
               <CodeBlock node={{ type: 'code', value: JSON.stringify(args, null, 2) }} inline={false} className="">
-                {JSON.stringify(args, null, 2) ?? 'No arguments'}
+                {args ? JSON.stringify(args, null, 2) : 'Loading...'}
               </CodeBlock>
             </div>
 
             <div>
               <h3 className="text-lg font-semibold mb-2">Result</h3>
               <CodeBlock node={{ type: 'code', value: JSON.stringify(result, null, 2) }} inline={false} className="">
-                {JSON.stringify(result, null, 2) ?? 'No result'}
+                {result ? JSON.stringify(result, null, 2) : 'Loading...'}
               </CodeBlock>
             </div>
-            
+
             {isReadonly ? (
               <div>
                 <h3 className="text-lg font-semibold mb-2">Loading...</h3>
