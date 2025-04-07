@@ -25,7 +25,7 @@ function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
     {
       title: 'How does MeetingBaas\'s',
       label: `webhook data look like?`,
-      action: `Help me write an essay about silicon valley`,
+      action: `How does MeetingBaas's webhook data look like?`,
     },
     {
       title: 'List all the meetings',

@@ -44,7 +44,11 @@ export const systemPrompt = ({
   if (selectedChatModel === 'chat-model-reasoning') {
     return regularPrompt;
   } else {
-    return `${regularPrompt}\n\n${artifactsPrompt}\n\n${baasApiKey ? 'The user has provided a MeetingBaas API key. Use it to access MeetingBaas features.' : 'The user has not provided a MeetingBaas API key. Actions that use the API will not work.'}`;
+    return `${regularPrompt}\n\n${artifactsPrompt}\n\n${
+      baasApiKey
+        ? 'The user is logged into MeetingBaas. The API key is automatically included, so you can freely access all MeetingBaas features without any extra setup.'
+        : 'The user is not logged into MeetingBaas, so the API key is not available. As a result, any features that rely on the MeetingBaas API will not work.'
+    }`;
   }
 };
 
