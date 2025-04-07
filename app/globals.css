@@ -94,6 +94,7 @@
     }
 }
 
+
 @layer base {
     * {
         @apply border-border;
@@ -101,6 +102,33 @@
 
     body {
         @apply bg-background text-foreground;
+    }
+
+    ::selection {
+        background-color: hsl(var(--accent));
+        color: hsl(var(--foreground));
+    }
+
+    .dark ::selection {
+        background-color: hsl(var(--accent));
+        color: hsl(var(--foreground));
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    ::view-transition-new(theme-transition) {
+        clip-path: inset(0 0 100% 0);
+        animation: slide-in-from-top 0.65s forwards cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    ::view-transition-old(theme-transition) {
+        animation: none;
+    }
+
+    @keyframes slide-in-from-top {
+        to {
+            clip-path: inset(0 0 0 0);
+        }
     }
 }
 
