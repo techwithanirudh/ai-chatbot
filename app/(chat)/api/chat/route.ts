@@ -25,6 +25,7 @@ import { requestSuggestions } from '@/lib/ai/tools/request-suggestions';
 import { getWeather } from '@/lib/ai/tools/get-weather';
 import { isProductionEnvironment } from '@/lib/constants';
 import { myProvider } from '@/lib/ai/providers';
+import { echo } from '@/lib/ai/tools/echo';
 
 export const maxDuration = 60;
 
@@ -94,6 +95,7 @@ export async function POST(request: Request) {
                   'createDocument',
                   'updateDocument',
                   'requestSuggestions',
+                  'echo'
                 ],
           experimental_transform: smoothStream({ chunking: 'word' }),
           experimental_generateMessageId: generateUUID,
@@ -105,6 +107,7 @@ export async function POST(request: Request) {
               session,
               dataStream,
             }),
+            echo
           },
           onFinish: async ({ response }) => {
             if (session.user?.id) {

@@ -19,6 +19,7 @@ import { MessageEditor } from './message-editor';
 import { DocumentPreview } from '../../artifact/document/document-preview';
 import { MessageReasoning } from './message-reasoning';
 import type { UseChatHelpers } from '@ai-sdk/react';
+import { ToolDetails } from '@/components/tools/tool-details';
 
 const PurePreviewMessage = ({
   chatId,
@@ -176,13 +177,19 @@ const PurePreviewMessage = ({
                           args={args}
                           isReadonly={isReadonly}
                         />
-                      ) : null}
+                      ) : (
+                        <ToolDetails
+                          toolName={toolName}
+                          isLoading={isLoading}
+                          args={args}
+                        />
+                      )}
                     </div>
                   );
                 }
 
                 if (state === 'result') {
-                  const { result } = toolInvocation;
+                  const { result, args } = toolInvocation;
 
                   return (
                     <div key={toolCallId}>
@@ -206,7 +213,12 @@ const PurePreviewMessage = ({
                           isReadonly={isReadonly}
                         />
                       ) : (
-                        <pre>{JSON.stringify(result, null, 2)}</pre>
+                        <ToolDetails
+                          toolName={toolName}
+                          isLoading={isLoading}
+                          result={result}
+                          args={args}
+                        />
                       )}
                     </div>
                   );
