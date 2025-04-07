@@ -27,7 +27,7 @@ import { getWeather } from '@/lib/ai/tools/get-weather';
 import { isProductionEnvironment } from '@/lib/constants';
 import { myProvider } from '@/lib/ai/providers';
 import * as meetingBaas from '@/server/meetingbaas';
-import { toolsSchemas as mcpToolsSchemas } from '@/lib/ai/tools/mcp';
+import { activeTools as mcpActiveTools } from '@/lib/ai/tools/mcp';
 
 export const maxDuration = 60;
 
@@ -96,8 +96,8 @@ export async function POST(request: Request) {
         console.error('MCP Client error:', error);
       },
     });
+    const mcpTools = await client.tools();
 
-    const toolSet = await client.tools({ schemas: mcpToolsSchemas });
     return createDataStreamResponse({
       execute: async (dataStream) => {
         const result = streamText({
@@ -113,22 +113,7 @@ export async function POST(request: Request) {
                 'createDocument',
                 'updateDocument',
                 'requestSuggestions',
-                // mcp tools
-                'joinMeeting',
-                'leaveMeeting',
-                'getMeetingData',
-                'deleteData',
-                'createCalendar',
-                'listCalendars',
-                'getCalendar',
-                'deleteCalendar',
-                'resyncAllCalendars',
-                'botsWithMetadata',
-                'listEvents',
-                'scheduleRecordEvent',
-                'unscheduleRecordEvent',
-                'updateCalendar',
-                'echo'
+                ...mcpActiveTools as any[]
               ],
           experimental_transform: smoothStream({ chunking: 'word' }),
           experimental_generateMessageId: generateUUID,
@@ -140,7 +125,7 @@ export async function POST(request: Request) {
               session,
               dataStream,
             }),
-            ...toolSet
+            ...mcpTools
           },
           onFinish: async ({ response }) => {
             if (session.user?.id) {
