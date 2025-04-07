@@ -90,7 +90,7 @@ function PureChatHeader({
         <Link href="https://meetingbaas.com/" target="_blank">
           <span className="flex items-center gap-2">
             <FishIcon />
-            Open MeetingBaas Dashboard
+            Open MeetingBaas
           </span>
         </Link>
       </Button>
