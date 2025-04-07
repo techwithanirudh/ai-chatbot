@@ -22,7 +22,7 @@ export function MCPDetails({
   args,
 }: MCPDetailsProps) {
   return (
-    <Accordion type="single" collapsible className="w-full" defaultValue={toolName}>
+    <Accordion type="single" collapsible className="w-full">
       <AccordionItem value={toolName} className='border-none'>
         <AccordionTrigger className="hover:no-underline border rounded-md px-4  bg-card text-card-foreground">
           <div className="text-sm font-medium text-muted-foreground">
