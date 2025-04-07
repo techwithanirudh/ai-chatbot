@@ -10,23 +10,23 @@ import { CodeBlock } from '../artifact/code/code-block';
 
 interface MCPDetailsProps {
   toolName: string;
-  isReadonly: boolean;
+  isLoading?: boolean;
   result?: any;
   args?: any;
 }
 
 export function MCPDetails({
   toolName,
-  isReadonly,
+  isLoading,
   result,
   args,
 }: MCPDetailsProps) {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion type="single" collapsible className="w-full" value={isLoading ? toolName : undefined}>
       <AccordionItem value={toolName} className='border-none'>
         <AccordionTrigger className="hover:no-underline border rounded-md px-4  bg-card text-card-foreground">
           <div className="text-sm font-medium text-muted-foreground">
-            Called MCP tool: {toolName}
+            {isLoading ? 'Calling' : 'Called'} MCP tool: {toolName}
           </div>
         </AccordionTrigger>
         <AccordionContent>
@@ -34,22 +34,16 @@ export function MCPDetails({
             <div>
               <h3 className="text-lg font-semibold mb-2">Arguments</h3>
               <CodeBlock node={{ type: 'code', value: JSON.stringify(args, null, 2) }} inline={false} className="">
-                {args ? JSON.stringify(args, null, 2) : 'Loading...'}
+                {args ? JSON.stringify(args, null, 2) : isLoading ? 'Loading...' : 'No arguments available'}
               </CodeBlock>
             </div>
 
             <div>
               <h3 className="text-lg font-semibold mb-2">Result</h3>
               <CodeBlock node={{ type: 'code', value: JSON.stringify(result, null, 2) }} inline={false} className="">
-                {result ? JSON.stringify(result, null, 2) : 'Loading...'}
+                {result ? JSON.stringify(result, null, 2) : isLoading ? 'Loading...' : 'No result available'}  
               </CodeBlock>
             </div>
-
-            {isReadonly ? (
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Loading...</h3>
-              </div>
-            ) : null}
           </div>
         </AccordionContent>
       </AccordionItem>

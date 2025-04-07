@@ -167,7 +167,7 @@ const PurePreviewMessage = ({
                       ) : mcpActiveTools.includes(toolName) ? (
                         <MCPDetails
                           toolName={toolName}
-                          isReadonly={isReadonly}
+                          isLoading={true}
                           args={args}
                         />
                       ) : toolName === 'createDocument' ? (
@@ -218,7 +218,6 @@ const PurePreviewMessage = ({
                           toolName={toolName}
                           result={result}
                           args={args}
-                          isReadonly={isReadonly}
                         />
                       ) : (
                         <pre>{JSON.stringify(result, null, 2)}</pre>
