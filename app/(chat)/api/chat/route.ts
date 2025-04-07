@@ -102,7 +102,7 @@ export async function POST(request: Request) {
       execute: async (dataStream) => {
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
-          system: systemPrompt({ selectedChatModel }),
+          system: systemPrompt({ selectedChatModel, baasApiKey: baasSession?.apiKey }),
           messages,
           maxSteps: 5,
           experimental_activeTools:
