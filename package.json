@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "pnpm with-env tsx server/db/migrate && pnpm with-env next build && pnpm build:post",
-    "build:post": "pnpm with-env tsx scripts/post-build",
+    "build": "pnpm with-env tsx server/db/migrate && pnpm with-env next build",
     "start": "pnpm with-env next start",
     "lint": "next lint && biome lint --write --unsafe",
     "lint:fix": "next lint --fix && biome lint --write --unsafe",
