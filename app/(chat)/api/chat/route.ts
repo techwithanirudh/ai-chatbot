@@ -83,14 +83,13 @@ export async function POST(request: Request) {
       ],
     });
 
-
     const client = await createMCPClient({
       transport: {
         type: 'sse',
         url: 'https://mcp.meetingbaas.com/sse',
         headers: {
           'x-meeting-baas-api-key': baasSession?.apiKey ?? 'invalid-api-key',
-        }
+        },
       },
       onUncaughtError: (error) => {
         console.error('MCP Client error:', error);
@@ -102,19 +101,22 @@ export async function POST(request: Request) {
       execute: async (dataStream) => {
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
-          system: systemPrompt({ selectedChatModel, baasApiKey: baasSession?.apiKey }),
+          system: systemPrompt({
+            selectedChatModel,
+            baasApiKey: baasSession?.apiKey,
+          }),
           messages,
           maxSteps: 5,
           experimental_activeTools:
             selectedChatModel === 'chat-model-reasoning'
               ? []
               : [
-                'getWeather',
-                'createDocument',
-                'updateDocument',
-                'requestSuggestions',
-                ...mcpActiveTools as any[]
-              ],
+                  'getWeather',
+                  'createDocument',
+                  'updateDocument',
+                  'requestSuggestions',
+                  ...(mcpActiveTools as any[]),
+                ],
           experimental_transform: smoothStream({ chunking: 'word' }),
           experimental_generateMessageId: generateUUID,
           tools: {
