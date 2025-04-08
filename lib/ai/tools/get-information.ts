@@ -18,9 +18,9 @@ export const getInformation = tool({
       model: myProvider.languageModel('artifact-model'),
       system:
         `You are a small language model (SLM) with access to domain-specific knowledge from the following content: ${llmsFullTxt}.
-        The model does not retain any previous conversational context, so the user's question includes all necessary information.
-        Generate a detailed and information-rich response based solely on the knowledge base content.`,
-      prompt: `Answer the following fully self-contained question using the knowledge base provided: "${question}". Your response should be optimized for maximal knowledge retrieval and minimal fluff.`
+        You have no memory or previous context—each input must be complete. Your objective is to maximize data retrieval efficiency and minimize generation cost.
+        Output should be structured, terse, and focus solely on raw information. Do not attempt to be conversational or human-friendly. JUST DATA.`,
+      prompt: `Extract only raw data from the knowledge base to answer this fully self-contained question: "${question}". Do not include explanations, formatting, markdown, or conversational language. Output must be plain text only.`,
     });
 
     return response.text;
