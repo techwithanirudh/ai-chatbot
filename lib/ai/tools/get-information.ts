@@ -5,22 +5,21 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 
 export const getInformation = tool({
-  description: `Uses a Small Language Model (SLM) with a preloaded domain-specific knowledge base to answer questions. Since the model has no prior conversational context, the full question must include all relevant context. The response is optimized to extract maximum information from the knowledge base with minimal generation effort.`,
+  description: `High-efficiency RAG tool that retrieves precise data from a preloaded domain-specific knowledge base using a Small Language Model (SLM). It requires fully self-contained questions to ensure accurate, minimal, and direct extraction of information without additional context. Optimized for maximum data retrieval with minimal generation overhead.`,
   parameters: z.object({
-    question: z.string().describe('the user\'s question, with all the context, this is used to provide a knowledge base response'),
+    question: z.string().describe('Fully self-contained question including all relevant context required for accurate data retrieval from the knowledge base'),
   }),
   execute: async ({ question }) => {
-    const llmsFullTxt = await fs.readFile(
+    const knowledgeBase = await fs.readFile(
       path.join(process.cwd(), 'content', 'llms-full.txt'),
     ).then((data) => data.toString());
-    
+
     const response = await generateText({
       model: myProvider.languageModel('artifact-model'),
       system:
-        `You are a small language model (SLM) with access to domain-specific knowledge from the following content: ${llmsFullTxt}.
-        You have no memory or previous context—each input must be complete. Your objective is to maximize data retrieval efficiency and minimize generation cost.
-        Output should be structured, terse, and focus solely on raw information. Do not attempt to be conversational or human-friendly. JUST DATA.`,
-      prompt: `Extract only raw data from the knowledge base to answer this fully self-contained question: "${question}". Do not include explanations, formatting, markdown, or conversational language. Output must be plain text only.`,
+        `You are an SLM optimized strictly for data retrieval tasks from this domain-specific knowledge base: ${knowledgeBase}. 
+        No conversational context, no explanations, no markdown formatting. Respond with only exact and minimal data necessary to answer the provided question.`,
+      prompt: `Retrieve exact raw data from knowledge base to answer: "${question}". Plain text, minimal length, no markdown formatting or conversation.`,
     });
 
     return response.text;
