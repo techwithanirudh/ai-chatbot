@@ -3,8 +3,7 @@ import { openai } from "@ai-sdk/openai";
 import { cosineDistance, desc, gt, sql } from "drizzle-orm";
 import { embedding as embeddings } from "@/server/db/schema";
 import { db } from "@/server/db";
-
-const embeddingModel = openai.embedding("text-embedding-3-large");
+import { myProvider } from '@/lib/ai/providers';
 
 const generateChunks = (input: string): string[] => {
   return input
@@ -18,7 +17,7 @@ export const generateEmbeddings = async (
 ): Promise<Array<{ embedding: number[]; content: string }>> => {
   const chunks = generateChunks(value);
   const { embeddings } = await embedMany({
-    model: embeddingModel,
+    model: myProvider.textEmbeddingModel("small-model"),
     values: chunks,
   });
   return embeddings.map((e, i) => ({ content: chunks[i], embedding: e }));
@@ -27,7 +26,7 @@ export const generateEmbeddings = async (
 export const generateEmbedding = async (value: string): Promise<number[]> => {
   const input = value.replaceAll("\n", " ");
   const { embedding } = await embed({
-    model: embeddingModel,
+    model: myProvider.textEmbeddingModel("small-model"),
     value: input,
   });
   return embedding;

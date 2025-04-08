@@ -35,4 +35,7 @@ export const myProvider = isTestEnvironment
       imageModels: {
         'small-model': openai.image('dall-e-3'),
       },
+      textEmbeddingModels: {
+        'small-model': openai.embedding('text-embedding-3-small'),
+      }
     });
