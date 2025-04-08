@@ -95,6 +95,16 @@ MeetingBaas is a powerful API service that simplifies integration with **Google 
 - [OpenAPI Spec](https://docs.meetingbaas.com/openapi.yaml) - API specification
 `;
 
+export const llmsTxt = fs.readFileSync(
+  path.join(process.cwd(), 'content', 'llms.txt'),
+  'utf8',
+);
+
+export const meetingBaasSitemap = fs.readFileSync(
+  path.join(process.cwd(), 'content', 'meetingbaas-sitemap.xml'),
+  'utf8',
+);
+
 export const systemPrompt = ({
   selectedChatModel,
   baasApiKey,
@@ -109,7 +119,7 @@ export const systemPrompt = ({
       baasApiKey
         ? 'The user is logged into MeetingBaas. The API key is automatically included, so you can freely access all MeetingBaas features without any extra setup.'
         : 'The user is not logged into MeetingBaas, so the API key is not available. As a result, any features that rely on the MeetingBaas API will not work.'
-    }`;
+    }\n\n${llmsTxt}\n\n${meetingBaasSitemap}`;
   }
 };
 
