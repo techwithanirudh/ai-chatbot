@@ -180,7 +180,7 @@ const PurePreviewMessage = ({
                       ) : (
                         <ToolDetails
                           toolName={toolName}
-                          isLoading={isLoading}
+                          isLoading={true}
                           args={args}
                         />
                       )}
@@ -215,7 +215,7 @@ const PurePreviewMessage = ({
                       ) : (
                         <ToolDetails
                           toolName={toolName}
-                          isLoading={isLoading}
+                          isLoading={false}
                           result={result}
                           args={args}
                         />
