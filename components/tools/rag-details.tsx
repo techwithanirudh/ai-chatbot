@@ -109,7 +109,7 @@ export function RAGDetails({
                   <div className="flex flex-col gap-2">
                     <div className="text-lg font-medium">Results</div>
                     {isLoading && (
-                      <span className="font-medium">Getting results...</span>
+                      <span className="text-muted-foreground">Getting results...</span>
                     )}
                     {result?.map((item: any, index: number) => (
                       <div key={index} className="flex flex-col gap-2 relative">
@@ -138,7 +138,7 @@ export function RAGDetails({
                   <div className="flex flex-col gap-2">
                     <div className="text-lg font-medium">Results</div>
                     {isLoading && (
-                      <span className="font-medium">Getting results...</span>
+                      <span className="text-muted-foreground">Getting results...</span>
                     )}
                     <ul className="list-disc pl-4">
                       {result?.map((item: any, index: number) => (
