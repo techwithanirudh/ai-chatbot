@@ -182,13 +182,13 @@ const PurePreviewMessage = ({
                       ) : toolName === 'getInformation' || toolName === 'understandQuery' ? (
                         <RAGDetails
                           toolName={toolName}
-                          isLoading={isLoading}
+                          isLoading={true}
                           args={args}
                         />
                       ) : (
                         <ToolDetails
                           toolName={toolName}
-                          isLoading={isLoading}
+                          isLoading={true}
                           args={args}
                         />
                       )}
@@ -223,14 +223,15 @@ const PurePreviewMessage = ({
                       ) : toolName === 'getInformation' || toolName === 'understandQuery' ? (
                         <RAGDetails
                           toolName={toolName}
-                          isLoading={isLoading}
+                          isLoading={false}
                           result={result}
                           args={args}
                         />
                       ) : (
                         <ToolDetails
                           toolName={toolName}
-                          isLoading={isLoading}
+                          // todo: fix the template to use false Aswell
+                          isLoading={false}
                           result={result}
                           args={args}
                         />

@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { myProvider } from '../providers';
 
 export const understandQuery = tool({
-  description: `understand the users query. use this tool on every prompt.`,
+  description: `Helps understand the user's query. Use this to retrieve data using RAG (Retrieval-Augmented Generation), particularly for vector search or complex queries that need to be broken down into simpler parts.`,
   parameters: z.object({
     query: z.string().describe('the users query'),
     toolsToCallInOrder: z

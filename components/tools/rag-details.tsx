@@ -23,7 +23,7 @@ export function RAGDetails({
                 ? isLoading ? "Understanding query" : "Understood query"
                 : toolName === "addResource" ?
                     isLoading ? "Adding resource" : "Added resource"
-                    : isLoading ? "Thinking..." : "Thought";
+                    : isLoading ? "Thinking" : "Thought";
 
     return (
         <AnimatePresence mode="wait">
@@ -37,7 +37,7 @@ export function RAGDetails({
                 <div className="flex flex-row gap-2 items-center text-muted-foreground [&_svg]:size-4">
                     {isLoading ? <LoaderIcon className="animate-spin" /> : <CheckIcon />}
                     <div>
-                        {action}...
+                        {action}{isLoading ? "..." : ""}
                     </div>
                 </div>
             </motion.div>
