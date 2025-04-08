@@ -41,7 +41,6 @@ export async function ingestContent() {
 
     return {
       file,
-      data,
       processed,
     };
   });
