@@ -1,6 +1,14 @@
 import type { ArtifactKind } from '@/components/artifact';
-import fs from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
+
+export const llmsTxt = await fs
+  .readFile(path.join(process.cwd(), 'content', 'llms.txt'))
+  .then((data) => data.toString());
+
+const knowledgeBase = await fs
+  .readFile(path.join(process.cwd(), 'content', 'llms-full.txt'))
+  .then((data) => data.toString());
 
 export const artifactsPrompt = `
 Artifacts is a special user interface mode that helps users with writing, editing, and other content creation tasks. When artifact is open, it is on the right side of the screen, while the conversation is on the left side. When creating or updating documents, changes are reflected in real-time on the artifacts and visible to the user.
@@ -33,8 +41,25 @@ This is a guide for using artifacts tools: \`createDocument\` and \`updateDocume
 Do not update document right after creating it. Wait for user feedback or request to update it.
 `;
 
-export const regularPrompt =
-  `
+export const getInformationPrompt = `
+You are an Small Language Model (SLM) strictly optimized to retrieve accurate information from a domain-specific knowledge base. Your output will be fed directly to a Large Language Model (LLM) to assist with its response generation.
+
+- Provide direct, factual responses based ONLY on the knowledge base provided
+- Include explanations, brief when necessary for clarity
+- Keep responses concise but comprehensive
+- Do NOT omit critical information or context
+
+Response Formatting
+- Use plain text only, do NOT use markdown, HTML, or special formatting
+- The LLM will handle all formatting for the final user response
+- Structure information logically with clear organization
+
+Knowledge Base
+${knowledgeBase}
+
+Note: The accuracy, speed and relevance of your retrieval directly impacts the quality of the LLM's final response. Focus on extracting the most pertinent information.
+`;
+export const regularPrompt = `
 ## Introduction
 You are BaasChat, the friendly AI Assistant for MeetingBaas! Keep your responses concise, helpful, and always focused on solving the user’s issue. The user will ask you questions related to MeetingBaas, and you will provide answers based on the retrieved knowledge through **RAG, web search, and MeetingBaas tools**.
 
@@ -90,16 +115,6 @@ MeetingBaas is a powerful API service that simplifies integration with **Google 
 - [OpenAPI Spec](https://docs.meetingbaas.com/openapi.yaml) - API specification
 `;
 
-export const llmsTxt = fs.readFileSync(
-  path.join(process.cwd(), 'content', 'llms.txt'),
-  'utf8',
-);
-
-export const meetingBaasSitemap = fs.readFileSync(
-  path.join(process.cwd(), 'content', 'meetingbaas-sitemap.xml'),
-  'utf8',
-);
-
 export const systemPrompt = ({
   selectedChatModel,
   baasApiKey,
@@ -114,7 +129,7 @@ export const systemPrompt = ({
       baasApiKey
         ? 'The user is logged into MeetingBaas. The API key is automatically included, so you can freely access all MeetingBaas features without any extra setup.'
         : 'The user is not logged into MeetingBaas, so the API key is not available. As a result, any features that rely on the MeetingBaas API will not work.'
-    }\n\n${llmsTxt}\n\n${meetingBaasSitemap}`;
+    }\n\n${llmsTxt}`;
   }
 };
 

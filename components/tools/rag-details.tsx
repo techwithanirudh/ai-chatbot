@@ -84,7 +84,7 @@ export function RAGDetails({ isLoading, result, args }: RAGDetailsProps) {
                 <div className="text-lg font-medium">Results</div>
                 {isLoading && (
                   <span className="text-muted-foreground">
-                    Getting results...
+                    Thinking...
                   </span>
                 )}
                 <Markdown>{result}</Markdown>
