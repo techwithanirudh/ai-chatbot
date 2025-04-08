@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { LoaderIcon } from '@/components/icons';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Markdown } from '@/components/markdown';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { CodeBlock } from '../artifact/code/code-block';
@@ -22,7 +21,6 @@ const getAction = ({
   const actions = {
     getInformation: isLoading ? 'Getting information' : 'Got information',
     understandQuery: isLoading ? 'Understanding query' : 'Understood query',
-    addResource: isLoading ? 'Adding resource' : 'Added resource',
     default: isLoading ? 'Thinking' : 'Thought',
   };
 
@@ -69,7 +67,7 @@ export function RAGDetails({
         <div className="flex flex-row gap-2 items-center">
           <div className="font-medium">{action}</div>
           <button
-            data-testid="message-reasoning-toggle"
+            data-testid="message-rag-toggle"
             type="button"
             className="cursor-pointer"
             onClick={() => {
@@ -91,7 +89,7 @@ export function RAGDetails({
       <AnimatePresence initial={false}>
         {isExpanded && (
           <motion.div
-            data-testid="message-reasoning"
+            data-testid="message-rag"
             key="content"
             initial="collapsed"
             animate="expanded"
@@ -102,38 +100,56 @@ export function RAGDetails({
             className="pl-4 border-l flex flex-col gap-4"
           >
             <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Arguments</h3>
-                <CodeBlock
-                  node={{ type: 'code', value: JSON.stringify(args, null, 2) }}
-                  inline={false}
-                  className="text-xs"
-                >
-                  {args
-                    ? JSON.stringify(args, null, 2)
-                    : isLoading
-                      ? 'Loading...'
-                      : 'No arguments available'}
-                </CodeBlock>
-              </div>
+              {toolName === 'getInformation' && (
+                <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
+                    <div className="text-lg font-medium">Question</div>
+                    <p className="text-muted-foreground">{args?.question}</p>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <div className="text-lg font-medium">Results</div>
+                    {isLoading && (
+                      <span className="font-medium">Getting results...</span>
+                    )}
+                    {result?.map((item: any, index: number) => (
+                      <div key={index} className="flex flex-col gap-2 relative">
+                        <div className="text-sm font-medium text-muted-foreground absolute bottom-0 right-0 m-[1px] text-[10px] bg-card rounded-br-xl rounded-t-md p-1">
+                          {Number(item?.similarity).toFixed(3)}
+                        </div>
+                        <CodeBlock
+                          node={item?.content}
+                          inline={false}
+                          className="text-sm"
+                        >
+                          {item?.name?.trim()}
+                        </CodeBlock>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Result</h3>
-                <CodeBlock
-                  node={{
-                    type: 'code',
-                    value: JSON.stringify(result, null, 2),
-                  }}
-                  inline={false}
-                  className="text-xs"
-                >
-                  {result
-                    ? JSON.stringify(result, null, 2)
-                    : isLoading
-                      ? 'Loading...'
-                      : 'No result available'}
-                </CodeBlock>
-              </div>
+              {toolName === 'understandQuery' && (
+                <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2">
+                    <div className="text-lg font-medium">Query</div>
+                    <p className="text-muted-foreground">{args?.query}</p>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <div className="text-lg font-medium">Results</div>
+                    {isLoading && (
+                      <span className="font-medium">Getting results...</span>
+                    )}
+                    <ul className="list-disc pl-4">
+                      {result?.map((item: any, index: number) => (
+                        <li key={index} className="text-muted-foreground">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

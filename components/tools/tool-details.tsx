@@ -49,7 +49,7 @@ export function ToolDetails({
         <div className="flex flex-row gap-2 items-center">
           <div className="font-medium">Called {toolName}</div>
           <button
-            data-testid="message-reasoning-toggle"
+            data-testid="message-tool-details-toggle"
             type="button"
             className="cursor-pointer"
             onClick={() => {
@@ -71,7 +71,7 @@ export function ToolDetails({
       <AnimatePresence initial={false}>
         {isExpanded && (
           <motion.div
-            data-testid="message-reasoning"
+            data-testid="message-tool-details"
             key="content"
             initial="collapsed"
             animate="expanded"
