@@ -2,6 +2,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import React from "react";
 import { CheckIcon, LoaderIcon } from "lucide-react";
+import { TextShimmer } from '@/components/ui/text-shimmer';
 
 interface RAGDetailsProps {
     toolName: string;
@@ -36,9 +37,15 @@ export function RAGDetails({
             >
                 <div className="flex flex-row gap-2 items-center text-muted-foreground [&_svg]:size-4">
                     {isLoading ? <LoaderIcon className="animate-spin" /> : <CheckIcon />}
-                    <div>
-                        {action}{isLoading ? "..." : ""}
-                    </div>
+                    {isLoading ? (
+                        <TextShimmer>
+                            {`${action} ${isLoading ? "..." : ""}`}
+                        </TextShimmer>
+                    ) : (
+                        <span>
+                            {action}
+                        </span>
+                    )}
                 </div>
             </motion.div>
         </AnimatePresence>

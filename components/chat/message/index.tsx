@@ -22,6 +22,7 @@ import type { UseChatHelpers } from '@ai-sdk/react';
 import { ToolDetails } from '@/components/tools/tool-details';
 import { FishIcon } from 'lucide-react';
 import { RAGDetails } from '@/components/tools/rag-details';
+import { TextShimmer } from '@/components/ui/text-shimmer';
 
 const PurePreviewMessage = ({
   chatId,
@@ -293,10 +294,10 @@ export const ThinkingMessage = () => {
           <FishIcon size={14} />
         </div>
 
-        <div className="flex flex-col gap-2 w-full">
-          <div className="flex flex-col gap-4 text-muted-foreground">
+        <div className="flex flex-col gap-2 w-full text-muted-foreground">
+          <TextShimmer>
             Thinking...
-          </div>
+          </TextShimmer>
         </div>
       </div>
     </motion.div>
