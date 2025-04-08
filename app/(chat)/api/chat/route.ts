@@ -28,6 +28,7 @@ import { isProductionEnvironment } from '@/lib/constants';
 import { myProvider } from '@/lib/ai/providers';
 import * as meetingBaas from '@/server/meetingbaas';
 import { activeTools as mcpActiveTools } from '@/lib/ai/tools/mcp';
+import { openai } from '@ai-sdk/openai';
 
 export const maxDuration = 60;
 
@@ -113,6 +114,7 @@ export async function POST(request: Request) {
                 'createDocument',
                 'updateDocument',
                 'requestSuggestions',
+                'web_search_preview',
                 ...mcpActiveTools as any[]
               ],
           experimental_transform: smoothStream({ chunking: 'word' }),
@@ -125,7 +127,9 @@ export async function POST(request: Request) {
               session,
               dataStream,
             }),
-            ...mcpTools
+            // todo: check what model
+            web_search_preview: openai.tools.webSearchPreview(),
+            // ...mcpTools
           },
           onFinish: async ({ response }) => {
             if (session.user?.id) {
