@@ -30,8 +30,6 @@ import * as meetingBaas from '@/server/meetingbaas';
 import { activeTools as mcpActiveTools } from '@/lib/ai/tools/mcp';
 import { getInformation } from '@/lib/ai/tools/get-information';
 import { understandQuery } from '@/lib/ai/tools/understand-query';
-import { openai } from '@ai-sdk/openai';
-import { webSearch } from '@/lib/ai/tools/web-search';
 
 export const maxDuration = 60;
 
@@ -121,7 +119,6 @@ export async function POST(request: Request) {
                   'requestSuggestions',
                   'getInformation',
                   'understandQuery',
-                  'webSearch',
                   ...(mcpActiveTools as any[]),
                 ],
           experimental_transform: smoothStream({ chunking: 'word' }),
@@ -136,7 +133,6 @@ export async function POST(request: Request) {
             }),
             getInformation,
             understandQuery,
-            webSearch,
             ...mcpTools
           },
           onFinish: async ({ response }) => {
