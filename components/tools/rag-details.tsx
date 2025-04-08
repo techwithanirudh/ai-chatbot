@@ -36,7 +36,7 @@ export function RAGDetails({
             >
                 <div className="flex flex-row gap-2 items-center text-muted-foreground [&_svg]:size-4">
                     {isLoading ? <LoaderIcon className="animate-spin" /> : <CheckIcon />}
-                    <div className="text-sm">
+                    <div>
                         {action}...
                     </div>
                 </div>
