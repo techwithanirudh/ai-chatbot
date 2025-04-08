@@ -1,20 +1,16 @@
-import { nanoid } from 'nanoid';
-import { index, pgTable, text, varchar, vector } from 'drizzle-orm/pg-core';
+import { index, text, vector, uuid } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
 import { timestamp } from 'drizzle-orm/pg-core';
 import type { InferSelectModel } from 'drizzle-orm';
+import { createTable } from '../utils';
 
-// embedding
-export const embedding = pgTable(
+export const embedding = createTable(
   'embedding',
   {
-    id: varchar('id', { length: 191 })
-      .primaryKey()
-      .$defaultFn(() => nanoid()),
-    resourceId: varchar('resource_id', { length: 191 }).references(
-      () => resource.id,
-      { onDelete: 'cascade' },
-    ),
+    id: uuid('id').primaryKey().notNull().defaultRandom(),
+    resourceId: uuid('resourceId')
+      .notNull()
+      .references(() => resource.id, { onDelete: 'cascade' }),
     content: text('content').notNull(),
     embedding: vector('embedding', { dimensions: 1536 }).notNull(),
   },
@@ -28,15 +24,11 @@ export const embedding = pgTable(
 
 export type Embedding = InferSelectModel<typeof embedding>;
 
-// resource table
-export const resource = pgTable('resource', {
-  id: varchar('id', { length: 191 })
-    .primaryKey()
-    .$defaultFn(() => nanoid()),
+export const resource = createTable('resource', {
+  id: uuid('id').primaryKey().notNull().defaultRandom(),
   content: text('content').notNull(),
-
-  createdAt: timestamp('created_at').notNull().default(sql`now()`),
-  updatedAt: timestamp('updated_at').notNull().default(sql`now()`),
+  createdAt: timestamp('createdAt').notNull().default(sql`now()`),
+  updatedAt: timestamp('updatedAt').notNull().default(sql`now()`),
 });
 
 export type Resource = InferSelectModel<typeof resource>;

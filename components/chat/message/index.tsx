@@ -21,6 +21,7 @@ import { MessageReasoning } from './message-reasoning';
 import type { UseChatHelpers } from '@ai-sdk/react';
 import { ToolDetails } from '@/components/tools/tool-details';
 import { FishIcon } from 'lucide-react';
+import { RAGDetails } from '@/components/tools/rag-details';
 
 const PurePreviewMessage = ({
   chatId,
@@ -178,6 +179,12 @@ const PurePreviewMessage = ({
                           args={args}
                           isReadonly={isReadonly}
                         />
+                      ) : toolName === 'getInformation' || toolName === 'understandQuery' ? (
+                        <RAGDetails
+                          toolName={toolName}
+                          isLoading={isLoading}
+                          args={args}
+                        />
                       ) : (
                         <ToolDetails
                           toolName={toolName}
@@ -212,6 +219,13 @@ const PurePreviewMessage = ({
                           type="request-suggestions"
                           result={result}
                           isReadonly={isReadonly}
+                        />
+                      ) : toolName === 'getInformation' || toolName === 'understandQuery' ? (
+                        <RAGDetails
+                          toolName={toolName}
+                          isLoading={isLoading}
+                          result={result}
+                          args={args}
                         />
                       ) : (
                         <ToolDetails

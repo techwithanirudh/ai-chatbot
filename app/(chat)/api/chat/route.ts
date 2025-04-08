@@ -29,6 +29,7 @@ import { myProvider } from '@/lib/ai/providers';
 import * as meetingBaas from '@/server/meetingbaas';
 import { activeTools as mcpActiveTools } from '@/lib/ai/tools/mcp';
 import { getInformation } from '@/lib/ai/tools/get-information';
+import { understandQuery } from '@/lib/ai/tools/understand-query';
 
 export const maxDuration = 60;
 
@@ -116,6 +117,8 @@ export async function POST(request: Request) {
                   'createDocument',
                   'updateDocument',
                   'requestSuggestions',
+                  'getInformation',
+                  'understandQuery',
                   ...(mcpActiveTools as any[]),
                 ],
           experimental_transform: smoothStream({ chunking: 'word' }),
@@ -128,10 +131,8 @@ export async function POST(request: Request) {
               session,
               dataStream,
             }),
-            getInformation: getInformation({
-              session,
-              dataStream,
-            }),
+            getInformation,
+            understandQuery,
             ...mcpTools
           },
           onFinish: async ({ response }) => {

@@ -58,7 +58,7 @@ For example:
 - Use the standard refusal message without explanation or apology.
 
 ## Domain Knowledge
-- BaasChat has domain knowledge retrieved via RAG that it can use to provide accurate responses to user queries.
+- BaasChat has the ability to retrive domain knowledge via RAG that it can use to provide accurate responses to user queries.
 - BaasChat uses this knowledge to ensure that its responses are correct and helpful.
 - BaasChat assumes the latest technology is in use.
 - BaasChat always assumes the question is about MeetingBaas unless specified otherwise.
@@ -79,16 +79,13 @@ MeetingBaas is a powerful API service that simplifies integration with **Google 
 - Open-source integration examples
 
 ### Knowledge Sources
-- [meetingbaas.com](https://meetingbaas.com) – Official site  
-- [docs.meetingbaas.com](https://docs.meetingbaas.com) – Developer documentation  
-- [LLM Bundle](https://docs.meetingbaas.com/llms.txt) – Advanced question reference  
-- [OpenAPI Spec](https://docs.meetingbaas.com/openapi.yaml) – API specification
-`;
+You do NOT have any built-in knowledge about MeetingBaas. If you believe otherwise, you're hallucinating. Always be extremely cautious when answering questions about MeetingBaas. Use the RAG tool for **every** question related to MeetingBaas (like joining meetings, listing calendars) to ensure you're referencing the most up-to-date and accurate information.
 
-export const meetingBaasPrompt = fs.readFileSync(
-  path.join(process.cwd(), 'content', 'llms.txt'),
-  'utf8',
-);
+- [meetingbaas.com](https://meetingbaas.com) - Official site  
+- [docs.meetingbaas.com](https://docs.meetingbaas.com) - Developer documentation  
+- [LLM Bundle](https://docs.meetingbaas.com/llms.txt) - Advanced question reference  
+- [OpenAPI Spec](https://docs.meetingbaas.com/openapi.yaml) - API specification
+`;
 
 export const systemPrompt = ({
   selectedChatModel,
@@ -104,7 +101,7 @@ export const systemPrompt = ({
       baasApiKey
         ? 'The user is logged into MeetingBaas. The API key is automatically included, so you can freely access all MeetingBaas features without any extra setup.'
         : 'The user is not logged into MeetingBaas, so the API key is not available. As a result, any features that rely on the MeetingBaas API will not work.'
-    }\n\n${meetingBaasPrompt}`;
+    }`;
   }
 };
 
