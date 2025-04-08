@@ -33,13 +33,16 @@ export const generateEmbedding = async (value: string): Promise<number[]> => {
 };
 
 export const findRelevantContent = async (userQuery: string) => {
+  const k = 10;
+
   const userQueryEmbedded = await generateEmbedding(userQuery);
   const similarity = sql<number>`1 - (${cosineDistance(embeddings.embedding, userQueryEmbedded)})`;
   const similarGuides = await db
     .select({ name: embeddings.content, similarity })
     .from(embeddings)
-    .where(gt(similarity, 0.3))
+    // .where(gt(similarity, 0.3))
     .orderBy((t) => desc(t.similarity))
-    .limit(4);
+    .limit(k);
+
   return similarGuides;
 };

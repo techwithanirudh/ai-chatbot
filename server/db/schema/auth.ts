@@ -22,7 +22,7 @@ export const user = createTable('user', {
   image: varchar('image', { length: 255 }),
 });
 
-export const userRelaitons = relations(user, ({ many }) => ({
+export const userRelations = relations(user, ({ many }) => ({
   accounts: many(account),
 }));
 
