@@ -28,6 +28,7 @@ import { isProductionEnvironment } from '@/lib/constants';
 import { myProvider } from '@/lib/ai/providers';
 import * as meetingBaas from '@/server/meetingbaas';
 import { activeTools as mcpActiveTools } from '@/lib/ai/tools/mcp';
+import { getInformation } from '@/lib/ai/tools/get-information';
 
 export const maxDuration = 60;
 
@@ -124,6 +125,10 @@ export async function POST(request: Request) {
             createDocument: createDocument({ session, dataStream }),
             updateDocument: updateDocument({ session, dataStream }),
             requestSuggestions: requestSuggestions({
+              session,
+              dataStream,
+            }),
+            getInformation: getInformation({
               session,
               dataStream,
             }),
