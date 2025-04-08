@@ -180,9 +180,8 @@ const PurePreviewMessage = ({
                           args={args}
                           isReadonly={isReadonly}
                         />
-                      ) : toolName === 'getInformation' || toolName === 'understandQuery' ? (
+                      ) : toolName === 'getInformation' ? (
                         <RAGDetails
-                          toolName={toolName}
                           isLoading={true}
                           args={args}
                         />
@@ -221,9 +220,8 @@ const PurePreviewMessage = ({
                           result={result}
                           isReadonly={isReadonly}
                         />
-                      ) : toolName === 'getInformation' || toolName === 'understandQuery' ? (
+                      ) : toolName === 'getInformation' ? (
                         <RAGDetails
-                          toolName={toolName}
                           isLoading={false}
                           result={result}
                           args={args}
