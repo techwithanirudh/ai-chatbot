@@ -131,7 +131,7 @@ export async function POST(request: Request) {
             }),
             // todo: check what model
             web_search_preview: openai.tools.webSearchPreview(),
-            // ...mcpTools
+            ...mcpTools
           },
           onFinish: async ({ response }) => {
             if (session.user?.id) {
