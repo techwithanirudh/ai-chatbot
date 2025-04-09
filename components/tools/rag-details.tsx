@@ -88,7 +88,7 @@ export function RAGDetails({ isLoading, result, args }: RAGDetailsProps) {
                     Thinking...
                   </span>
                 )}
-                <Markdown>{result}</Markdown>
+                <Markdown className={"text-muted-foreground"}>{result}</Markdown>
               </div>
             </div>
           </motion.div>
