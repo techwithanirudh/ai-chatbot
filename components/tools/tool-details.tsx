@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { CodeBlock } from '../artifact/code/code-block';
+import { TextShimmer } from '../ui/text-shimmer';
 
 interface ToolDetailsProps {
   toolName: string;
@@ -40,7 +41,7 @@ export function ToolDetails({
     <div className="flex flex-col">
       {isLoading ? (
         <div className="flex flex-row gap-2 items-center">
-          <div className="font-medium">Calling {toolName}</div>
+          <TextShimmer className="font-medium">{`Calling ${toolName}`}</TextShimmer>
           <div className="animate-spin">
             <LoaderIcon />
           </div>
