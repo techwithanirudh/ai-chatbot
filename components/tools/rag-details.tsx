@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Markdown from 'react-markdown';
+import { TextShimmer } from '../ui/text-shimmer';
 
 interface RAGDetailsProps {
   isLoading?: boolean;
@@ -34,7 +35,7 @@ export function RAGDetails({ isLoading, result, args }: RAGDetailsProps) {
     <div className="flex flex-col">
       {isLoading ? (
         <div className="flex flex-row gap-2 items-center">
-          <div className="font-medium">Getting information...</div>
+          <TextShimmer className="font-medium">Getting information...</TextShimmer>
           <div className="animate-spin">
             <LoaderIcon />
           </div>
@@ -82,7 +83,7 @@ export function RAGDetails({ isLoading, result, args }: RAGDetailsProps) {
               </div>
               <div className="flex flex-col gap-2">
                 <div className="text-lg font-medium">Results</div>
-                {isLoading && (
+                {(isLoading && !result) && (
                   <span className="text-muted-foreground">
                     Thinking...
                   </span>
