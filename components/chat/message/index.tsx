@@ -21,6 +21,8 @@ import { MessageReasoning } from './message-reasoning';
 import type { UseChatHelpers } from '@ai-sdk/react';
 import { ToolDetails } from '@/components/tools/tool-details';
 import { FishIcon } from 'lucide-react';
+import { RAGDetails } from '@/components/tools/rag-details';
+import { TextShimmer } from '@/components/ui/text-shimmer';
 
 const PurePreviewMessage = ({
   chatId,
@@ -71,7 +73,7 @@ const PurePreviewMessage = ({
             {message.experimental_attachments && (
               <div
                 data-testid={`message-attachments`}
-                className="flex flex-row justify-end gap-2"
+                className="flex flex-row justify-end gap-2 empty:hidden"
               >
                 {message.experimental_attachments.map((attachment) => (
                   <PreviewAttachment
@@ -178,10 +180,15 @@ const PurePreviewMessage = ({
                           args={args}
                           isReadonly={isReadonly}
                         />
+                      ) : toolName === 'getInformation' ? (
+                        <RAGDetails
+                          isLoading={true}
+                          args={args}
+                        />
                       ) : (
                         <ToolDetails
                           toolName={toolName}
-                          isLoading={isLoading}
+                          isLoading={true}
                           args={args}
                         />
                       )}
@@ -213,10 +220,17 @@ const PurePreviewMessage = ({
                           result={result}
                           isReadonly={isReadonly}
                         />
+                      ) : toolName === 'getInformation' ? (
+                        <RAGDetails
+                          isLoading={false}
+                          result={result}
+                          args={args}
+                        />
                       ) : (
                         <ToolDetails
                           toolName={toolName}
-                          isLoading={isLoading}
+                          // todo: fix the template to use false Aswell
+                          isLoading={false}
                           result={result}
                           args={args}
                         />
@@ -278,10 +292,10 @@ export const ThinkingMessage = () => {
           <FishIcon size={14} />
         </div>
 
-        <div className="flex flex-col gap-2 w-full">
-          <div className="flex flex-col gap-4 text-muted-foreground">
+        <div className="flex flex-col gap-2 w-full text-muted-foreground">
+          <TextShimmer>
             Thinking...
-          </div>
+          </TextShimmer>
         </div>
       </div>
     </motion.div>
