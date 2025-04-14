@@ -24,6 +24,7 @@ import { MessageReasoning } from './message-reasoning';
 import type { UseChatHelpers } from '@ai-sdk/react';
 import { ToolDetails } from '@/components/tools/tool-details';
 import { TextShimmer } from '@/components/ui/text-shimmer';
+import { BotMessageSquare } from 'lucide-react';
 
 const PurePreviewMessage = ({
   chatId,
@@ -65,7 +66,7 @@ const PurePreviewMessage = ({
           {message.role === 'assistant' && (
             <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border bg-background">
               <div className="translate-y-px">
-                <SparklesIcon size={14} />
+                <BotMessageSquare size={14} />
               </div>
             </div>
           )}
@@ -278,7 +279,7 @@ export const ThinkingMessage = () => {
         )}
       >
         <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border">
-          <SparklesIcon size={14} />
+          <BotMessageSquare size={14} />
         </div>
 
         <div className="flex flex-col gap-2 w-full text-muted-foreground">
