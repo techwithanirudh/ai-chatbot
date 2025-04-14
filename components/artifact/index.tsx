@@ -1,6 +1,6 @@
 import type { Attachment, UIMessage } from 'ai';
 import { formatDistance } from 'date-fns';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import {
   type Dispatch,
   memo,
@@ -346,56 +346,56 @@ function PureArtifact({
             initial={
               isMobile
                 ? {
-                  opacity: 1,
-                  x: artifact.boundingBox.left,
-                  y: artifact.boundingBox.top,
-                  height: artifact.boundingBox.height,
-                  width: artifact.boundingBox.width,
-                  borderRadius: 50,
-                }
+                    opacity: 1,
+                    x: artifact.boundingBox.left,
+                    y: artifact.boundingBox.top,
+                    height: artifact.boundingBox.height,
+                    width: artifact.boundingBox.width,
+                    borderRadius: 50,
+                  }
                 : {
-                  opacity: 1,
-                  x: artifact.boundingBox.left,
-                  y: artifact.boundingBox.top,
-                  height: artifact.boundingBox.height,
-                  width: artifact.boundingBox.width,
-                  borderRadius: 50,
-                }
+                    opacity: 1,
+                    x: artifact.boundingBox.left,
+                    y: artifact.boundingBox.top,
+                    height: artifact.boundingBox.height,
+                    width: artifact.boundingBox.width,
+                    borderRadius: 50,
+                  }
             }
             animate={
               isMobile
                 ? {
-                  opacity: 1,
-                  x: 0,
-                  y: 0,
-                  height: windowHeight,
-                  width: windowWidth ? windowWidth : 'calc(100dvw)',
-                  borderRadius: 0,
-                  transition: {
-                    delay: 0,
-                    type: 'spring',
-                    stiffness: 200,
-                    damping: 30,
-                    duration: 5000,
-                  },
-                }
+                    opacity: 1,
+                    x: 0,
+                    y: 0,
+                    height: windowHeight,
+                    width: windowWidth ? windowWidth : 'calc(100dvw)',
+                    borderRadius: 0,
+                    transition: {
+                      delay: 0,
+                      type: 'spring',
+                      stiffness: 200,
+                      damping: 30,
+                      duration: 5000,
+                    },
+                  }
                 : {
-                  opacity: 1,
-                  x: 400,
-                  y: 0,
-                  height: windowHeight,
-                  width: windowWidth
-                    ? windowWidth - 400
-                    : 'calc(100dvw-400px)',
-                  borderRadius: 0,
-                  transition: {
-                    delay: 0,
-                    type: 'spring',
-                    stiffness: 200,
-                    damping: 30,
-                    duration: 5000,
-                  },
-                }
+                    opacity: 1,
+                    x: 400,
+                    y: 0,
+                    height: windowHeight,
+                    width: windowWidth
+                      ? windowWidth - 400
+                      : 'calc(100dvw-400px)',
+                    borderRadius: 0,
+                    transition: {
+                      delay: 0,
+                      type: 'spring',
+                      stiffness: 200,
+                      damping: 30,
+                      duration: 5000,
+                    },
+                  }
             }
             exit={{
               opacity: 0,

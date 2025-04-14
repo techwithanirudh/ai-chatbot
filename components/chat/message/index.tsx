@@ -2,10 +2,13 @@
 
 import type { UIMessage } from 'ai';
 import cx from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { memo, useState } from 'react';
 import type { Vote } from '@/server/db/schema';
-import { DocumentToolCall, DocumentToolResult } from '../../artifact/document/document';
+import {
+  DocumentToolCall,
+  DocumentToolResult,
+} from '../../artifact/document/document';
 import { PencilEditIcon, SparklesIcon } from '../../icons';
 import { Markdown } from '../../markdown';
 import { MessageActions } from './message-actions';
@@ -20,6 +23,7 @@ import { DocumentPreview } from '../../artifact/document/document-preview';
 import { MessageReasoning } from './message-reasoning';
 import type { UseChatHelpers } from '@ai-sdk/react';
 import { ToolDetails } from '@/components/tools/tool-details';
+import { TextShimmer } from '@/components/ui/text-shimmer';
 
 const PurePreviewMessage = ({
   chatId,
@@ -277,10 +281,8 @@ export const ThinkingMessage = () => {
           <SparklesIcon size={14} />
         </div>
 
-        <div className="flex flex-col gap-2 w-full">
-          <div className="flex flex-col gap-4 text-muted-foreground">
-            Thinking...
-          </div>
+        <div className="flex flex-col gap-2 w-full text-muted-foreground">
+          <TextShimmer>Thinking...</TextShimmer>
         </div>
       </div>
     </motion.div>

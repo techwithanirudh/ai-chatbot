@@ -1,13 +1,12 @@
 'use client';
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
-import { Card } from '@/components/ui/card';
+import { useState } from 'react';
+import { LoaderIcon } from '@/components/icons';
+import { motion, AnimatePresence } from 'motion/react';
+import { ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { CodeBlock } from '../artifact/code/code-block';
+import { TextShimmer } from '../ui/text-shimmer';
 
 interface ToolDetailsProps {
   toolName: string;
@@ -17,33 +16,79 @@ interface ToolDetailsProps {
 }
 
 export function ToolDetails({
-  toolName,
   isLoading,
+  toolName,
   result,
   args,
 }: ToolDetailsProps) {
+  const [isExpanded, setIsExpanded] = useState(isLoading);
+  const variants = {
+    collapsed: {
+      height: 0,
+      opacity: 0,
+      marginTop: 0,
+      marginBottom: 0,
+    },
+    expanded: {
+      height: 'auto',
+      opacity: 1,
+      marginTop: '1rem',
+      marginBottom: '0.5rem',
+    },
+  };
+
   return (
-    <Accordion
-      type="single"
-      collapsible
-      className="w-full"
-      value={isLoading ? toolName : undefined}
-    >
-      <AccordionItem value={toolName} className="border-0">
-        <AccordionTrigger className="rounded-md px-4 border border-border bg-card text-card-foreground hover:no-underline hover:bg-muted/50 data-[state=open]:bg-muted/50">
-          <span className="text-sm font-medium text-muted-foreground">
-            {isLoading ? 'Calling' : 'Called'} tool: {toolName}
-          </span>
-        </AccordionTrigger>
-        <AccordionContent className="pt-2">
-          <Card className="p-4">
+    <div className="flex flex-col">
+      {isLoading ? (
+        <div className="flex flex-row gap-2 items-center">
+          <TextShimmer className="font-medium">{`Calling ${toolName}`}</TextShimmer>
+          <div className="animate-spin">
+            <LoaderIcon />
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-row gap-2 items-center">
+          <div className="font-medium">Called {toolName}</div>
+          <button
+            data-testid="message-tool-details-toggle"
+            type="button"
+            className="cursor-pointer"
+            onClick={() => {
+              setIsExpanded(!isExpanded);
+            }}
+          >
+            <ChevronDown
+              className={cn(
+                {
+                  'rotate-180': isExpanded,
+                },
+                'size-4',
+              )}
+            />
+          </button>
+        </div>
+      )}
+
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            data-testid="message-tool-details"
+            key="content"
+            initial="collapsed"
+            animate="expanded"
+            exit="collapsed"
+            variants={variants}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
+            style={{ overflow: 'hidden' }}
+            className="pl-4 border-l flex flex-col gap-4"
+          >
             <div className="space-y-4">
               <div>
                 <h3 className="text-lg font-semibold mb-2">Arguments</h3>
                 <CodeBlock
                   node={{ type: 'code', value: JSON.stringify(args, null, 2) }}
                   inline={false}
-                  className=""
+                  className="text-xs"
                 >
                   {args
                     ? JSON.stringify(args, null, 2)
@@ -61,7 +106,7 @@ export function ToolDetails({
                     value: JSON.stringify(result, null, 2),
                   }}
                   inline={false}
-                  className=""
+                  className="text-xs"
                 >
                   {result
                     ? JSON.stringify(result, null, 2)
@@ -71,9 +116,9 @@ export function ToolDetails({
                 </CodeBlock>
               </div>
             </div>
-          </Card>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

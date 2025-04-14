@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDownIcon, LoaderIcon } from '../../icons';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { Markdown } from '../../markdown';
 
 interface MessageReasoningProps {

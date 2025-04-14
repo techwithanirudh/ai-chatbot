@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import { Airplay, Moon, Sun } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import { type HTMLAttributes, useLayoutEffect, useState } from 'react';
 
@@ -85,7 +85,7 @@ export function ThemeToggle({
         if (mode !== 'light-dark') return;
         handleChangeTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
       }}
-      data-theme-toggle=''
+      data-theme-toggle=""
       aria-label={mode === 'light-dark' ? 'Toggle Theme' : undefined}
       {...props}
     >
@@ -95,7 +95,7 @@ export function ThemeToggle({
 
         return (
           <button
-            type='button'
+            type="button"
             key={key}
             className={itemVariants({ active: isActive })}
             onClick={() => {
@@ -106,8 +106,8 @@ export function ThemeToggle({
           >
             {isActive && (
               <motion.div
-                layoutId='activeTheme'
-                className='absolute inset-0 rounded-full bg-accent'
+                layoutId="activeTheme"
+                className="absolute inset-0 rounded-full bg-accent"
                 transition={{
                   type: 'spring',
                   duration: mode === 'light-dark' ? 1.5 : 1,
