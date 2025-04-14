@@ -79,6 +79,7 @@ export function ThemeToggle({
     : null;
 
   return (
+    // biome-ignore lint/nursery/noStaticElementInteractions: <explanation>
     <div
       className={container}
       onClick={() => {

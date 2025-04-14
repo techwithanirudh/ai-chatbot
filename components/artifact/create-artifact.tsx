@@ -1,8 +1,8 @@
-import { Suggestion } from '@/server/db/schema';
-import { UseChatHelpers } from '@ai-sdk/react';
-import { ComponentType, Dispatch, ReactNode, SetStateAction } from 'react';
-import { DataStreamDelta } from '../data-stream-handler';
-import { UIArtifact } from '.';
+import type { Suggestion } from '@/server/db/schema';
+import type { UseChatHelpers } from '@ai-sdk/react';
+import type { ComponentType, Dispatch, ReactNode, SetStateAction } from 'react';
+import type { DataStreamDelta } from '../data-stream-handler';
+import type { UIArtifact } from '.';
 
 export type ArtifactActionContext<M = any> = {
   content: string;
