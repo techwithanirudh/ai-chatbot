@@ -40,7 +40,7 @@ export function AppSidebar({ user }: { user: User | undefined }) {
                 </span>
               </Link>
               <Link
-                href="https://techwithanirudh.coom/"
+                href="https://techwithanirudh.com/"
                 onClick={() => {
                   setOpenMobile(false);
                 }}
