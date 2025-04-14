@@ -8,8 +8,6 @@ import {
   primaryKey,
   foreignKey,
   boolean,
-  pgTableCreator,
-  integer,
 } from 'drizzle-orm/pg-core';
 import { createTable } from '../utils';
 import { user } from './auth';

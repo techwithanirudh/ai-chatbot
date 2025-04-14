@@ -2,13 +2,9 @@ import type { InferSelectModel } from 'drizzle-orm';
 import {
   varchar,
   timestamp,
-  json,
   uuid,
   text,
   primaryKey,
-  foreignKey,
-  boolean,
-  pgTableCreator,
   integer,
 } from 'drizzle-orm/pg-core';
 import { relations, } from 'drizzle-orm';
