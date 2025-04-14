@@ -1,4 +1,4 @@
-# Next.js AI Chatbot (Upgraded) 
+# Chat SDK (Upgraded) 
 
 An upgraded version of Vercel's Chat SDK template, Built With Next.js and the AI SDK.
 

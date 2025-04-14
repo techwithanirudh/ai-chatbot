@@ -3,7 +3,6 @@ import {
   extractReasoningMiddleware,
   wrapLanguageModel,
 } from 'ai';
-import { groq } from '@ai-sdk/groq';
 import { openai } from '@ai-sdk/openai';
 import { isTestEnvironment } from '../constants';
 import {
@@ -24,9 +23,9 @@ export const myProvider = isTestEnvironment
     })
   : customProvider({
       languageModels: {
-        'chat-model': openai('gpt-4o-mini'),
+        'chat-model': openai('gpt-4o'),
         'chat-model-reasoning': wrapLanguageModel({
-          model: groq('deepseek-r1-distill-llama-70b'),
+          model: openai('o3-mini'),
           middleware: extractReasoningMiddleware({ tagName: 'think' }),
         }),
         'title-model': openai('gpt-4o-mini'),
