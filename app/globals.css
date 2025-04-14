@@ -56,7 +56,7 @@
         --sidebar-accent-foreground: 0 0% 20.39%;
         --sidebar-border: 0 0% 92.16%;
         --sidebar-ring: 0 0% 70.98%;
-        --radius: 0.75rem;
+        --radius: 0.625rem;
     }
 
     .dark {
