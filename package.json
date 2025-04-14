@@ -88,7 +88,7 @@
     "remark-math": "^6.0.0",
     "resend": "^4.1.2",
     "server-only": "^0.0.1",
-    "sonner": "^1.5.0",
+    "sonner": "^1.7.4",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
