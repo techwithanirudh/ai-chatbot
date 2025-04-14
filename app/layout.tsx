@@ -8,7 +8,8 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL('https://chat.techwithanirudh.com'),
   title: 'AI Chatbot',
-  description: 'An upgraded version of the AI Chatbot built using Next.js and the AI SDK.',
+  description:
+    'An upgraded version of the AI Chatbot built using Next.js and the AI SDK.',
 };
 
 export const viewport = {

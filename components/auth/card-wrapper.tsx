@@ -23,7 +23,9 @@ export const CardWrapper = async ({
   showCredentials,
   className,
 }: CardWrapperProps) => {
-  const providers = await fetch(new URL('/api/auth/providers', baseUrl.href)).then((res) => res.json());
+  const providers = await fetch(
+    new URL('/api/auth/providers', baseUrl.href),
+  ).then((res) => res.json());
 
   return (
     <div className={cn('grid gap-6', className)}>

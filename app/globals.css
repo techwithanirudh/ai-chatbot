@@ -48,7 +48,7 @@
         --chart-3: 46.15 28.26% 81.96%;
         --chart-4: 256.55 49.15% 88.43%;
         --chart-5: 17.78 60% 44.12%;
-        --sidebar: 51.43 25.93% 94.71%;
+        --sidebar-background: 51.43 25.93% 94.71%;
         --sidebar-foreground: 60 2.52% 23.33%;
         --sidebar-primary: 15.11 55.56% 52.35%;
         --sidebar-primary-foreground: 0 0% 98.43%;
@@ -70,9 +70,9 @@
         --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
         --tracking-normal: undefined;
         --spacing: undefined;
-    }
-
-    .dark {
+      }
+      
+      .dark {
         --background: 60 2.70% 14.51%;
         --foreground: 46.15 9.77% 73.92%;
         --card: 60 2.70% 14.51%;
@@ -97,7 +97,7 @@
         --chart-3: 48 10.64% 9.22%;
         --chart-4: 248.28 25.22% 22.55%;
         --chart-5: 17.78 60% 44.12%;
-        --sidebar: 30 3.33% 11.76%;
+        --sidebar-background: 30 3.33% 11.76%;
         --sidebar-foreground: 46.15 9.77% 73.92%;
         --sidebar-primary: 0 0% 20.39%;
         --sidebar-primary-foreground: 0 0% 98.43%;
@@ -117,11 +117,11 @@
         --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10);
         --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10);
         --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
-    }
-
-    body {
+      }
+      
+      body {
         letter-spacing: var(--tracking-normal);
-    }
+      }
 }
 
 @layer base {
@@ -189,7 +189,7 @@
     @apply bg-background dark:bg-zinc-800 outline-none selection:bg-zinc-900 !important;
 }
 
-.ͼo.cm-focused>.cm-scroller>.cm-selectionLayer .cm-selectionBackground,
+.ͼo.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground,
 .ͼo.cm-selectionBackground,
 .ͼo.cm-content::selection {
     @apply bg-zinc-200 dark:bg-zinc-900 !important;
@@ -221,17 +221,12 @@
 }
 
 @theme inline {
-    @keyframes shiny-text {
-
-        0%,
-        90%,
-        100% {
-            background-position: calc(-100% - var(--shiny-width)) 0;
+  @keyframes shiny-text {
+  0%, 90%, 100% {
+    background-position: calc(-100% - var(--shiny-width)) 0;
         }
-
-        30%,
-        60% {
-            background-position: calc(100% + var(--shiny-width)) 0;
+  30%, 60% {
+    background-position: calc(100% + var(--shiny-width)) 0;
         }
     }
 }

@@ -2,20 +2,18 @@
 import { Button } from '@/components/ui/button';
 import { signInWithGoogle, signInWithKeycloak } from '@/app/(auth)/actions';
 import { LogoKeycloak, LogoGoogle } from '../icons';
-import { useActionState,  } from 'react';
+import { useActionState } from 'react';
 import { LoaderIcon } from 'lucide-react';
 import type { getProviders } from 'next-auth/react';
 
-export const Social = ({ providers }: { providers: Awaited<ReturnType<typeof getProviders>> | null }) => {
+export const Social = ({
+  providers,
+}: { providers: Awaited<ReturnType<typeof getProviders>> | null }) => {
   return (
     <form className="flex w-full flex-col items-center gap-2">
-      {providers?.google && (
-        <GoogleButton />
-      )}
-      {providers?.keycloak && (
-        <KeycloakButton />
-      )}
-      {(!providers?.keycloak && !providers?.google) && (
+      {providers?.google && <GoogleButton />}
+      {providers?.keycloak && <KeycloakButton />}
+      {!providers?.keycloak && !providers?.google && (
         <div className="text-destructive dark:text-red-500 text-sm">
           No providers available
         </div>

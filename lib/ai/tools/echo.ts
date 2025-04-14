@@ -9,7 +9,7 @@ export const echo = tool({
   execute: async ({ input }) => {
     return {
       success: true,
-      result: input
+      result: input,
     };
   },
 });

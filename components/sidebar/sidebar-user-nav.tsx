@@ -4,7 +4,7 @@ import Image from 'next/image';
 import type { User } from 'next-auth';
 import { signOut } from 'next-auth/react';
 import { useTheme } from 'next-themes';
-import { ThemeToggle } from "../theme-toggle";
+import { ThemeToggle } from '../theme-toggle';
 
 import {
   DropdownMenu,
@@ -50,7 +50,7 @@ export function SidebarUserNav({ user }: { user: User }) {
               }}
             >
               <p>Theme</p>
-              <ThemeToggle mode='light-dark-system' />
+              <ThemeToggle mode="light-dark-system" />
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>

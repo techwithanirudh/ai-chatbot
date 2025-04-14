@@ -9,7 +9,7 @@ import {
   DocumentToolCall,
   DocumentToolResult,
 } from '../../artifact/document/document';
-import { PencilEditIcon, } from '../../icons';
+import { PencilEditIcon } from '../../icons';
 import { Markdown } from '../../markdown';
 import { MessageActions } from './message-actions';
 import { PreviewAttachment } from '../preview-attachment';

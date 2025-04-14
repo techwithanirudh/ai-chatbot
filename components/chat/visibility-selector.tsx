@@ -26,19 +26,19 @@ const visibilities: Array<{
   description: string;
   icon: ReactNode;
 }> = [
-    {
-      id: 'private',
-      label: 'Private',
-      description: 'Only you can access this chat',
-      icon: <LockIcon />,
-    },
-    {
-      id: 'public',
-      label: 'Public',
-      description: 'Anyone with the link can access this chat',
-      icon: <GlobeIcon />,
-    },
-  ];
+  {
+    id: 'private',
+    label: 'Private',
+    description: 'Only you can access this chat',
+    icon: <LockIcon />,
+  },
+  {
+    id: 'public',
+    label: 'Public',
+    description: 'Anyone with the link can access this chat',
+    icon: <GlobeIcon />,
+  },
+];
 
 export function VisibilitySelector({
   chatId,

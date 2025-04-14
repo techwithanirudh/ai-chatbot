@@ -1,6 +1,16 @@
 import 'server-only';
 
-import { and, asc, desc, eq, gt, gte, inArray, lt, type SQL } from 'drizzle-orm';
+import {
+  and,
+  asc,
+  desc,
+  eq,
+  gt,
+  gte,
+  inArray,
+  lt,
+  type SQL,
+} from 'drizzle-orm';
 
 import {
   chat,
@@ -10,7 +20,7 @@ import {
   message,
   vote,
   type DBMessage,
-  type Chat
+  type Chat,
 } from './schema';
 import type { ArtifactKind } from '@/components/artifact';
 import { db } from '.';

@@ -15,9 +15,9 @@ function PureArtifactCloseButton() {
         setArtifact((currentArtifact) =>
           currentArtifact.status === 'streaming'
             ? {
-              ...currentArtifact,
-              isVisible: false,
-            }
+                ...currentArtifact,
+                isVisible: false,
+              }
             : { ...initialArtifactData, status: 'idle' },
         );
       }}

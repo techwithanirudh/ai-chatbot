@@ -76,8 +76,8 @@ export function Chat({
         />
 
         <div
-          className={cn("flex flex-col flex-1 overflow-y-auto", {
-            "items-center justify-center": messages.length === 0,
+          className={cn('flex flex-col flex-1 overflow-y-auto', {
+            'items-center justify-center': messages.length === 0,
           })}
         >
           {messages.length === 0 ? (

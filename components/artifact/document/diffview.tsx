@@ -59,12 +59,8 @@ export const DiffView = ({ oldContent, newContent }: DiffEditorProps) => {
     if (editorRef.current && !viewRef.current) {
       const parser = DOMParser.fromSchema(diffSchema);
 
-      const oldHtmlContent = renderToString(
-        <Markdown>{oldContent}</Markdown>,
-      );
-      const newHtmlContent = renderToString(
-        <Markdown>{newContent}</Markdown>,
-      );
+      const oldHtmlContent = renderToString(<Markdown>{oldContent}</Markdown>);
+      const newHtmlContent = renderToString(<Markdown>{newContent}</Markdown>);
 
       const oldContainer = document.createElement('div');
       oldContainer.innerHTML = oldHtmlContent;
