@@ -26,7 +26,7 @@ const themes = [
 ];
 
 const itemVariants = cva(
-  'relative size-4.5 rounded-full p-1 text-fd-muted-foreground',
+  'relative size-4.5 rounded-full p-1.5 text-fd-muted-foreground',
   {
     variants: {
       active: {
@@ -50,7 +50,7 @@ export function ThemeToggle({
   const [mounted, setMounted] = useState(false);
 
   const container = cn(
-    'relative flex items-center rounded-full p-1 ring-1 ring-border',
+    'relative flex items-center rounded-full p-0.5 ring-1 ring-border',
     className,
   );
 
@@ -116,7 +116,7 @@ export function ThemeToggle({
               />
             )}
             <Icon
-              className={'relative m-auto size-full'}
+              className={'relative m-auto size-full text-muted-foreground'}
               fill={'currentColor'}
             />
           </button>
