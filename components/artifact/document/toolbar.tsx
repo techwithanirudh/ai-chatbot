@@ -412,7 +412,7 @@ const PureToolbar = ({
         }}
         ref={toolbarRef}
       >
-        {status === 'streaming' ? (
+        {['submitted', 'streaming'].includes(status) ? (
           <motion.div
             key="stop-icon"
             initial={{ scale: 1 }}
