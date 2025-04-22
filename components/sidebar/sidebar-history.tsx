@@ -329,7 +329,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
           />
 
           {hasReachedEnd ? (
-            <div className="px-2 text-zinc-500 w-full flex flex-row justify-center items-center text-sm gap-2 mt-8">
+            <div className="px-2 text-zinc-500 text-sm mt-8 sr-only">
               You have reached the end of your chat history.
             </div>
           ) : (
