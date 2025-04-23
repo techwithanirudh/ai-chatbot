@@ -27,7 +27,7 @@ import { getWeather } from '@/lib/ai/tools/get-weather';
 import { isProductionEnvironment } from '@/lib/constants';
 import { myProvider } from '@/lib/ai/providers';
 import * as meetingBaas from '@/server/meetingbaas';
-import { activeTools as mcpActiveTools } from '@/lib/ai/tools/mcp';
+import { getMCPTools } from '@/lib/ai/tools/mcp';
 import { getInformation } from '@/lib/ai/tools/get-information';
 
 export const maxDuration = 60;
@@ -84,19 +84,7 @@ export async function POST(request: Request) {
       ],
     });
 
-    const client = await createMCPClient({
-      transport: {
-        type: 'sse',
-        url: 'https://mcp.meetingbaas.com/sse',
-        headers: {
-          'x-meeting-baas-api-key': baasSession?.apiKey ?? 'invalid-api-key',
-        },
-      },
-      onUncaughtError: (error) => {
-        console.error('MCP Client error:', error);
-      },
-    });
-    const mcpTools = await client.tools();
+    const { allTools: mcpTools } = await getMCPTools();
 
     return createDataStreamResponse({
       execute: async (dataStream) => {
@@ -117,7 +105,7 @@ export async function POST(request: Request) {
                   'updateDocument',
                   'requestSuggestions',
                   'getInformation',
-                  ...(mcpActiveTools as any[]),
+                  ...(Object.keys(mcpTools) as any[]),
                 ],
           experimental_transform: smoothStream({ chunking: 'word' }),
           experimental_generateMessageId: generateUUID,
@@ -167,11 +155,9 @@ export async function POST(request: Request) {
                 console.error('Failed to save chat');
               }
             }
-
-            client.close();
           },
           onError: async () => {
-            client.close();
+            // No need to close clients here as they're already closed in getMCPTools
           },
           experimental_telemetry: {
             isEnabled: isProductionEnvironment,
@@ -187,7 +173,6 @@ export async function POST(request: Request) {
       },
       onError: (error) => {
         console.error('Error in data stream:', error);
-        client.close();
         return 'Oops, an error occured!';
       },
     });
