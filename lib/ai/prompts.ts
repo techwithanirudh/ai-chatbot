@@ -163,10 +163,22 @@ def factorial(n):
 
 print(f"Factorial of 5 is: {factorial(5)}")
 \`\`\`
+
+Here is some domain specific knowlege that will help you answer the question:
+
+START CONTEXT BLOCK
+${knowledgeBase}
+END OF CONTEXT BLOCK
 `;
 
 export const sheetPrompt = `
 You are a spreadsheet creation assistant. Create a spreadsheet in csv format based on the given prompt. The spreadsheet should contain meaningful column headers and data.
+
+Here is some domain specific knowlege that will help you answer the question:
+
+START CONTEXT BLOCK
+${knowledgeBase}
+END OF CONTEXT BLOCK
 `;
 
 export const updateDocumentPrompt = (

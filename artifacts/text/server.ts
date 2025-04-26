@@ -1,7 +1,7 @@
 import { smoothStream, streamText } from 'ai';
 import { myProvider } from '@/lib/ai/providers';
 import { createDocumentHandler } from '@/lib/artifacts/server';
-import { updateDocumentPrompt } from '@/lib/ai/prompts';
+import { knowledgeBase, updateDocumentPrompt } from '@/lib/ai/prompts';
 
 export const textDocumentHandler = createDocumentHandler<'text'>({
   kind: 'text',
@@ -11,7 +11,13 @@ export const textDocumentHandler = createDocumentHandler<'text'>({
     const { fullStream } = streamText({
       model: myProvider.languageModel('artifact-model'),
       system:
-        'Write about the given topic. Markdown is supported. Use headings wherever appropriate.',
+        `Write about the given topic. Markdown is supported. Use headings wherever appropriate. 
+
+        Here is some domain specific knowlege that will help you answer the question:
+        
+        START CONTEXT BLOCK
+        ${knowledgeBase}
+        END OF CONTEXT BLOCK`,
       experimental_transform: smoothStream({ chunking: 'word' }),
       prompt: title,
     });
