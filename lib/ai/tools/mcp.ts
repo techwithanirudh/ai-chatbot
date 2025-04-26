@@ -21,7 +21,6 @@ export async function getMCPTools() {
   let privateTools = {};
   
   try {
-    // Create or reuse private client - uses JWT token
     if (!privateClient) {
       privateClient = await createMCPClient({
         transport: {
@@ -33,7 +32,6 @@ export async function getMCPTools() {
         },
         onUncaughtError: (error) => {
           console.error('Private MCP Client error:', error);
-          // Reset client on error so it can be recreated
           privateClient = null;
         },
       });
@@ -48,7 +46,6 @@ export async function getMCPTools() {
   }
 
   try {
-    // Create or reuse public client - uses API key
     if (!publicClient) {
       publicClient = await createMCPClient({
         transport: {
@@ -60,7 +57,6 @@ export async function getMCPTools() {
         },
         onUncaughtError: (error) => {
           console.error('Public MCP Client error:', error);
-          // Reset client on error so it can be recreated
           publicClient = null;
         },
       });
@@ -81,7 +77,6 @@ export async function getMCPTools() {
   };
 }
 
-// Only use this when you really need to close the clients (e.g., during cleanup)
 export async function closeMCPClients() {
   if (publicClient) {
     await publicClient.close();
