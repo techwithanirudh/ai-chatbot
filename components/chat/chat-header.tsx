@@ -72,10 +72,7 @@ function PureChatHeader({
         className="hidden md:flex py-1.5 px-2 h-fit md:h-[34px] order-4 md:ml-auto"
         asChild
       >
-        <Link
-          href="https://github.com/Meeting-Baas/ai-chat"
-          target="_blank"
-        >
+        <Link href="https://github.com/Meeting-Baas/ai-chat" target="_blank">
           <span className="flex items-center gap-2">
             <GitIcon />
             Star on GitHub

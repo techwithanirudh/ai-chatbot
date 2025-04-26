@@ -19,13 +19,17 @@ class AuthPage {
 
   async gotoRegister() {
     await this.page.goto('/register');
-    await expect(this.page.getByRole('heading')).toContainText('Create an account');
+    await expect(this.page.getByRole('heading')).toContainText(
+      'Create an account',
+    );
   }
 
   async register(username: string, password: string) {
     await this.gotoRegister();
 
-    await this.page.getByRole('button', { name: 'Continue with Keycloak' }).click();
+    await this.page
+      .getByRole('button', { name: 'Continue with Keycloak' })
+      .click();
     await this.page.getByText('Username or email').waitFor();
     await this.page.getByRole('link', { name: 'Register' }).click();
     await this.page.locator('#username').fill(testEmail);
@@ -35,19 +39,19 @@ class AuthPage {
     await this.page.locator('#firstName').fill(testFirstName);
     await this.page.locator('#lastName').fill(testLastName);
 
-    await this.page.getByRole('button', { name: 'Register' }).click();  
+    await this.page.getByRole('button', { name: 'Register' }).click();
   }
 
   async login(email: string, password: string) {
     await this.gotoLogin();
 
-    await this.page.getByRole('button', { name: 'Continue with Keycloak' }).click();
-    await this.page.getByText("Username or email").waitFor()
     await this.page
-      .getByLabel("Username or email")
-      .fill(email)
-    await this.page.locator("#password").fill(password);
-  
+      .getByRole('button', { name: 'Continue with Keycloak' })
+      .click();
+    await this.page.getByText('Username or email').waitFor();
+    await this.page.getByLabel('Username or email').fill(email);
+    await this.page.locator('#password').fill(password);
+
     await this.page.getByRole('button', { name: 'Sign In' }).click();
   }
 
@@ -71,8 +75,8 @@ test.describe
 
     test('register a test account', async ({ page }) => {
       await authPage.register(testEmail, testPassword);
-      await expect(page).toHaveURL(url => {
-        const pathname = url.pathname
+      await expect(page).toHaveURL((url) => {
+        const pathname = url.pathname;
         return pathname === '/';
       });
       await authPage.expectAlertToContain('Account created successfully!');
@@ -86,12 +90,12 @@ test.describe
     test('log into account', async ({ page }) => {
       await authPage.login(testEmail, testPassword);
 
-      await page.waitForURL(url => {
-        const pathname = url.pathname
+      await page.waitForURL((url) => {
+        const pathname = url.pathname;
         return pathname === '/';
       });
-      await expect(page).toHaveURL(url => {
-        const pathname = url.pathname
+      await expect(page).toHaveURL((url) => {
+        const pathname = url.pathname;
         return pathname === '/';
       });
       await expect(page.getByPlaceholder('Send a message...')).toBeVisible();

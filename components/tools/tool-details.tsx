@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { LoaderIcon } from '@/components/icons';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowRight, ChevronDown, Code } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { CodeBlock } from '../artifact/code/code-block';
 import { TextShimmer } from '../ui/text-shimmer';
@@ -35,6 +35,22 @@ export function ToolDetails({
       marginTop: '1rem',
       marginBottom: '0.5rem',
     },
+  };
+
+  const formatContent = (content: any): string => {
+    try {
+      if (typeof content === 'string') {
+        try {
+          const parsed = JSON.parse(content);
+          return JSON.stringify(parsed, null, 2);
+        } catch {
+          return content;
+        }
+      }
+      return JSON.stringify(content, null, 2);
+    } catch {
+      return String(content);
+    }
   };
 
   return (
@@ -83,38 +99,43 @@ export function ToolDetails({
             className="pl-4 border-l flex flex-col gap-4"
           >
             <div className="space-y-4">
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Arguments</h3>
-                <CodeBlock
-                  node={{ type: 'code', value: JSON.stringify(args, null, 2) }}
-                  inline={false}
-                  className="text-xs"
-                >
-                  {args
-                    ? JSON.stringify(args, null, 2)
-                    : isLoading
-                      ? 'Loading...'
-                      : 'No arguments available'}
-                </CodeBlock>
-              </div>
+              {!!args && (
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground/70">
+                    <Code className="size-4" />
+                    <span>Arguments</span>
+                  </div>
+                  <CodeBlock
+                    node={{
+                      type: 'code',
+                      value: JSON.stringify(args, null, 2),
+                    }}
+                    inline={false}
+                    className="text-xs"
+                  >
+                    {formatContent(args)}
+                  </CodeBlock>
+                </div>
+              )}
 
-              <div>
-                <h3 className="text-lg font-semibold mb-2">Result</h3>
-                <CodeBlock
-                  node={{
-                    type: 'code',
-                    value: JSON.stringify(result, null, 2),
-                  }}
-                  inline={false}
-                  className="text-xs"
-                >
-                  {result
-                    ? JSON.stringify(result, null, 2)
-                    : isLoading
-                      ? 'Loading...'
-                      : 'No result available'}
-                </CodeBlock>
-              </div>
+              {!!result && (
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5 text-sm text-muted-foreground/70">
+                    <ArrowRight className="size-4" />
+                    <span>Result</span>
+                  </div>
+                  <CodeBlock
+                    node={{
+                      type: 'code',
+                      value: JSON.stringify(result, null, 2),
+                    }}
+                    inline={false}
+                    className="text-xs"
+                  >
+                    {formatContent(result)}
+                  </CodeBlock>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

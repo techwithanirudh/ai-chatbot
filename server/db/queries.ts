@@ -1,6 +1,16 @@
 import 'server-only';
 
-import { and, asc, desc, eq, gt, gte, inArray, lt, type SQL } from 'drizzle-orm';
+import {
+  and,
+  asc,
+  desc,
+  eq,
+  gt,
+  gte,
+  inArray,
+  lt,
+  type SQL,
+} from 'drizzle-orm';
 
 import {
   chat,
@@ -10,7 +20,7 @@ import {
   message,
   vote,
   type DBMessage,
-  type Chat
+  type Chat,
 } from './schema';
 import type { ArtifactKind } from '@/components/artifact';
 import { db } from '.';
@@ -208,14 +218,17 @@ export async function saveDocument({
   userId: string;
 }) {
   try {
-    return await db.insert(document).values({
-      id,
-      title,
-      kind,
-      content,
-      userId,
-      createdAt: new Date(),
-    });
+    return await db
+      .insert(document)
+      .values({
+        id,
+        title,
+        kind,
+        content,
+        userId,
+        createdAt: new Date(),
+      })
+      .returning();
   } catch (error) {
     console.error('Failed to save document in database');
     throw error;
@@ -271,7 +284,8 @@ export async function deleteDocumentsByIdAfterTimestamp({
 
     return await db
       .delete(document)
-      .where(and(eq(document.id, id), gt(document.createdAt, timestamp)));
+      .where(and(eq(document.id, id), gt(document.createdAt, timestamp)))
+      .returning();
   } catch (error) {
     console.error(
       'Failed to delete documents by id after timestamp from database',

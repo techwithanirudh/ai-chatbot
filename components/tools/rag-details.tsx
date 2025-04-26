@@ -35,7 +35,9 @@ export function RAGDetails({ isLoading, result, args }: RAGDetailsProps) {
     <div className="flex flex-col">
       {isLoading ? (
         <div className="flex flex-row gap-2 items-center">
-          <TextShimmer className="font-medium">Getting information...</TextShimmer>
+          <TextShimmer className="font-medium">
+            Getting information...
+          </TextShimmer>
           <div className="animate-spin">
             <LoaderIcon />
           </div>
@@ -83,12 +85,12 @@ export function RAGDetails({ isLoading, result, args }: RAGDetailsProps) {
               </div>
               <div className="flex flex-col gap-2">
                 <div className="text-lg font-medium">Results</div>
-                {(isLoading && !result) && (
-                  <span className="text-muted-foreground">
-                    Thinking...
-                  </span>
+                {isLoading && !result && (
+                  <span className="text-muted-foreground">Thinking...</span>
                 )}
-                <Markdown className={"text-muted-foreground"}>{result}</Markdown>
+                <Markdown className={'text-muted-foreground'}>
+                  {result}
+                </Markdown>
               </div>
             </div>
           </motion.div>

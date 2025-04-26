@@ -12,7 +12,6 @@ import {
 import { createTable } from '../utils';
 import { user } from './auth';
 
-// db
 export const chat = createTable('chat', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
   createdAt: timestamp('createdAt').notNull(),

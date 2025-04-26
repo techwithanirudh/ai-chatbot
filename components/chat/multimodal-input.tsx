@@ -235,7 +235,9 @@ function PureMultimodalInput({
               event.preventDefault();
 
               if (status !== 'ready') {
-                toast.error('Please wait for the model to finish its response!');
+                toast.error(
+                  'Please wait for the model to finish its response!',
+                );
               } else {
                 submitForm();
               }
@@ -259,6 +261,13 @@ function PureMultimodalInput({
           )}
         </div>
       </div>
+
+      {messages.length > 0 && (
+        <p className="text-xs text-center text-muted-foreground -mt-2">
+          Chatbot can make mistakes. Please double-check responses.
+        </p>
+      )}
+
       {messages.length === 0 &&
         attachments.length === 0 &&
         uploadQueue.length === 0 && (

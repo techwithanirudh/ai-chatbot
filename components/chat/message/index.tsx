@@ -2,10 +2,13 @@
 
 import type { UIMessage } from 'ai';
 import cx from 'classnames';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 import { memo, useState } from 'react';
 import type { Vote } from '@/server/db/schema';
-import { DocumentToolCall, DocumentToolResult } from '../../artifact/document/document';
+import {
+  DocumentToolCall,
+  DocumentToolResult,
+} from '../../artifact/document/document';
 import { PencilEditIcon } from '../../icons';
 import { Markdown } from '../../markdown';
 import { MessageActions } from './message-actions';
@@ -181,10 +184,7 @@ const PurePreviewMessage = ({
                           isReadonly={isReadonly}
                         />
                       ) : toolName === 'getInformation' ? (
-                        <RAGDetails
-                          isLoading={true}
-                          args={args}
-                        />
+                        <RAGDetails isLoading={true} args={args} />
                       ) : (
                         <ToolDetails
                           toolName={toolName}
@@ -229,7 +229,6 @@ const PurePreviewMessage = ({
                       ) : (
                         <ToolDetails
                           toolName={toolName}
-                          // todo: fix the template to use false Aswell
                           isLoading={false}
                           result={result}
                           args={args}
@@ -293,9 +292,7 @@ export const ThinkingMessage = () => {
         </div>
 
         <div className="flex flex-col gap-2 w-full text-muted-foreground">
-          <TextShimmer>
-            Thinking...
-          </TextShimmer>
+          <TextShimmer>Thinking...</TextShimmer>
         </div>
       </div>
     </motion.div>

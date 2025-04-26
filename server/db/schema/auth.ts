@@ -7,10 +7,9 @@ import {
   primaryKey,
   integer,
 } from 'drizzle-orm/pg-core';
-import { relations, } from 'drizzle-orm';
+import { relations } from 'drizzle-orm';
 import { createTable } from '../utils';
 
-// users
 export const user = createTable('user', {
   id: uuid('id').notNull().primaryKey().defaultRandom(),
   name: varchar('name', { length: 255 }),
@@ -22,13 +21,12 @@ export const user = createTable('user', {
   image: varchar('image', { length: 255 }),
 });
 
-export const userRelations = relations(user, ({ many }) => ({
+export const userRelaitons = relations(user, ({ many }) => ({
   accounts: many(account),
 }));
 
 export type User = InferSelectModel<typeof user>;
 
-// account
 export const account = createTable(
   'account',
   {
@@ -40,7 +38,7 @@ export const account = createTable(
       .notNull(),
     provider: varchar('provider', { length: 255 }).notNull(),
     providerAccountId: varchar('providerAccountId', { length: 255 }).notNull(),
-    refresh_token: text("refresh_token"),
+    refresh_token: text('refresh_token'),
     access_token: text('access_token'),
     expires_at: integer('expires_at'),
     token_type: varchar('token_type', { length: 255 }),
@@ -61,7 +59,6 @@ export const AccountRelations = relations(account, ({ one }) => ({
 
 export type Account = InferSelectModel<typeof account>;
 
-// session
 export const session = createTable('session', {
   sessionToken: varchar('sessionToken', { length: 255 }).notNull().primaryKey(),
   userId: uuid('userId')
@@ -79,7 +76,6 @@ export const SessionRelations = relations(session, ({ one }) => ({
 
 export type Session = InferSelectModel<typeof session>;
 
-// verificationToken
 export const verificationToken = createTable(
   'verificationToken',
   {

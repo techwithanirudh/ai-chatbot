@@ -13,13 +13,13 @@ export async function getMCPTools() {
     return {
       publicTools: {},
       privateTools: {},
-      allTools: {}
+      allTools: {},
     };
   }
 
   let publicTools = {};
   let privateTools = {};
-  
+
   try {
     if (!privateClient) {
       privateClient = await createMCPClient({
@@ -27,7 +27,7 @@ export async function getMCPTools() {
           type: 'sse',
           url: 'https://mcp-private.meetingbaas.com/sse',
           headers: {
-            'Cookie': `jwt=${baasSession.jwt}`,
+            Cookie: `jwt=${baasSession.jwt}`,
           },
         },
         onUncaughtError: (error) => {
@@ -73,7 +73,7 @@ export async function getMCPTools() {
   return {
     publicTools,
     privateTools,
-    allTools: { ...publicTools, ...privateTools }
+    allTools: { ...publicTools, ...privateTools },
   };
 }
 

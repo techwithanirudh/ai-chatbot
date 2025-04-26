@@ -118,7 +118,7 @@ export async function POST(request: Request) {
               dataStream,
             }),
             getInformation,
-            ...mcpTools
+            ...mcpTools,
           },
           onFinish: async ({ response }) => {
             if (session.user?.id) {

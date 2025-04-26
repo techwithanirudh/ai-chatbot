@@ -3,7 +3,7 @@ import { generateId } from 'ai';
 import { getUnixTime } from 'date-fns';
 import { test as setup } from '@playwright/test';
 
-const authFile = path.join(__dirname, '../playwright/.auth/session.json');
+const authFile = path.join(__dirname, '../../playwright/.auth/session.json');
 
 setup('authenticate', async ({ page }) => {
   const [testFirstName, testLastName] = ['John', 'Doe'];
@@ -24,8 +24,8 @@ setup('authenticate', async ({ page }) => {
   await page.locator('#lastName').fill(testLastName);
   await page.getByRole('button', { name: 'Register' }).click();
 
-  await page.waitForURL(url => {
-    const pathname = url.pathname
+  await page.waitForURL((url) => {
+    const pathname = url.pathname;
     return pathname === '/';
   });
   await page.context().storageState({ path: authFile });

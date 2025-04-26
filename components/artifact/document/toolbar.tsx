@@ -5,7 +5,7 @@ import {
   motion,
   useMotionValue,
   useTransform,
-} from 'framer-motion';
+} from 'motion/react';
 import {
   type Dispatch,
   memo,
@@ -376,19 +376,19 @@ const PureToolbar = ({
           isToolbarVisible
             ? selectedTool === 'adjust-reading-level'
               ? {
-                opacity: 1,
-                y: 0,
-                height: 6 * 43,
-                transition: { delay: 0 },
-                scale: 0.95,
-              }
+                  opacity: 1,
+                  y: 0,
+                  height: 6 * 43,
+                  transition: { delay: 0 },
+                  scale: 0.95,
+                }
               : {
-                opacity: 1,
-                y: 0,
-                height: toolsByArtifactKind.length * 50,
-                transition: { delay: 0 },
-                scale: 1,
-              }
+                  opacity: 1,
+                  y: 0,
+                  height: toolsByArtifactKind.length * 50,
+                  transition: { delay: 0 },
+                  scale: 1,
+                }
             : { opacity: 1, y: 0, height: 54, transition: { delay: 0 } }
         }
         exit={{ opacity: 0, y: -20, transition: { duration: 0.1 } }}
@@ -412,7 +412,7 @@ const PureToolbar = ({
         }}
         ref={toolbarRef}
       >
-        {status === 'streaming' ? (
+        {['submitted', 'streaming'].includes(status) ? (
           <motion.div
             key="stop-icon"
             initial={{ scale: 1 }}

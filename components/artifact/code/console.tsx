@@ -1,15 +1,7 @@
 import { TerminalWindowIcon, LoaderIcon, CrossSmallIcon } from '../../icons';
 import { Button } from '../../ui/button';
-import type {
-  Dispatch,
-  SetStateAction
-} from 'react';
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import type { Dispatch, SetStateAction } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useArtifactSelector } from '@/hooks/use-artifact';
 
@@ -144,8 +136,8 @@ export function Console({ consoleOutputs, setConsoleOutputs }: ConsoleProps) {
                       ? 'Initializing...'
                       : consoleOutput.status === 'loading_packages'
                         ? consoleOutput.contents.map((content) =>
-                          content.type === 'text' ? content.value : null,
-                        )
+                            content.type === 'text' ? content.value : null,
+                          )
                         : null}
                   </div>
                 </div>

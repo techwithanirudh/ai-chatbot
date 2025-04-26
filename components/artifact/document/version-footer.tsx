@@ -1,7 +1,7 @@
 'use client';
 
 import { isAfter } from 'date-fns';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useState } from 'react';
 import { useSWRConfig } from 'swr';
 import { useWindowSize } from 'usehooks-ts';
@@ -57,30 +57,30 @@ export const VersionFooter = ({
 
             mutate(
               `/api/document?id=${artifact.documentId}`,
-              await fetch(`/api/document?id=${artifact.documentId}`, {
-                method: 'PATCH',
-                body: JSON.stringify({
-                  timestamp: getDocumentTimestampByIndex(
-                    documents,
-                    currentVersionIndex,
-                  ),
-                }),
-              }),
+              await fetch(
+                `/api/document?id=${artifact.documentId}&timestamp=${getDocumentTimestampByIndex(
+                  documents,
+                  currentVersionIndex,
+                )}`,
+                {
+                  method: 'DELETE',
+                },
+              ),
               {
                 optimisticData: documents
                   ? [
-                    ...documents.filter((document) =>
-                      isAfter(
-                        new Date(document.createdAt),
-                        new Date(
-                          getDocumentTimestampByIndex(
-                            documents,
-                            currentVersionIndex,
+                      ...documents.filter((document) =>
+                        isAfter(
+                          new Date(document.createdAt),
+                          new Date(
+                            getDocumentTimestampByIndex(
+                              documents,
+                              currentVersionIndex,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ]
+                    ]
                   : [],
               },
             );

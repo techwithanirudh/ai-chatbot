@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 interface CodeBlockProps {
   node: any;
@@ -21,7 +21,10 @@ export function CodeBlock({
       <div className="not-prose inline-flex flex-col">
         <pre
           {...props}
-          className={cn(`text-sm w-full overflow-x-auto dark:bg-zinc-900 px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded-xl dark:text-zinc-50 text-zinc-900`, className)}
+          className={cn(
+            `text-sm w-full overflow-x-auto dark:bg-zinc-900 px-3 py-2 border border-zinc-200 dark:border-zinc-700 rounded-xl dark:text-zinc-50 text-zinc-900`,
+            className,
+          )}
         >
           <code className="whitespace-pre-wrap break-words">{children}</code>
         </pre>

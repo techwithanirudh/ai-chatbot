@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Button } from '../ui/button';
 import { memo } from 'react';
 import type { UseChatHelpers } from '@ai-sdk/react';
@@ -14,8 +14,8 @@ function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
   const suggestedActions = [
     {
       title: 'What meeting platforms does',
-      label: 'MeetingBaas\'s API support?',
-      action: 'What meeting platforms does MeetingBaas\'s API support?',
+      label: "MeetingBaas's API support?",
+      action: "What meeting platforms does MeetingBaas's API support?",
     },
     {
       title: 'Write code to',
@@ -23,7 +23,7 @@ function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
       action: `Write code to send a Google Meet meeting bot`,
     },
     {
-      title: 'How does MeetingBaas\'s',
+      title: "How does MeetingBaas's",
       label: `webhook data look like?`,
       action: `How does MeetingBaas's webhook data look like?`,
     },

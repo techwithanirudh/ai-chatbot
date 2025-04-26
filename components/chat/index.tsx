@@ -53,7 +53,7 @@ export function Chat({
       mutate(unstable_serialize(getChatHistoryPaginationKey));
     },
     onError: () => {
-      toast.error('An error occured, please try again!');
+      toast.error('An error occurred, please try again!');
     },
   });
 
@@ -76,8 +76,8 @@ export function Chat({
         />
 
         <div
-          className={cn("flex flex-col flex-1 overflow-y-auto", {
-            "items-center justify-center": messages.length === 0,
+          className={cn('flex flex-col flex-1 overflow-y-auto', {
+            'items-center justify-center': messages.length === 0,
           })}
         >
           {messages.length === 0 ? (
@@ -95,7 +95,7 @@ export function Chat({
             />
           )}
 
-          <form className="flex mx-auto px-4 bg-background pb-4 md:pb-6 gap-2 w-full md:max-w-3xl">
+          <form className="flex mx-auto px-4 bg-background pb-2 gap-2 w-full md:max-w-3xl">
             {!isReadonly && (
               <MultimodalInput
                 chatId={id}

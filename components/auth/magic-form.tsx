@@ -60,15 +60,25 @@ export const MagicLinkForm = () => {
         </div>
 
         {status === 'hasSucceeded' && (
-          <Alert className="bg-emerald-500/15 text-emerald-500 p-3 border-emerald-500/15" data-testid="alert">
+          <Alert
+            className="bg-emerald-500/15 text-emerald-500 p-3 border-emerald-500/15"
+            data-testid="alert"
+          >
             <IconCheckCircle size={16} />
-            <AlertTitle className='mb-0 leading-normal'>Confirmation email has been sent!</AlertTitle>
+            <AlertTitle className="mb-0 leading-normal">
+              Confirmation email has been sent!
+            </AlertTitle>
           </Alert>
         )}
         {result.serverError && (
-          <Alert className="bg-destructive/15 text-destructive dark:bg-destructive dark:text-destructive-foreground p-3 border-destructive/15 dark:border-destructive" data-testid="alert">
-            <IconWarning className='size-4' />
-            <AlertTitle className='mb-0 leading-normal'>{result.serverError}</AlertTitle>
+          <Alert
+            className="bg-destructive/15 text-destructive dark:bg-destructive dark:text-destructive-foreground p-3 border-destructive/15 dark:border-destructive"
+            data-testid="alert"
+          >
+            <IconWarning className="size-4" />
+            <AlertTitle className="mb-0 leading-normal">
+              {result.serverError}
+            </AlertTitle>
           </Alert>
         )}
 
@@ -86,4 +96,3 @@ export const MagicLinkForm = () => {
     </Form>
   );
 };
-

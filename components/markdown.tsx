@@ -1,4 +1,4 @@
-import "katex/dist/katex.min.css";
+import 'katex/dist/katex.min.css';
 import Link from 'next/link';
 import React, { memo } from 'react';
 import ReactMarkdown, { type Components } from 'react-markdown';
@@ -107,7 +107,11 @@ const NonMemoizedMarkdown = ({ children }: { children: string }) => {
     .replace(/\\\)/g, `$$$`);
 
   return (
-    <ReactMarkdown remarkPlugins={remarkPlugins} rehypePlugins={rehypePlugins} components={components}>
+    <ReactMarkdown
+      remarkPlugins={remarkPlugins}
+      rehypePlugins={rehypePlugins}
+      components={components}
+    >
       {processedText}
     </ReactMarkdown>
   );

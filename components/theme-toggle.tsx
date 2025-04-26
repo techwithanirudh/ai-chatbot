@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import { Airplay, Moon, Sun } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import { type HTMLAttributes, useLayoutEffect, useState } from 'react';
 
@@ -26,7 +26,7 @@ const themes = [
 ];
 
 const itemVariants = cva(
-  'relative size-4.5 rounded-full p-1 text-fd-muted-foreground',
+  'relative size-4.5 rounded-full p-1.5 text-fd-muted-foreground',
   {
     variants: {
       active: {
@@ -50,7 +50,7 @@ export function ThemeToggle({
   const [mounted, setMounted] = useState(false);
 
   const container = cn(
-    'relative flex items-center rounded-full p-1 ring-1 ring-border',
+    'relative flex items-center rounded-full p-0.5 ring-1 ring-border',
     className,
   );
 
@@ -79,13 +79,14 @@ export function ThemeToggle({
     : null;
 
   return (
+    // biome-ignore lint/nursery/noStaticElementInteractions: <explanation>
     <div
       className={container}
       onClick={() => {
         if (mode !== 'light-dark') return;
         handleChangeTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
       }}
-      data-theme-toggle=''
+      data-theme-toggle=""
       aria-label={mode === 'light-dark' ? 'Toggle Theme' : undefined}
       {...props}
     >
@@ -95,7 +96,7 @@ export function ThemeToggle({
 
         return (
           <button
-            type='button'
+            type="button"
             key={key}
             className={itemVariants({ active: isActive })}
             onClick={() => {
@@ -106,8 +107,8 @@ export function ThemeToggle({
           >
             {isActive && (
               <motion.div
-                layoutId='activeTheme'
-                className='absolute inset-0 rounded-full bg-accent'
+                layoutId="activeTheme"
+                className="absolute inset-0 rounded-full bg-accent"
                 transition={{
                   type: 'spring',
                   duration: mode === 'light-dark' ? 1.5 : 1,
@@ -115,7 +116,7 @@ export function ThemeToggle({
               />
             )}
             <Icon
-              className={'relative m-auto size-full'}
+              className={'relative m-auto size-full text-muted-foreground'}
               fill={'currentColor'}
             />
           </button>

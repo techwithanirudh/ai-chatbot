@@ -149,7 +149,7 @@
   @apply bg-background dark:bg-zinc-800 outline-none selection:bg-zinc-900 !important;
 }
 
-.ͼo.cm-focused > .cm-scroller > .cm-selectionLayer .cm-selectionBackground,
+.ͼo.cm-focused>.cm-scroller>.cm-selectionLayer .cm-selectionBackground,
 .ͼo.cm-selectionBackground,
 .ͼo.cm-content::selection {
   @apply bg-zinc-200 dark:bg-zinc-900 !important;
@@ -178,4 +178,19 @@
 
 .suggestion-highlight {
   @apply bg-blue-200 hover:bg-blue-300 dark:hover:bg-blue-400/50 dark:text-blue-50 dark:bg-blue-500/40;
+}
+
+@theme inline {
+    @keyframes shiny-text {
+        0%,
+        90%,
+        100% {
+            background-position: calc(-100% - var(--shiny-width)) 0;
+        }
+
+        30%,
+        60% {
+            background-position: calc(100% + var(--shiny-width)) 0;
+        }
+    }
 }

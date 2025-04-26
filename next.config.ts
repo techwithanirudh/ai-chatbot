@@ -4,7 +4,10 @@ const nextConfig: NextConfig = {
   experimental: {
     ppr: true,
     serverActions: {
-      allowedOrigins: ['psychic-winner-55p45jg5x75276xj-3000.app.github.dev', 'localhost:3000']
+      allowedOrigins: [
+        'psychic-winner-55p45jg5x75276xj-3000.app.github.dev',
+        'localhost:3000',
+      ],
     },
   },
   images: {
@@ -13,7 +16,7 @@ const nextConfig: NextConfig = {
         hostname: 'avatar.vercel.sh',
       },
     ],
-  }
+  },
 };
 
 export default nextConfig;
