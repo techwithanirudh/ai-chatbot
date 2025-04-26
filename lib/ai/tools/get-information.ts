@@ -4,7 +4,7 @@ import { myProvider } from '../providers';
 import { getInformationPrompt } from '../prompts';
 
 export const getInformation = tool({
-  description: `Efficient Retrieval-Augmented Generation (RAG) tool using a Small Language Model (SLM) for precise information retrieval from a domain-specific knowledge base. Fully self-contained questions are required to provide accurate, concise, yet complete responses. Optimized for effective data extraction with clear and succinct explanations included.`,
+  description: `RAG tool using a Language Model for precise information retrieval from a domain-specific knowledge base. Fully self-contained questions are required to provide accurate, concise, yet complete responses. Always use this tool when domain-specific knowledge is required.`,
   parameters: z.object({
     question: z
       .string()
