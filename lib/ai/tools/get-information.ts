@@ -1,8 +1,6 @@
 import { generateText, tool } from 'ai';
 import { z } from 'zod';
 import { myProvider } from '../providers';
-import path from 'node:path';
-import fs from 'node:fs/promises';
 import { getInformationPrompt } from '../prompts';
 
 export const getInformation = tool({

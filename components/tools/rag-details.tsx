@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { LoaderIcon } from '@/components/icons';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Markdown from 'react-markdown';

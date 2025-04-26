@@ -2,7 +2,6 @@ import {
   type UIMessage,
   appendResponseMessages,
   createDataStreamResponse,
-  experimental_createMCPClient as createMCPClient,
   smoothStream,
   streamText,
 } from 'ai';
