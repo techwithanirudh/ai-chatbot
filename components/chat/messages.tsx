@@ -32,6 +32,7 @@ function PureMessages({
 
   return (
     <div
+      key="messages"
       ref={messagesContainerRef}
       className={cn(
         'flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4',

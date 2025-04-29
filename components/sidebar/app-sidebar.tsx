@@ -35,9 +35,9 @@ export function AppSidebar({
               onClick={() => {
                 setOpenMobile(false);
               }}
-              className="flex flex-row gap-3 items-center"
+              className="flex flex-row gap-3 items-center group/logo"
             >
-              <span className="text-lg font-semibold cursor-pointer text-primary group/logo">
+              <span className="text-lg font-semibold cursor-pointer text-primary border-secondary/30">
                 Chatbot
               </span>
             </Link>

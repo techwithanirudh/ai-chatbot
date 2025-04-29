@@ -16,6 +16,8 @@ import { toast } from 'sonner';
 import { Greeting } from '../greeting';
 import { unstable_serialize } from 'swr/infinite';
 import { getChatHistoryPaginationKey } from '@/components/sidebar/sidebar-history';
+import * as motion from 'motion/react-client';
+import { AnimatePresence } from 'motion/react';
 
 export function Chat({
   id,
@@ -80,22 +82,35 @@ export function Chat({
             'items-center justify-center': messages.length === 0,
           })}
         >
-          {messages.length === 0 ? (
-            <Greeting />
-          ) : (
-            <Messages
-              chatId={id}
-              status={status}
-              votes={votes}
-              messages={messages}
-              setMessages={setMessages}
-              reload={reload}
-              isReadonly={isReadonly}
-              isArtifactVisible={isArtifactVisible}
-            />
-          )}
+          <AnimatePresence initial={true} mode="popLayout" >
+            {messages.length === 0 ? (
+              <Greeting />
+            ) : (
+              <Messages
+                chatId={id}
+                status={status}
+                votes={votes}
+                messages={messages}
+                setMessages={setMessages}
+                reload={reload}
+                isReadonly={isReadonly}
+                isArtifactVisible={isArtifactVisible}
+              />
+            )}
+          </AnimatePresence>
 
-          <form className="flex mx-auto px-4 bg-background pb-2 gap-2 w-full md:max-w-3xl">
+          <motion.form
+            className={cn(
+              'flex relative z-50 mx-auto w-full px-4 bg-background pb-2 gap-2 md:max-w-3xl',
+            )}
+            layout="position"
+            layoutId="chat-input-container"
+            transition={{
+              layout: {
+                duration: messages.length === 1 ? 0.15 : 0,
+              },
+            }}
+          >
             {!isReadonly && (
               <MultimodalInput
                 chatId={id}
@@ -111,7 +126,7 @@ export function Chat({
                 append={append}
               />
             )}
-          </form>
+          </motion.form>
         </div>
       </div>
 
