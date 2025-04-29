@@ -23,6 +23,7 @@ import { Textarea } from '../ui/textarea';
 import { SuggestedActions } from './suggested-actions';
 import equal from 'fast-deep-equal';
 import type { UseChatHelpers } from '@ai-sdk/react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 function PureMultimodalInput({
   chatId,
@@ -321,17 +322,22 @@ function PureStopButton({
   setMessages: UseChatHelpers['setMessages'];
 }) {
   return (
-    <Button
-      data-testid="stop-button"
-      className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
-      onClick={(event) => {
-        event.preventDefault();
-        stop();
-        setMessages((messages) => messages);
-      }}
-    >
-      <StopIcon size={14} />
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          data-testid="stop-button"
+          className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
+          onClick={(event) => {
+            event.preventDefault();
+            stop();
+            setMessages((messages) => messages);
+          }}
+        >
+          <StopIcon size={14} />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>Stop generating</TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -347,17 +353,31 @@ function PureSendButton({
   uploadQueue: Array<string>;
 }) {
   return (
-    <Button
-      data-testid="send-button"
-      className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
-      onClick={(event) => {
-        event.preventDefault();
-        submitForm();
-      }}
-      disabled={input.length === 0 || uploadQueue.length > 0}
-    >
-      <ArrowUpIcon size={14} />
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        {/* biome-ignore lint/a11y/noNoninteractiveTabindex: <explanation> */}
+        <span tabIndex={0}>
+          <Button
+            data-testid="send-button"
+            className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
+            onClick={(event) => {
+              event.preventDefault();
+              submitForm();
+            }}
+            disabled={input.length === 0 || uploadQueue.length > 0}
+          >
+            <ArrowUpIcon size={14} />
+          </Button>
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>
+        {input.length === 0
+          ? 'Please enter a message'
+          : uploadQueue.length > 0
+            ? 'Please wait for the files to upload'
+            : 'Send message'}
+      </TooltipContent>
+    </Tooltip>
   );
 }
 
