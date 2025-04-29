@@ -82,7 +82,7 @@ export function Chat({
             'items-center justify-center': messages.length === 0,
           })}
         >
-          <AnimatePresence initial={true} mode="popLayout" >
+          <AnimatePresence initial={true} mode="popLayout">
             {messages.length === 0 ? (
               <Greeting />
             ) : (
