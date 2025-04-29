@@ -18,7 +18,10 @@ import {
 import Link from 'next/link';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
-export function AppSidebar({ user, ...props }: { user: User | undefined } & React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  user,
+  ...props
+}: { user: User | undefined } & React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
   const { setOpenMobile } = useSidebar();
 
@@ -26,8 +29,8 @@ export function AppSidebar({ user, ...props }: { user: User | undefined } & Reac
     <Sidebar className="group-data-[side=left]:border-r-0" {...props}>
       <SidebarHeader>
         <SidebarMenu>
-          <div className="flex flex-row justify-between items-center">
-            <div className="flex flex-col items-start">
+          <div className="flex flex-col justify-between items-center gap-2">
+            <div>
               <Link
                 href="/"
                 onClick={() => {
@@ -35,35 +38,25 @@ export function AppSidebar({ user, ...props }: { user: User | undefined } & Reac
                 }}
                 className="flex flex-row gap-3 items-center"
               >
-                <span className="text-lg font-semibold hover:bg-muted  rounded-md cursor-pointer">
+                <span className="text-lg font-semibold cursor-pointer text-sidebar-primary">
                   Chatbot
-                </span>
-              </Link>
-              <Link
-                href="https://techwithanirudh.com/"
-                onClick={() => {
-                  setOpenMobile(false);
-                }}
-                className="flex flex-row gap-3 items-center"
-              >
-                <span className="text-sm text-muted-foreground leading-3">
-                  by Tech with Anirudh
                 </span>
               </Link>
             </div>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
-                  variant="ghost"
+                  variant="default"
                   type="button"
-                  className="p-2 h-fit"
+                  size={'sm'}
+                  className="gap-2 w-full"
                   onClick={() => {
                     setOpenMobile(false);
                     router.push('/');
                     router.refresh();
                   }}
                 >
-                  <PlusIcon />
+                  <PlusIcon /> New Chat
                 </Button>
               </TooltipTrigger>
               <TooltipContent align="end">New Chat</TooltipContent>
