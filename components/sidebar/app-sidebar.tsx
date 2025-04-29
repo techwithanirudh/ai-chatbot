@@ -15,7 +15,6 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 import { PlusIcon } from 'lucide-react';
 
 export function AppSidebar({
@@ -35,34 +34,29 @@ export function AppSidebar({
               onClick={() => {
                 setOpenMobile(false);
               }}
-              className="flex flex-row gap-3 items-center"
+              className="flex flex-row gap-3 items-center group/logo"
             >
-              <span className="text-lg font-semibold cursor-pointer text-primary group/logo">
+              <span className="text-lg font-semibold cursor-pointer text-primary border-secondary/30">
                 Chatbot
               </span>
             </Link>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="default"
-                  type="button"
-                  size={'sm'}
-                  className="gap-1.5 w-full border border-border font-semibold group/button"
-                  onClick={() => {
-                    setOpenMobile(false);
-                    router.push('/');
-                    router.refresh();
-                  }}
-                >
-                  <PlusIcon
-                    className="size-4 group-hover/button:rotate-90 transition-transform duration-300"
-                    strokeWidth={2.5}
-                  />{' '}
-                  New Chat
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent align="end">New Chat</TooltipContent>
-            </Tooltip>
+            <Button
+              variant="default"
+              type="button"
+              size={'sm'}
+              className="gap-1.5 w-full border border-border font-semibold group/button"
+              onClick={() => {
+                setOpenMobile(false);
+                router.push('/');
+                router.refresh();
+              }}
+            >
+              <PlusIcon
+                className="size-4 group-hover/button:rotate-90 transition-transform duration-300"
+                strokeWidth={2.5}
+              />{' '}
+              New Chat
+            </Button>
           </div>
         </SidebarMenu>
       </SidebarHeader>
