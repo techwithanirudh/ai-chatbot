@@ -35,7 +35,7 @@ function PureMessages({
       key="messages"
       ref={messagesContainerRef}
       className={cn(
-        'flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4',
+        'flex flex-col min-w-0 gap-6 flex-1 overflow-y-auto pt-4',
         'relative' /* todo: fix katex bug where it messes with scroll behaviour (https://stackoverflow.com/questions/60202460/why-does-running-katex-change-my-pages-scroll-element-into-view-behavior) */,
       )}
     >

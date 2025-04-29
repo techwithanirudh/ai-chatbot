@@ -41,28 +41,23 @@ export function AppSidebar({
                 Chatbot
               </span>
             </Link>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="default"
-                  type="button"
-                  size={'sm'}
-                  className="gap-1.5 w-full border border-border font-semibold group/button"
-                  onClick={() => {
-                    setOpenMobile(false);
-                    router.push('/');
-                    router.refresh();
-                  }}
-                >
-                  <PlusIcon
-                    className="size-4 group-hover/button:rotate-90 transition-transform duration-300"
-                    strokeWidth={2.5}
-                  />{' '}
-                  New Chat
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent align="end">New Chat</TooltipContent>
-            </Tooltip>
+            <Button
+              variant="default"
+              type="button"
+              size={'sm'}
+              className="gap-1.5 w-full border border-border font-semibold group/button"
+              onClick={() => {
+                setOpenMobile(false);
+                router.push('/');
+                router.refresh();
+              }}
+            >
+              <PlusIcon
+                className="size-4 group-hover/button:rotate-90 transition-transform duration-300"
+                strokeWidth={2.5}
+              />{' '}
+              New Chat
+            </Button>
           </div>
         </SidebarMenu>
       </SidebarHeader>
