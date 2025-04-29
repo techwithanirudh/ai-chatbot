@@ -171,7 +171,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
             {[44, 32, 28, 64, 52].map((item) => (
               <div
                 key={item}
-                className="rounded-md h-8 flex gap-2 items-center"
+                className="rounded-md h-8 flex gap-2 items-center max-md:px-2"
               >
                 <div
                   className="h-4 rounded-md flex-1 max-w-[--skeleton-width] bg-sidebar-accent-foreground/10"
@@ -329,11 +329,11 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
           />
 
           {hasReachedEnd ? (
-            <div className="text-muted-foreground text-sm mt-8 sr-only">
+            <div className="text-muted-foreground text-sm mt-8 sr-only max-md:px-2">
               You have reached the end of your chat history.
             </div>
           ) : (
-            <div className="py-2 text-muted-foreground flex flex-row gap-2 items-center mt-8">
+            <div className="py-2 text-muted-foreground flex flex-row gap-2 items-center mt-8 max-md:px-2">
               <div className="animate-spin">
                 <LoaderIcon />
               </div>
