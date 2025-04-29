@@ -38,7 +38,7 @@ export function AppSidebar({
                 }}
                 className="flex flex-row gap-3 items-center"
               >
-                <span className="text-lg font-semibold cursor-pointer text-sidebar-primary">
+                <span className="text-lg font-semibold cursor-pointer text-primary">
                   Chatbot
                 </span>
               </Link>
