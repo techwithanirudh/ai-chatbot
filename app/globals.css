@@ -99,9 +99,17 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
-  }
+    body {
+        @apply bg-background text-foreground;
+    }
+
+    html {
+        @apply scroll-smooth;
+    }
+
+    * {
+        @apply accent-primary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border dark:scrollbar-track-transparent;
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -182,6 +190,7 @@
 
 @theme inline {
     @keyframes shiny-text {
+
         0%,
         90%,
         100% {

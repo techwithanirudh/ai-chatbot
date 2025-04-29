@@ -8,7 +8,13 @@ export const Greeting = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 10 }}
-        transition={{ delay: 0.5 }}
+        transition={{
+          delay: 0.15,
+          layout: {
+            duration: 0,
+          },
+        }}
+        layout="position"
         className="inline-flex gap-2 items-center text-2xl md:text-3xl lg:text-4xl font-medium"
       >
         <BotIcon
