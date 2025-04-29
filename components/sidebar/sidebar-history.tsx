@@ -152,7 +152,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
     return (
       <SidebarGroup>
         <SidebarGroupContent>
-          <div className="text-zinc-500 w-full flex flex-row justify-center items-center text-sm gap-2">
+          <div className="text-muted-foreground w-full flex flex-row justify-center items-center text-sm gap-2">
             Login to save and revisit previous chats!
           </div>
         </SidebarGroupContent>
@@ -193,7 +193,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
     return (
       <SidebarGroup>
         <SidebarGroupContent>
-          <div className="text-zinc-500 w-full flex flex-row justify-center items-center text-sm gap-2">
+          <div className="text-muted-foreground w-full flex flex-row justify-center items-center text-sm gap-2">
             Your conversations will appear here once you start chatting!
           </div>
         </SidebarGroupContent>
@@ -329,11 +329,11 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
           />
 
           {hasReachedEnd ? (
-            <div className="text-zinc-500 text-sm mt-8 sr-only">
+            <div className="text-muted-foreground text-sm mt-8 sr-only">
               You have reached the end of your chat history.
             </div>
           ) : (
-            <div className="py-2 text-zinc-500 dark:text-zinc-400 flex flex-row gap-2 items-center mt-8">
+            <div className="py-2 text-muted-foreground flex flex-row gap-2 items-center mt-8">
               <div className="animate-spin">
                 <LoaderIcon />
               </div>
