@@ -1,11 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import {
-  type APIRequestContext,
-  type Browser,
-  type BrowserContext,
-  expect,
-  type Page,
+import type {
+  APIRequestContext,
+  Browser,
+  BrowserContext,
+  Page,
 } from '@playwright/test';
 import { generateId } from 'ai';
 import { getUnixTime } from 'date-fns';

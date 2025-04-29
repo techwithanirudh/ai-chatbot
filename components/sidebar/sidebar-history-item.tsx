@@ -43,8 +43,13 @@ const PureChatItem = ({
   });
 
   return (
-    <SidebarMenuItem className='md:-mx-2'>
-      <SidebarMenuButton asChild isActive={isActive} size={"default"} className='h-fit py-2 px-3'>
+    <SidebarMenuItem className="md:-mx-2">
+      <SidebarMenuButton
+        asChild
+        isActive={isActive}
+        size={'default'}
+        className="h-fit py-2 px-3"
+      >
         <Link href={`/chat/${chat.id}`} onClick={() => setOpenMobile(false)}>
           <span>{chat.title}</span>
         </Link>

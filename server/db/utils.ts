@@ -1,4 +1,4 @@
-import { pgTableCreator } from "drizzle-orm/pg-core";
+import { pgTableCreator } from 'drizzle-orm/pg-core';
 
 /**
  * Factory function that creates tables with a consistent prefix
