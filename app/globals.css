@@ -1,24 +1,128 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-}
+@custom-variant dark (&:is(.dark *));
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
+@theme {
+    --font-sans: var(--font-geist);
+    --font-mono: var(--font-geist-mono);
+
+    --breakpoint-toast-mobile: 600px;
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+
+    --color-card: hsl(var(--card));
+    --color-card-foreground: hsl(var(--card-foreground));
+
+    --color-popover: hsl(var(--popover));
+    --color-popover-foreground: hsl(var(--popover-foreground));
+
+    --color-primary: hsl(var(--primary));
+    --color-primary-foreground: hsl(var(--primary-foreground));
+
+    --color-secondary: hsl(var(--secondary));
+    --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+
+    --color-accent: hsl(var(--accent));
+    --color-accent-foreground: hsl(var(--accent-foreground));
+
+    --color-destructive: hsl(var(--destructive));
+    --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+    --color-border: hsl(var(--border));
+    --color-input: hsl(var(--input));
+    --color-ring: hsl(var(--ring));
+
+    --color-chart-1: hsl(var(--chart-1));
+    --color-chart-2: hsl(var(--chart-2));
+    --color-chart-3: hsl(var(--chart-3));
+    --color-chart-4: hsl(var(--chart-4));
+    --color-chart-5: hsl(var(--chart-5));
+
+    --color-sidebar: hsl(var(--sidebar-background));
+    --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+    --color-sidebar-primary: hsl(var(--sidebar-primary));
+    --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+    --color-sidebar-accent: hsl(var(--sidebar-accent));
+    --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+    --color-sidebar-border: hsl(var(--sidebar-border));
+    --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+    --animate-accordion-down: accordion-down 0.2s ease-out;
+    --animate-accordion-up: accordion-up 0.2s ease-out;
+
+    @keyframes accordion-down {
+        from {
+            height: 0;
+        }
+
+        to {
+            height: var(--radix-accordion-content-height);
+        }
+    }
+
+    @keyframes accordion-up {
+        from {
+            height: var(--radix-accordion-content-height);
+        }
+
+        to {
+            height: 0;
+        }
     }
 }
 
+@theme inline {
+    @keyframes shiny-text {
+
+        0%,
+        90%,
+        100% {
+            background-position: calc(-100% - var(--shiny-width)) 0;
+        }
+
+        30%,
+        60% {
+            background-position: calc(100% + var(--shiny-width)) 0;
+        }
+    }
+}
+
+@layer base {
+    a {
+        @apply [overflow-wrap:anywhere];
+    }
+
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
+}
+
+@utility text-balance {
+    text-wrap: balance;
+}
+
 @layer utilities {
-    .text-balance {
-        text-wrap: balance;
+    :root {
+        --foreground-rgb: 0, 0, 0;
+        --background-start-rgb: 214, 219, 220;
+        --background-end-rgb: 255, 255, 255;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --foreground-rgb: 255, 255, 255;
+            --background-start-rgb: 0, 0, 0;
+            --background-end-rgb: 0, 0, 0;
+        }
     }
 }
 
@@ -123,94 +227,80 @@
     }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    ::view-transition-new(theme-transition) {
-        clip-path: inset(0 0 100% 0);
-        animation: slide-in-from-top 0.65s forwards cubic-bezier(0.65, 0, 0.35, 1);
-    }
-
-    ::view-transition-old(theme-transition) {
-        animation: none;
-    }
-
-    @keyframes slide-in-from-top {
-        to {
-            clip-path: inset(0 0 0 0);
-        }
-    }
-}
-
-.skeleton {
-    * {
-        pointer-events: none !important;
-    }
-
-    *[class^="text-"] {
-        color: transparent;
-        @apply rounded-md bg-foreground/20 select-none animate-pulse;
-    }
-
-    .skeleton-bg {
-        @apply bg-foreground/10;
-    }
-
-    .skeleton-div {
-        @apply bg-foreground/20 animate-pulse;
-    }
-}
-
-.ProseMirror {
-    outline: none;
-}
-
-.cm-editor,
-.cm-gutters {
-    @apply bg-background dark:bg-zinc-800 outline-none selection:bg-zinc-900 !important;
-}
-
-.ͼo.cm-focused>.cm-scroller>.cm-selectionLayer .cm-selectionBackground,
-.ͼo.cm-selectionBackground,
-.ͼo.cm-content::selection {
-    @apply bg-zinc-200 dark:bg-zinc-900 !important;
-}
-
-.cm-activeLine,
-.cm-activeLineGutter {
-    @apply bg-transparent !important;
-}
-
-.cm-activeLine {
-    @apply rounded-r-sm !important;
-}
-
-.cm-lineNumbers {
-    @apply min-w-7;
-}
-
-.cm-foldGutter {
-    @apply min-w-3;
-}
-
-.cm-lineNumbers .cm-activeLineGutter {
-    @apply rounded-l-sm !important;
-}
-
-.suggestion-highlight {
-    @apply bg-blue-200 hover:bg-blue-300 dark:hover:bg-blue-400/50 dark:text-blue-50 dark:bg-blue-500/40;
-}
-
-@theme inline {
-    @keyframes shiny-text {
-
-        0%,
-        90%,
-        100% {
-            background-position: calc(-100% - var(--shiny-width)) 0;
+@layer utilities {
+    @media (prefers-reduced-motion: no-preference) {
+        ::view-transition-new(theme-transition) {
+            clip-path: inset(0 0 100% 0);
+            animation: slide-in-from-top 0.65s forwards cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        30%,
-        60% {
-            background-position: calc(100% + var(--shiny-width)) 0;
+        ::view-transition-old(theme-transition) {
+            animation: none;
         }
+
+        @keyframes slide-in-from-top {
+            to {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+    }
+
+    .skeleton {
+        * {
+            pointer-events: none !important;
+        }
+
+        *[class^='text-'] {
+            color: transparent;
+            @apply rounded-md bg-foreground/20 select-none animate-pulse;
+        }
+
+        .skeleton-bg {
+            @apply bg-foreground/10;
+        }
+
+        .skeleton-div {
+            @apply bg-foreground/20 animate-pulse;
+        }
+    }
+
+    .ProseMirror {
+        outline: none;
+    }
+
+    .cm-editor,
+    .cm-gutters {
+        @apply bg-background ! dark:bg-zinc-800 ! outline-hidden ! selection:bg-zinc-900 !;
+    }
+
+    .ͼo.cm-focused>.cm-scroller>.cm-selectionLayer .cm-selectionBackground,
+    .ͼo.cm-selectionBackground,
+    .ͼo.cm-content::selection {
+        @apply bg-zinc-200 ! dark:bg-zinc-900 !;
+    }
+
+    .cm-activeLine,
+    .cm-activeLineGutter {
+        @apply bg-transparent !;
+    }
+
+    .cm-activeLine {
+        @apply rounded-r-sm !;
+    }
+
+    .cm-lineNumbers {
+        @apply min-w-7;
+    }
+
+    .cm-foldGutter {
+        @apply min-w-3;
+    }
+
+    .cm-lineNumbers .cm-activeLineGutter {
+        @apply rounded-l-sm !;
+    }
+
+    .suggestion-highlight {
+        @apply bg-blue-200 hover:bg-blue-300 dark:hover:bg-blue-400/50 dark:text-blue-50 dark:bg-blue-500/40;
     }
 }

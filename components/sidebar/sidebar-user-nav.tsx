@@ -52,10 +52,10 @@ export function SidebarUserNav({ user }: { user: User }) {
           </DropdownMenuTrigger>
           <DropdownMenuContent
             side="top"
-            className="w-[--radix-popper-anchor-width]"
+            className="w-(--radix-popper-anchor-width)"
           >
             <DropdownMenuItem
-              className="inline-flex justify-between w-full hover:!bg-background py-1"
+              className="inline-flex justify-between w-full hover:bg-background! py-1"
               onSelect={(e) => {
                 e.preventDefault();
               }}

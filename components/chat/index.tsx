@@ -69,7 +69,7 @@ export function Chat({
 
   return (
     <>
-      <div className="flex flex-col md:h-[calc(100dvh_-_theme(spacing.2))] h-dvh min-w-0 md:rounded-t-xl bg-background md:group-has-[[data-variant=inset]]/sidebar-wrapper:border md:group-has-[[data-variant=inset]]/sidebar-wrapper:border-border md:group-has-[[data-state=collapsed]]/sidebar-wrapper:group-has-[[data-variant=inset]]/sidebar-wrapper:border-none">
+      <div className="flex flex-col md:h-[calc(100dvh-(--spacing(2)))] h-dvh min-w-0 md:rounded-t-xl bg-background md:group-has-data-[variant=inset]/sidebar-wrapper:border md:group-has-data-[variant=inset]/sidebar-wrapper:border-border md:group-has-data-[variant=inset]/sidebar-wrapper:group-has-data-[state=collapsed]/sidebar-wrapper:border-none">
         <ChatHeader
           chatId={id}
           selectedModelId={selectedChatModel}
