@@ -22,8 +22,10 @@ export default async function Layout({
         strategy="beforeInteractive"
       />
       <SidebarProvider defaultOpen={!isCollapsed}>
-        <AppSidebar user={session?.user} />
-        <SidebarInset>{children}</SidebarInset>
+        <AppSidebar variant="inset" user={session?.user} />
+        <SidebarInset className="md:peer-data-[variant=inset]:shadow-none transition-transition-[width,height] md:peer-data-[variant=inset]:rounded-b-none md:peer-data-[variant=inset]:mb-0">
+          {children}
+        </SidebarInset>
       </SidebarProvider>
     </>
   );

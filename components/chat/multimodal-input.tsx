@@ -263,7 +263,9 @@ function PureMultimodalInput({
       </div>
 
       {messages.length > 0 && (
-        <p className='text-xs text-center text-muted-foreground -mt-2'>Chatbot can make mistakes. Please double-check responses.</p>
+        <p className="text-xs text-center text-muted-foreground -mt-2">
+          Chatbot can make mistakes. Please double-check responses.
+        </p>
       )}
 
       {messages.length === 0 &&
