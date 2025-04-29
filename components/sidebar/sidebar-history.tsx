@@ -333,7 +333,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
               You have reached the end of your chat history.
             </div>
           ) : (
-            <div className="p-2 text-zinc-500 dark:text-zinc-400 flex flex-row gap-2 items-center mt-8">
+            <div className="py-2 text-zinc-500 dark:text-zinc-400 flex flex-row gap-2 items-center mt-8">
               <div className="animate-spin">
                 <LoaderIcon />
               </div>
