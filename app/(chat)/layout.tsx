@@ -22,8 +22,8 @@ export default async function Layout({
         strategy="beforeInteractive"
       />
       <SidebarProvider defaultOpen={!isCollapsed}>
-        <AppSidebar user={session?.user} />
-        <SidebarInset>{children}</SidebarInset>
+        <AppSidebar variant="inset" user={session?.user} />
+        <SidebarInset className='md:peer-data-[variant=inset]:shadow-none'>{children}</SidebarInset>
       </SidebarProvider>
     </>
   );
