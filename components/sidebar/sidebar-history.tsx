@@ -217,7 +217,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                 return (
                   <div className="flex flex-col gap-6">
                     {groupedChats.today.length > 0 && (
-                      <div className='flex w-full min-w-0 flex-col gap-1'>
+                      <div className="flex w-full min-w-0 flex-col gap-1">
                         <div className="py-1 text-xs text-sidebar-foreground/50 max-md:px-2">
                           Today
                         </div>
@@ -237,7 +237,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                     )}
 
                     {groupedChats.yesterday.length > 0 && (
-                      <div className='flex w-full min-w-0 flex-col gap-1'>
+                      <div className="flex w-full min-w-0 flex-col gap-1">
                         <div className="py-1 text-xs text-sidebar-foreground/50  max-md:px-2">
                           Yesterday
                         </div>
@@ -257,7 +257,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                     )}
 
                     {groupedChats.lastWeek.length > 0 && (
-                      <div className='flex w-full min-w-0 flex-col gap-1'>
+                      <div className="flex w-full min-w-0 flex-col gap-1">
                         <div className="py-1 text-xs text-sidebar-foreground/50  max-md:px-2">
                           Last 7 days
                         </div>
@@ -277,7 +277,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                     )}
 
                     {groupedChats.lastMonth.length > 0 && (
-                      <div className='flex w-full min-w-0 flex-col gap-1'>
+                      <div className="flex w-full min-w-0 flex-col gap-1">
                         <div className="py-1 text-xs text-sidebar-foreground/50  max-md:px-2">
                           Last 30 days
                         </div>
@@ -297,7 +297,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                     )}
 
                     {groupedChats.older.length > 0 && (
-                      <div className='flex w-full min-w-0 flex-col gap-1'>
+                      <div className="flex w-full min-w-0 flex-col gap-1">
                         <div className="py-1 text-xs text-sidebar-foreground/50  max-md:px-2">
                           Older than last month
                         </div>

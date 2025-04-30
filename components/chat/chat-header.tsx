@@ -30,7 +30,7 @@ function PureChatHeader({
 
   return (
     <header className="flex sticky top-0 py-1.5 items-center px-2 md:px-2 gap-2 rounded-t-xl">
-      <SidebarToggle className='border border-input md:group-has-[[data-state=expanded]]/sidebar-wrapper:hidden' />
+      <SidebarToggle className="border border-input md:group-has-[[data-state=expanded]]/sidebar-wrapper:hidden" />
 
       {(!open || windowWidth < 768) && (
         <Tooltip>
@@ -52,35 +52,12 @@ function PureChatHeader({
       )}
 
       {!isReadonly && (
-        <ModelSelector
-          selectedModelId={selectedModelId}
-          className="order-1 md:order-2"
-        />
-      )}
-
-      {!isReadonly && (
         <VisibilitySelector
           chatId={chatId}
           selectedVisibilityType={selectedVisibilityType}
-          className="order-1 md:order-3"
+          className="order-1 md:order-3 ml-auto"
         />
       )}
-
-      <Button
-        variant="outline"
-        className="hidden md:flex py-1.5 px-2 h-fit md:h-[34px] order-4 md:ml-auto"
-        asChild
-      >
-        <Link
-          href="https://github.com/techwithanirudh/ai-chatbot"
-          target="_blank"
-        >
-          <span className="flex items-center gap-2">
-            <GitIcon />
-            Star on GitHub
-          </span>
-        </Link>
-      </Button>
     </header>
   );
 }

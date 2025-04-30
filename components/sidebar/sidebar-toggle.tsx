@@ -22,7 +22,7 @@ export function SidebarToggle({
         <Button
           onClick={toggleSidebar}
           variant="ghost"
-          className={cn("md:px-2 md:h-fit", className)}
+          className={cn('md:px-2 md:h-fit', className)}
         >
           <SidebarLeftIcon size={16} />
         </Button>

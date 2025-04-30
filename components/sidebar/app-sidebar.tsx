@@ -32,14 +32,14 @@ export function AppSidebar({
           <div className="flex flex-col justify-between items-center gap-2 relative">
             <div className="flex w-full shrink-0 justify-center items-center transition-opacity delay-75 duration-75 font-semibold relative h-8">
               <div className="pointer-events-auto absolute inset-0 z-50 flex flex-row">
-                <SidebarToggle className='-mx-1.5 size-8' />
+                <SidebarToggle className="-mx-1.5 size-8" />
               </div>
               <Link
                 href="/"
                 onClick={() => {
                   setOpenMobile(false);
                 }}
-                className='text-lg text-muted-foreground'
+                className="text-lg text-muted-foreground"
               >
                 Chatbot
               </Link>
