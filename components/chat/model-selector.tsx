@@ -13,7 +13,8 @@ import {
 import { chatModels } from '@/lib/ai/models';
 import { cn } from '@/lib/utils';
 
-import { CheckCircleFillIcon, ChevronDownIcon } from '../icons';
+import { CheckCircleFillIcon } from '../icons';
+import { ChevronUpIcon } from 'lucide-react';
 
 export function ModelSelector({
   selectedModelId,
@@ -35,20 +36,21 @@ export function ModelSelector({
       <DropdownMenuTrigger
         asChild
         className={cn(
-          'w-fit data-[state=open]:bg-accent data-[state=open]:text-accent-foreground',
+          'w-fit bg-muted data-[state=open]:bg-accent data-[state=open]:text-accent-foreground h-fit border-none',
           className,
         )}
       >
         <Button
           data-testid="model-selector"
           variant="outline"
-          className="md:px-2 md:h-[34px]"
+          className="p-[7px] h-fit text-muted-foreground"
+          size={'sm'}
         >
           {selectedChatModel?.name}
-          <ChevronDownIcon />
+          <ChevronUpIcon />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="min-w-[300px]">
+      <DropdownMenuContent side="top" align="start" className="min-w-[300px]">
         {chatModels.map((chatModel) => {
           const { id } = chatModel;
 

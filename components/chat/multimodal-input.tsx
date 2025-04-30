@@ -24,6 +24,7 @@ import { SuggestedActions } from './suggested-actions';
 import equal from 'fast-deep-equal';
 import type { UseChatHelpers } from '@ai-sdk/react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+import { ModelSelector } from './model-selector';
 
 function PureMultimodalInput({
   chatId,
@@ -38,6 +39,7 @@ function PureMultimodalInput({
   append,
   handleSubmit,
   className,
+  selectedModelId,
 }: {
   chatId: string;
   input: UseChatHelpers['input'];
@@ -51,6 +53,7 @@ function PureMultimodalInput({
   append: UseChatHelpers['append'];
   handleSubmit: UseChatHelpers['handleSubmit'];
   className?: string;
+  selectedModelId: string;
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { width } = useWindowSize();
@@ -247,10 +250,15 @@ function PureMultimodalInput({
         />
 
         <div className="absolute bottom-0 p-2 w-fit flex flex-row justify-start">
-          <AttachmentsButton fileInputRef={fileInputRef} status={status} />
+          <ModelSelector
+            selectedModelId={selectedModelId}
+            className="rounded-md rounded-bl-lg"
+          />
         </div>
 
-        <div className="absolute bottom-0 right-0 p-2 w-fit flex flex-row justify-end">
+        <div className="absolute bottom-0 right-0 p-2 w-fit flex flex-row justify-end items-center gap-2">
+          <AttachmentsButton fileInputRef={fileInputRef} status={status} />
+
           {status === 'submitted' ? (
             <StopButton stop={stop} setMessages={setMessages} />
           ) : (
@@ -262,12 +270,6 @@ function PureMultimodalInput({
           )}
         </div>
       </div>
-
-      {messages.length > 0 && (
-        <p className="text-xs text-center text-muted-foreground -mt-2">
-          Chatbot can make mistakes. Please double-check responses.
-        </p>
-      )}
 
       {messages.length === 0 &&
         attachments.length === 0 &&
@@ -284,6 +286,7 @@ export const MultimodalInput = memo(
     if (prevProps.input !== nextProps.input) return false;
     if (prevProps.status !== nextProps.status) return false;
     if (!equal(prevProps.attachments, nextProps.attachments)) return false;
+    if (prevProps.selectedModelId !== nextProps.selectedModelId) return false;
 
     return true;
   },
@@ -299,7 +302,7 @@ function PureAttachmentsButton({
   return (
     <Button
       data-testid="attachments-button"
-      className="rounded-md rounded-bl-lg p-[7px] h-fit dark:border-zinc-700 hover:dark:bg-zinc-900 hover:bg-zinc-200"
+      className="rounded-md p-[7px] h-fit dark:border-zinc-700 hover:dark:bg-zinc-900 hover:bg-zinc-200"
       onClick={(event) => {
         event.preventDefault();
         fileInputRef.current?.click();
@@ -326,6 +329,7 @@ function PureStopButton({
       <TooltipTrigger asChild>
         <Button
           data-testid="stop-button"
+          variant={'destructive'}
           className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
           onClick={(event) => {
             event.preventDefault();
@@ -359,7 +363,7 @@ function PureSendButton({
         <span tabIndex={0}>
           <Button
             data-testid="send-button"
-            className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
+            className="rounded-md p-1.5 h-fit border dark:border-zinc-600"
             onClick={(event) => {
               event.preventDefault();
               submitForm();
