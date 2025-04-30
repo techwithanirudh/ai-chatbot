@@ -69,9 +69,9 @@ export function Chat({
 
   return (
     <>
-      <div className="absolute bottom-0 top-0 w-full overflow-hidden border-l border-t border-border bg-background bg-fixed transition-all ease-out max-md:border-none md:translate-y-2 md:rounded-tl-xl md:group-has-[[data-state=collapsed]]/sidebar-wrapper:translate-y-0 md:group-has-[[data-state=collapsed]]/sidebar-wrapper:rounded-none md:group-has-[[data-state=collapsed]]/sidebar-wrapper:border-none" />
+      <div className="absolute inset-y-0 w-full overflow-hidden border-l border-t border-border bg-background bg-fixed transition-all ease-out max-md:border-none md:translate-y-2 md:rounded-tl-xl md:group-has-[[data-state=collapsed]]/sidebar-wrapper:translate-y-0 md:group-has-[[data-state=collapsed]]/sidebar-wrapper:rounded-none md:group-has-[[data-state=collapsed]]/sidebar-wrapper:border-none" />
       <div className="absolute top-0 z-10 box-content overflow-hidden border-b border-border bg-sidebar backdrop-blur-md transition-[transform,border] ease-out max-md:hidden md:h-2 md:group-has-[[data-state=collapsed]]/sidebar-wrapper:border-transparent md:group-has-[[data-state=collapsed]]/sidebar-wrapper:-translate-y-[15px]" />
-      <div className="absolute bottom-0 top-0 w-full">
+      <div className="absolute inset-y-0 w-full">
         <div className="flex flex-col md:h-[calc(100dvh_-_theme(spacing.2))] h-dvh min-w-0 md:group-has-[[data-state=collapsed]]/sidebar-wrapper:border-none pt-2">
           <ChatHeader
             chatId={id}

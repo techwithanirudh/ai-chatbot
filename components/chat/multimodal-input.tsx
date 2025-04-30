@@ -250,13 +250,10 @@ function PureMultimodalInput({
         />
 
         <div className="absolute bottom-0 p-2 w-fit flex flex-row justify-start">
-          {/* {!isReadonly && ( */}
-          {/* todo: use selectedModelId and check isReadonly */}
           <ModelSelector
             selectedModelId={selectedModelId}
             className="rounded-md rounded-bl-lg"
           />
-          {/* )} */}
         </div>
 
         <div className="absolute bottom-0 right-0 p-2 w-fit flex flex-row justify-end items-center gap-2">
