@@ -9,12 +9,7 @@ import { CodeBlock, CodeBlockGroup, CodeBlockCode } from './code-block';
 import { cn } from '@/lib/utils';
 import { useCopyToClipboard } from 'usehooks-ts';
 import { Button } from '../../ui/button';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '../../ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip';
 import { CopyIcon } from '../../icons';
 import { toast } from 'sonner';
 

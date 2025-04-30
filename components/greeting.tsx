@@ -21,7 +21,7 @@ export const Greeting = () => {
           className="inline-block h-full size-6 md:size-8 lg:size-9 hover:scale-125 transition-transform"
           fill="hsl(var(--accent))"
         />
-        How can I help you today?
+        How can I help you?
       </motion.div>
     </div>
   );

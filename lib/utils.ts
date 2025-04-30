@@ -1,8 +1,4 @@
-import type {
-  CoreAssistantMessage,
-  CoreToolMessage,
-  UIMessage,
-} from 'ai';
+import type { CoreAssistantMessage, CoreToolMessage, UIMessage } from 'ai';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 

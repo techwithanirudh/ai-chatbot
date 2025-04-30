@@ -16,7 +16,6 @@ import {
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { PlusIcon } from 'lucide-react';
-import { SidebarToggle } from './sidebar-toggle';
 
 export function AppSidebar({
   user,
@@ -30,10 +29,7 @@ export function AppSidebar({
       <SidebarHeader>
         <SidebarMenu>
           <div className="flex flex-col justify-between items-center gap-2 relative">
-            <div className="flex w-full shrink-0 justify-center items-center transition-opacity delay-75 duration-75 font-semibold relative h-8">
-              <div className="pointer-events-auto absolute inset-0 z-50 flex flex-row">
-                <SidebarToggle className="-mx-1.5 size-8" />
-              </div>
+            <div className="flex w-full shrink-0 justify-center items-center transition-opacity delay-75 duration-75 font-semibold h-8">
               <Link
                 href="/"
                 onClick={() => {
