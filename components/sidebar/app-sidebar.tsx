@@ -30,15 +30,20 @@ export function AppSidebar({
       <SidebarHeader>
         <SidebarMenu>
           <div className="flex flex-col justify-between items-center gap-2 relative">
-            <Link
-              href="/"
-              onClick={() => {
-                setOpenMobile(false);
-              }}
-              className="flex shrink-0 items-center justify-center text-lg text-muted-foreground transition-opacity delay-75 duration-75 font-semibold"
-            >
-              Chatbot
-            </Link>
+            <div className="flex w-full shrink-0 justify-center items-center transition-opacity delay-75 duration-75 font-semibold relative h-8">
+              <div className="pointer-events-auto absolute inset-0 z-50 flex flex-row">
+                <SidebarToggle className='-mx-1.5 size-8' />
+              </div>
+              <Link
+                href="/"
+                onClick={() => {
+                  setOpenMobile(false);
+                }}
+                className='text-lg text-muted-foreground'
+              >
+                Chatbot
+              </Link>
+            </div>
             <Button
               variant="default"
               type="button"
