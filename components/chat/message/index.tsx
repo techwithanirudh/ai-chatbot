@@ -10,7 +10,7 @@ import {
   DocumentToolResult,
 } from '../../artifact/document/document';
 import { PencilEditIcon } from '../../icons';
-import { Markdown } from '../../markdown';
+import { Markdown } from '../markdown';
 import { MessageActions } from './message-actions';
 import { PreviewAttachment } from '../preview-attachment';
 import { Weather } from '../../tools/weather';
