@@ -104,7 +104,7 @@ export function Chat({
 
             <motion.form
               className={cn(
-                'flex relative z-50 mx-auto w-full px-4 bg-background pb-2 gap-2 md:max-w-3xl',
+                'flex relative z-50 mx-auto w-full px-4 pb-2 gap-2 md:max-w-3xl',
               )}
               layout="position"
               layoutId="chat-input-container"

@@ -506,6 +506,7 @@ export const Artifact = memo(PureArtifact, (prevProps, nextProps) => {
   if (!equal(prevProps.votes, nextProps.votes)) return false;
   if (prevProps.input !== nextProps.input) return false;
   if (!equal(prevProps.messages, nextProps.messages.length)) return false;
+  if (prevProps.selectedModelId !== nextProps.selectedModelId) return false;
 
   return true;
 });
