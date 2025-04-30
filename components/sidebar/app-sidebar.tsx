@@ -26,7 +26,7 @@ export function AppSidebar({
 
   return (
     <Sidebar className="group-data-[side=left]:border-r-0" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className='px-2 py-1'>
         <SidebarMenu>
           <div className="flex flex-col justify-between items-center gap-2 relative">
             <div className="flex w-full shrink-0 justify-center items-center transition-opacity delay-75 duration-75 font-semibold h-8">
