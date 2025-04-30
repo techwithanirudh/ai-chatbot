@@ -6,6 +6,7 @@ import { cookies } from 'next/headers';
 import {
   deleteMessagesByChatIdAfterTimestamp,
   getMessageById,
+  updateChatTitleById,
   updateChatVisiblityById,
 } from '@/server/db/queries';
 import type { VisibilityType } from '@/components/chat/visibility-selector';
@@ -51,4 +52,14 @@ export async function updateChatVisibility({
   visibility: VisibilityType;
 }) {
   await updateChatVisiblityById({ chatId, visibility });
+}
+
+export async function updateChatTitle({
+  chatId,
+  title,
+}: {
+  chatId: string;
+  title: string;
+}) {
+  await updateChatTitleById({ chatId, title });
 }
