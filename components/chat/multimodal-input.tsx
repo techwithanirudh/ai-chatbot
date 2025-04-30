@@ -263,12 +263,6 @@ function PureMultimodalInput({
         </div>
       </div>
 
-      {messages.length > 0 && (
-        <p className="text-xs text-center text-muted-foreground -mt-2">
-          Chatbot can make mistakes. Please double-check responses.
-        </p>
-      )}
-
       {messages.length === 0 &&
         attachments.length === 0 &&
         uploadQueue.length === 0 && (
@@ -326,6 +320,7 @@ function PureStopButton({
       <TooltipTrigger asChild>
         <Button
           data-testid="stop-button"
+          variant={"destructive"}
           className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
           onClick={(event) => {
             event.preventDefault();
@@ -359,7 +354,7 @@ function PureSendButton({
         <span tabIndex={0}>
           <Button
             data-testid="send-button"
-            className="rounded-full p-1.5 h-fit border dark:border-zinc-600"
+            className="rounded-md p-1.5 h-fit border dark:border-zinc-600"
             onClick={(event) => {
               event.preventDefault();
               submitForm();

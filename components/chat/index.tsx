@@ -111,7 +111,7 @@ export function Chat({
               transition={{
                 layout: {
                   duration: 0.15,
-                  ease: "easeOut",
+                  ease: 'easeOut',
                 },
               }}
             >
@@ -132,6 +132,10 @@ export function Chat({
               )}
             </motion.form>
           </div>
+
+          <p className="text-xs text-center text-muted-foreground">
+            Chatbot can make mistakes. Please double-check responses.
+          </p>
         </div>
       </div>
 
