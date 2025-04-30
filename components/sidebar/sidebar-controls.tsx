@@ -11,7 +11,7 @@ export function SidebarControls({
   const { open } = useSidebar();
 
   return (
-    <div className="pointer-events-auto fixed left-3 z-50 flex flex-row gap-0.5 p-1 md:top-2.5 top-0.5">
+    <div className="pointer-events-auto fixed left-2 z-50 flex flex-row gap-0.5 p-1 md:top-2.5 top-0.5">
       <SidebarToggle className={cn(!open ? 'border-input border transition-colors duration-250' : '')}/>
     </div>
   );
