@@ -110,7 +110,8 @@ export function Chat({
               layoutId="chat-input-container"
               transition={{
                 layout: {
-                  duration: messages.length === 1 ? 0.15 : 0,
+                  duration: 0.15,
+                  ease: "easeOut",
                 },
               }}
             >

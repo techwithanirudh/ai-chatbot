@@ -51,7 +51,8 @@ const PurePreviewMessage = ({
         data-testid={`message-${message.role}`}
         className="w-full mx-auto max-w-3xl px-4 group/message"
         initial={{ y: 5, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        animate={{ y: 0, opacity: 1, transition: { delay: 0.15 } }}
+        // exit={{ y: 5, opacity: 0, transition: { duration: 0.2 } }}
         data-role={message.role}
       >
         <div
