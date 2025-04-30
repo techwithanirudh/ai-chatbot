@@ -30,7 +30,7 @@ function PureChatHeader({
 
   return (
     <header className="flex sticky top-0 bg-background py-1.5 items-center px-2 md:px-2 gap-2 rounded-t-xl">
-      <SidebarToggle />
+      {!open && (<div className='h-[40px] w-[50px] md:px-2 md:ml-0 md:size-[34px] ml-2' />)}
 
       {(!open || windowWidth < 768) && (
         <Tooltip>

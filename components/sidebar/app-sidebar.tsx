@@ -16,29 +16,28 @@ import {
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { PlusIcon } from 'lucide-react';
+import { SidebarToggle } from './sidebar-toggle';
 
 export function AppSidebar({
   user,
   ...props
 }: { user: User | undefined } & React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
-  const { setOpenMobile } = useSidebar();
+  const { setOpenMobile, open } = useSidebar();
 
   return (
     <Sidebar className="group-data-[side=left]:border-r-0" {...props}>
       <SidebarHeader>
         <SidebarMenu>
-          <div className="flex flex-col justify-between items-center gap-2">
+          <div className="flex flex-col justify-between items-center gap-2 relative">
             <Link
               href="/"
               onClick={() => {
                 setOpenMobile(false);
               }}
-              className="flex flex-row gap-3 items-center group/logo"
+              className="flex shrink-0 items-center justify-center text-lg text-muted-foreground transition-opacity delay-75 duration-75 font-semibold"
             >
-              <span className="text-lg font-semibold cursor-pointer text-primary">
-                Chatbot
-              </span>
+              Chatbot
             </Link>
             <Button
               variant="default"

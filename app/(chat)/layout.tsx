@@ -1,9 +1,11 @@
 import { cookies } from 'next/headers';
 
 import { AppSidebar } from '@/components/sidebar/app-sidebar';
+import { AppControls } from '@/components/sidebar/app-controls';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { auth } from '../../server/auth';
 import Script from 'next/script';
+import { SidebarControls } from '@/components/sidebar/sidebar-controls';
 
 export const experimental_ppr = true;
 
@@ -23,7 +25,8 @@ export default async function Layout({
       />
       <SidebarProvider defaultOpen={!isCollapsed}>
         <AppSidebar variant="inset" user={session?.user} />
-        <SidebarInset className="md:peer-data-[variant=inset]:shadow-none transition-transition-[width,height] md:peer-data-[variant=inset]:rounded-b-none md:peer-data-[variant=inset]:mb-0">
+        <SidebarControls />
+        <SidebarInset className="md:peer-data-[variant=inset]:shadow-none transition-transition-[width,height] md:peer-data-[variant=inset]:rounded-b-none md:peer-data-[variant=inset]:m-0 overflow-hidden">
           {children}
         </SidebarInset>
       </SidebarProvider>

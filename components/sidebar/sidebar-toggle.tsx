@@ -9,6 +9,7 @@ import {
 
 import { SidebarLeftIcon } from '../icons';
 import { Button } from '../ui/button';
+import { cn } from '@/lib/utils';
 
 export function SidebarToggle({
   className,
@@ -20,8 +21,8 @@ export function SidebarToggle({
       <TooltipTrigger asChild>
         <Button
           onClick={toggleSidebar}
-          variant="outline"
-          className="md:px-2 md:h-fit"
+          variant="ghost"
+          className={cn("md:px-2 md:h-fit", className)}
         >
           <SidebarLeftIcon size={16} />
         </Button>
