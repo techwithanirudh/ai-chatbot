@@ -4,6 +4,7 @@ import { Chat } from '@/components/chat';
 import { DEFAULT_CHAT_MODEL } from '@/lib/ai/models';
 import { generateUUID } from '@/lib/utils';
 import { DataStreamHandler } from '@/components/data-stream-handler';
+import { ChatHeader } from '@/components/chat/chat-header';
 
 export default async function Page() {
   const id = generateUUID();
@@ -29,6 +30,12 @@ export default async function Page() {
 
   return (
     <>
+      <ChatHeader
+        chatId={id}
+        selectedModelId={modelIdFromCookie.value}
+        selectedVisibilityType="private"
+        isReadonly={false}
+      />
       <Chat
         key={id}
         id={id}

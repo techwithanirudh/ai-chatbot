@@ -8,6 +8,7 @@ import { DataStreamHandler } from '@/components/data-stream-handler';
 import { DEFAULT_CHAT_MODEL } from '@/lib/ai/models';
 import type { DBMessage } from '@/server/db/schema';
 import type { Attachment, UIMessage } from 'ai';
+import { ChatHeader } from '@/components/chat/chat-header';
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -67,6 +68,12 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
 
   return (
     <>
+      <ChatHeader
+        chatId={id}
+        selectedModelId={chatModelFromCookie.value}
+        selectedVisibilityType={chat.visibility}
+        isReadonly={session?.user?.id !== chat.userId}
+      />
       <Chat
         id={chat.id}
         initialMessages={convertToUIMessages(messagesFromDb)}
