@@ -72,6 +72,13 @@ export function Chat({
       <div className="absolute inset-y-0 w-full overflow-hidden border-l border-t border-border bg-background bg-fixed transition-all ease-out max-md:border-none md:translate-y-3.5 md:rounded-tl-xl md:group-has-[[data-state=collapsed]]/sidebar-wrapper:translate-y-0 md:group-has-[[data-state=collapsed]]/sidebar-wrapper:rounded-none md:group-has-[[data-state=collapsed]]/sidebar-wrapper:border-none" />
       <div className="absolute top-0 z-10 box-content overflow-hidden border-b border-border bg-sidebar backdrop-blur-md transition-[transform,border] ease-out max-md:hidden md:h-3.5 md:group-has-[[data-state=collapsed]]/sidebar-wrapper:border-transparent md:group-has-[[data-state=collapsed]]/sidebar-wrapper:-translate-y-[15px]" />
       <div className="absolute inset-y-0 w-full flex flex-col h-dvh min-w-0 pt-3.5 pb-2">
+        <ChatHeader
+          chatId={id}
+          selectedModelId={selectedChatModel}
+          selectedVisibilityType={selectedVisibilityType}
+          isReadonly={isReadonly}
+        />
+
         <div
           className={cn('flex flex-col flex-1 overflow-y-auto', {
             'items-center justify-center': messages.length === 0,

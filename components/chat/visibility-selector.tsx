@@ -72,11 +72,11 @@ export function VisibilitySelector({
       >
         <Button
           variant="ghost"
-          className="flex px-2 h-fit border-none"
+          className="flex px-1 py-1 h-fit border-none"
         >
           {selectedVisibility?.icon}
-          {/* {selectedVisibility?.label} */}
-          {/* <ChevronDownIcon /> */}
+          {selectedVisibility?.label}
+          <ChevronDownIcon />
         </Button>
       </DropdownMenuTrigger>
 
