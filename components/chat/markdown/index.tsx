@@ -43,7 +43,7 @@ const components: Partial<Components> = {
     const language = extractLanguage(className);
 
     return (
-      <CodeBlock className={className}>
+      <CodeBlock className={cn('overflow-auto max-w-2xl', className)}>
         <CodeBlockGroup className="flex h-9 items-center justify-between px-4">
           <div className="text-muted-foreground py-1 pr-2 font-mono text-xs">
             {language}
@@ -73,7 +73,7 @@ const components: Partial<Components> = {
             </Tooltip>
           </div>
         </div>
-        <CodeBlockCode code={children as string} language={language} />
+        <CodeBlockCode className='overflow-auto max-w-2xl' code={children as string} language={language} />
       </CodeBlock>
     );
   },

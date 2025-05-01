@@ -22,15 +22,9 @@
     }
 
     .scroll-shadow {
+        --shadow-height: theme(spacing.5);
         --scrollbar-width: 8px;
-        mask-image: linear-gradient(to bottom,
-                transparent,
-                #000 theme("spacing.5"),
-                #000 calc(100% - theme("spacing.5")),
-                transparent), 
-                linear-gradient(to left,
-                #fff var(--scrollbar-width),
-                transparent var(--scrollbar-width));
+        mask-image: linear-gradient(to bottom, transparent, #000 var(--shadow-height), #000 calc(100% - var(--shadow-height)), transparent 100%), linear-gradient(to left, #fff var(--scrollbar-width), transparent var(--scrollbar-width));
     }
 }
 
@@ -54,7 +48,8 @@
         --destructive-foreground: 0 0% 100%;
         --border: 50 7.50% 84.31%;
         --input: 50.77 7.98% 68.04%;
-        --ring: 210 74.80% 49.80%;
+        /* --ring: 210 74.80% 49.80%; */
+        --ring: var(--primary);
         --chart-1: 18.28 57.14% 43.92%;
         --chart-2: 251.45 84.62% 74.51%;
         --chart-3: 46.15 28.26% 81.96%;
@@ -90,7 +85,8 @@
         --destructive-foreground: 0 0% 100%;
         --border: 60 5.08% 23.14%;
         --input: 52.50 5.13% 30.59%;
-        --ring: 210 74.80% 49.80%;
+        /* --ring: 210 74.80% 49.80%; */
+        --ring: var(--primary);
         --chart-1: 18.28 57.14% 43.92%;
         --chart-2: 251.45 84.62% 74.51%;
         --chart-3: 48 10.64% 9.22%;
