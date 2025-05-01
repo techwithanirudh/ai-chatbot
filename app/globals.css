@@ -20,6 +20,12 @@
     .text-balance {
         text-wrap: balance;
     }
+
+    .scroll-shadow {
+        --shadow-height: theme(spacing.5);
+        --scrollbar-width: 8px;
+        mask-image: linear-gradient(to bottom,transparent,#000 var(--shadow-height),#000 calc(100% - var(--shadow-height)),transparent 100%),linear-gradient(to left,#fff var(--scrollbar-width),transparent var(--scrollbar-width));
+    }
 }
 
 @layer base {
