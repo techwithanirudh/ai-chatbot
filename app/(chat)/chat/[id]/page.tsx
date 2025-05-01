@@ -70,8 +70,6 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     <>
       <SidebarIsland
         chatId={id}
-        // selectedModelId={chatModelFromCookie.value}
-        // selectedVisibilityType={chat.visibility}
         isReadonly={session?.user?.id !== chat.userId}
       />
       <Chat

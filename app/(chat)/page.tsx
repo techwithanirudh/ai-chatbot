@@ -15,6 +15,10 @@ export default async function Page() {
   if (!modelIdFromCookie) {
     return (
       <>
+        <SidebarIsland
+          chatId={id}
+          isReadonly={false}
+        />
         <Chat
           key={id}
           id={id}
@@ -32,8 +36,6 @@ export default async function Page() {
     <>
       <SidebarIsland
         chatId={id}
-        // selectedModelId={modelIdFromCookie.value}
-        // selectedVisibilityType="private"
         isReadonly={false}
       />
       <Chat
