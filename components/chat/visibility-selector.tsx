@@ -71,8 +71,8 @@ export function VisibilitySelector({
         )}
       >
         <Button
-          variant="ghost"
-          className="flex px-1 py-1 h-fit border-none"
+          variant="outline"
+          className="flex"
         >
           {selectedVisibility?.icon}
           {selectedVisibility?.label}

@@ -69,73 +69,73 @@ export function Chat({
 
   return (
     <>
-      <div className="absolute inset-y-0 w-full overflow-hidden border-l border-t border-border bg-background bg-fixed transition-all ease-out max-md:border-none md:translate-y-3.5 md:rounded-tl-xl md:group-has-[[data-state=collapsed]]/sidebar-wrapper:translate-y-0 md:group-has-[[data-state=collapsed]]/sidebar-wrapper:rounded-none md:group-has-[[data-state=collapsed]]/sidebar-wrapper:border-none" />
-      <div className="absolute top-0 z-10 box-content overflow-hidden border-b border-border bg-sidebar backdrop-blur-md transition-[transform,border] ease-out max-md:hidden md:h-3.5 md:group-has-[[data-state=collapsed]]/sidebar-wrapper:border-transparent md:group-has-[[data-state=collapsed]]/sidebar-wrapper:-translate-y-[15px]" />
-      <div className="absolute inset-y-0 w-full flex flex-col h-dvh min-w-0 pt-3.5 pb-2">
-        <ChatHeader
-          chatId={id}
-          selectedModelId={selectedChatModel}
-          selectedVisibilityType={selectedVisibilityType}
-          isReadonly={isReadonly}
-        />
+      <div className="flex w-full bg-sidebar py-3 pr-3 transition-all md:group-has-[[data-state=collapsed]]/sidebar-wrapper:p-0 h-dvh min-w-0 max-md:p-0">
+        <div className="flex flex-col flex-1 min-w-0 md:group-has-[[data-state=collapsed]]/sidebar-wrapper:border-none bg-background rounded-xl  md:group-has-[[data-state=collapsed]]/sidebar-wrapper:rounded-none max-md:rounded-none border border-border p-2">
+          <ChatHeader
+            chatId={id}
+            selectedModelId={selectedChatModel}
+            selectedVisibilityType={selectedVisibilityType}
+            isReadonly={isReadonly}
+          />
 
-        <div
-          className={cn('flex flex-col flex-1 overflow-y-auto', {
-            'items-center justify-center': messages.length === 0,
-          })}
-        >
-          <AnimatePresence initial={true} mode="popLayout">
-            {messages.length === 0 ? (
-              <Greeting />
-            ) : (
-              <Messages
-                chatId={id}
-                status={status}
-                votes={votes}
-                messages={messages}
-                setMessages={setMessages}
-                reload={reload}
-                isReadonly={isReadonly}
-                isArtifactVisible={isArtifactVisible}
-              />
-            )}
-          </AnimatePresence>
-
-          <motion.form
-            className={cn(
-              'flex relative z-50 mx-auto w-full px-4 pb-2 gap-2 md:max-w-3xl',
-            )}
-            layout="position"
-            layoutId="chat-input-container"
-            transition={{
-              layout: {
-                duration: 0.15,
-                ease: 'easeOut',
-              },
-            }}
+          <div
+            className={cn('flex flex-col flex-1 overflow-y-auto', {
+              'items-center justify-center': messages.length === 0,
+            })}
           >
-            {!isReadonly && (
-              <MultimodalInput
-                chatId={id}
-                input={input}
-                setInput={setInput}
-                handleSubmit={handleSubmit}
-                status={status}
-                stop={stop}
-                attachments={attachments}
-                setAttachments={setAttachments}
-                messages={messages}
-                setMessages={setMessages}
-                append={append}
-                selectedModelId={selectedChatModel}
-              />
-            )}
-          </motion.form>
-        </div>
+            <AnimatePresence initial={true} mode="popLayout">
+              {messages.length === 0 ? (
+                <Greeting />
+              ) : (
+                <Messages
+                  chatId={id}
+                  status={status}
+                  votes={votes}
+                  messages={messages}
+                  setMessages={setMessages}
+                  reload={reload}
+                  isReadonly={isReadonly}
+                  isArtifactVisible={isArtifactVisible}
+                />
+              )}
+            </AnimatePresence>
 
-        <p className="text-xs text-center text-muted-foreground">
-          Chatbot can make mistakes. Please double-check responses.
-        </p>
+            <motion.form
+              className={cn(
+                'flex relative z-50 mx-auto w-full px-4 pb-2 gap-2 md:max-w-3xl',
+              )}
+              layout="position"
+              layoutId="chat-input-container"
+              transition={{
+                layout: {
+                  duration: 0.15,
+                  ease: 'easeOut',
+                },
+              }}
+            >
+              {!isReadonly && (
+                <MultimodalInput
+                  chatId={id}
+                  input={input}
+                  setInput={setInput}
+                  handleSubmit={handleSubmit}
+                  status={status}
+                  stop={stop}
+                  attachments={attachments}
+                  setAttachments={setAttachments}
+                  messages={messages}
+                  setMessages={setMessages}
+                  append={append}
+                  selectedModelId={selectedChatModel}
+                />
+              )}
+            </motion.form>
+          </div>
+
+          <p className="text-xs text-center text-muted-foreground">
+            Chatbot can make mistakes. Please double-check responses.
+          </p>
+        </div>
       </div>
 
       <Artifact
