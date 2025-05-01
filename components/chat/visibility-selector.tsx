@@ -60,7 +60,6 @@ export function VisibilitySelector({
     [visibilityType],
   );
 
-  // tooltip
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger
@@ -70,7 +69,10 @@ export function VisibilitySelector({
           className,
         )}
       >
-        <Button variant="outline" className="flex">
+        <Button
+          variant="outline"
+          className="hidden md:flex md:px-2 md:h-[34px]"
+        >
           {selectedVisibility?.icon}
           {selectedVisibility?.label}
           <ChevronDownIcon />
