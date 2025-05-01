@@ -340,10 +340,7 @@ const SidebarInset = React.forwardRef<
   return (
     <main
       ref={ref}
-      className={cn(
-        'relative flex w-full flex-1 flex-col',
-        className,
-      )}
+      className={cn('relative flex w-full flex-1 flex-col', className)}
       {...props}
     />
   );

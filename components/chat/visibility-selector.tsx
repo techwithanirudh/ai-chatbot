@@ -70,10 +70,7 @@ export function VisibilitySelector({
           className,
         )}
       >
-        <Button
-          variant="outline"
-          className="flex"
-        >
+        <Button variant="outline" className="flex">
           {selectedVisibility?.icon}
           {selectedVisibility?.label}
           <ChevronDownIcon />
