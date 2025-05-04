@@ -56,7 +56,7 @@ export function CodeComponent({
   };
 
   return (
-    <CodeBlock className={cn('overflow-auto max-w-2xl', className)}>
+    <CodeBlock className={cn('overflow-auto max-w-2xl', 'code-block', className)}>
       <CodeBlockGroup className="flex h-9 items-center justify-between px-4">
         <div className="text-muted-foreground py-1 pr-2 font-mono text-xs">
           {language}
