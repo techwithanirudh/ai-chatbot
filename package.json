@@ -1,6 +1,6 @@
 {
   "name": "ai-chatbot",
-  "version": "3.0.3",
+  "version": "3.0.5",
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
@@ -16,7 +16,7 @@
     "db:pull": "pnpm with-env drizzle-kit pull",
     "db:check": "pnpm with-env drizzle-kit check",
     "db:up": "pnpm with-env drizzle-kit up",
-    "test": "export PLAYWRIGHT=True && pnpm with-env pnpm exec playwright test --workers=4",
+    "test": "export PLAYWRIGHT=True && pnpm with-env pnpm exec playwright test",
     "with-env": "dotenv -e ./.env --"
   },
   "dependencies": {
