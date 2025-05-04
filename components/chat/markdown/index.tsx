@@ -5,78 +5,10 @@ import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import { CodeBlock, CodeBlockGroup, CodeBlockCode } from './code-block';
-import { cn } from '@/lib/utils';
-import { useCopyToClipboard } from 'usehooks-ts';
-import { Button } from '../../ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../../ui/tooltip';
-import { CopyIcon } from '../../icons';
-import { toast } from 'sonner';
-
-function extractLanguage(className?: string): string {
-  if (!className) return 'plaintext';
-  const match = className.match(/language-(\w+)/);
-  return match ? match[1] : 'plaintext';
-}
+import { CodeComponent } from './components/code-block';
 
 const components: Partial<Components> = {
-  code: function CodeComponent({ className, children, ...props }) {
-    const [_, copyToClipboard] = useCopyToClipboard();
-    const isInline =
-      !props.node?.position?.start.line ||
-      props.node?.position?.start.line === props.node?.position?.end.line;
-
-    if (isInline) {
-      return (
-        <span
-          className={cn(
-            'bg-primary-foreground rounded-sm px-1 font-mono text-sm',
-            className,
-          )}
-          {...props}
-        >
-          {children}
-        </span>
-      );
-    }
-
-    const language = extractLanguage(className);
-
-    return (
-      <CodeBlock className={cn('overflow-auto max-w-2xl', className)}>
-        <CodeBlockGroup className="flex h-9 items-center justify-between px-4">
-          <div className="text-muted-foreground py-1 pr-2 font-mono text-xs">
-            {language}
-          </div>
-        </CodeBlockGroup>
-        <div className="sticky top-16 lg:top-0">
-          <div className="absolute right-0 bottom-0 flex h-9 items-center pr-1.5">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  className="p-1 h-fit text-muted-foreground"
-                  variant="ghost"
-                  onClick={async () => {
-                    if (!children) {
-                      toast.error("There's no text to copy!");
-                      return;
-                    }
-
-                    await copyToClipboard(children as string);
-                    toast.success('Copied to clipboard!');
-                  }}
-                >
-                  <CopyIcon />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Copy</TooltipContent>
-            </Tooltip>
-          </div>
-        </div>
-        <CodeBlockCode className='overflow-auto max-w-2xl' code={children as string} language={language} />
-      </CodeBlock>
-    );
-  },
+  code: CodeComponent,
   pre: ({ children }) => <>{children}</>,
   ol: ({ node, children, ...props }) => {
     return (

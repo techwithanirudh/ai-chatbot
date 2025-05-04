@@ -5,7 +5,7 @@ import { LoaderIcon } from '@/components/icons';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronDown, Code } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { CodeBlockCode } from '../chat/markdown/code-block';
+import { CodeBlockCode } from '../code-block';
 import { TextShimmer } from '../ui/text-shimmer';
 
 interface ToolDetailsProps {
