@@ -20,11 +20,15 @@ import {
   GlobeIcon,
   LockIcon,
   MoreHorizontalIcon,
+  PencilEditIcon,
   ShareIcon,
   TrashIcon,
 } from '@/components/icons';
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useChatVisibility } from '@/hooks/use-chat-visibility';
+import { useChatTitle } from '@/hooks/use-chat-title';
+import { Input } from '../ui/input';
+import { cn } from '@/lib/utils';
 
 const PureChatItem = ({
   chat,
@@ -41,22 +45,52 @@ const PureChatItem = ({
     chatId: chat.id,
     initialVisibility: chat.visibility,
   });
+  const { title, setTitle } = useChatTitle({
+    chatId: chat.id,
+    initialTitle: chat.title,
+  });
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <SidebarMenuItem className="md:-mx-2">
       <SidebarMenuButton
         asChild
         isActive={isActive}
-        size={'default'}
-        className="h-fit py-2 px-3"
+        size="default"
+        className={cn('h-fit py-2 px-3', isEditing && '!p-0')}
       >
-        <Link href={`/chat/${chat.id}`} onClick={() => setOpenMobile(false)}>
-          <span>{chat.title}</span>
-        </Link>
+        {isEditing ? (
+          <div>
+            <Input
+              defaultValue={title}
+              className="h-fit p-0 bg-transparent border-none w-full rounded-md !ring-0 !outline-none py-2 px-3"
+              autoFocus
+              onKeyDown={(e) => {
+                if (e.key === 'Escape') setIsEditing(false);
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  setTitle(e.currentTarget.value);
+                  setIsEditing(false);
+                }
+              }}
+              onBlur={(e) => {
+                const newTitle = e.target.value.trim();
+                if (newTitle && newTitle !== title) {
+                  setTitle(newTitle);
+                }
+                setIsEditing(false);
+              }}
+            />
+          </div>
+        ) : (
+          <Link href={`/chat/${chat.id}`} onClick={() => setOpenMobile(false)}>
+            <span>{title}</span>
+          </Link>
+        )}
       </SidebarMenuButton>
 
       <DropdownMenu modal={true}>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild className={isEditing ? 'hidden' : ''}>
           <SidebarMenuAction
             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground mr-0.5 !top-2"
             showOnHover={!isActive}
@@ -67,6 +101,14 @@ const PureChatItem = ({
         </DropdownMenuTrigger>
 
         <DropdownMenuContent side="bottom" align="end">
+          <DropdownMenuItem
+            className="cursor-pointer"
+            onSelect={() => setIsEditing(true)}
+          >
+            <PencilEditIcon />
+            <span>Rename</span>
+          </DropdownMenuItem>
+
           <DropdownMenuSub>
             <DropdownMenuSubTrigger className="cursor-pointer">
               <ShareIcon />
@@ -119,5 +161,6 @@ const PureChatItem = ({
 
 export const ChatItem = memo(PureChatItem, (prevProps, nextProps) => {
   if (prevProps.isActive !== nextProps.isActive) return false;
+  if (prevProps.chat.title !== nextProps.chat.title) return false;
   return true;
 });

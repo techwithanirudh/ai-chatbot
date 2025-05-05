@@ -5,7 +5,7 @@ import { LoaderIcon } from '@/components/icons';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, ChevronDown, Code } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { CodeBlock } from '../artifact/code/code-block';
+import { CodeBlockCode } from '../code-block';
 import { TextShimmer } from '../ui/text-shimmer';
 
 interface ToolDetailsProps {
@@ -105,16 +105,11 @@ export function ToolDetails({
                     <Code className="size-4" />
                     <span>Arguments</span>
                   </div>
-                  <CodeBlock
-                    node={{
-                      type: 'code',
-                      value: JSON.stringify(args, null, 2),
-                    }}
-                    inline={false}
-                    className="text-xs"
-                  >
-                    {formatContent(args)}
-                  </CodeBlock>
+                  <CodeBlockCode
+                    className="text-xs rounded-xl"
+                    language="json"
+                    code={formatContent(args)}
+                  />
                 </div>
               )}
 
@@ -124,16 +119,11 @@ export function ToolDetails({
                     <ArrowRight className="size-4" />
                     <span>Result</span>
                   </div>
-                  <CodeBlock
-                    node={{
-                      type: 'code',
-                      value: JSON.stringify(result, null, 2),
-                    }}
-                    inline={false}
-                    className="text-xs"
-                  >
-                    {formatContent(result)}
-                  </CodeBlock>
+                  <CodeBlockCode
+                    className="text-xs rounded-xl"
+                    language="json"
+                    code={formatContent(result)}
+                  />
                 </div>
               )}
             </div>

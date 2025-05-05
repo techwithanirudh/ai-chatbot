@@ -11,7 +11,7 @@ import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import React, { useEffect, useRef } from 'react';
 import { renderToString } from 'react-dom/server';
-import { Markdown } from '@/components/markdown';
+import { Markdown } from '@/components/chat/markdown';
 
 import { diffEditor, DiffType } from '@/lib/editor/diff';
 

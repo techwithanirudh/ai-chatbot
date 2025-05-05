@@ -4,6 +4,7 @@ import { Chat } from '@/components/chat';
 import { DEFAULT_CHAT_MODEL } from '@/lib/ai/models';
 import { generateUUID } from '@/lib/utils';
 import { DataStreamHandler } from '@/components/data-stream-handler';
+import { SidebarIsland } from '@/components/sidebar/sidebar-island';
 
 export default async function Page() {
   const id = generateUUID();
@@ -14,6 +15,10 @@ export default async function Page() {
   if (!modelIdFromCookie) {
     return (
       <>
+        <SidebarIsland
+          chatId={id}
+          isReadonly={false}
+        />
         <Chat
           key={id}
           id={id}
@@ -29,6 +34,10 @@ export default async function Page() {
 
   return (
     <>
+      <SidebarIsland
+        chatId={id}
+        isReadonly={false}
+      />
       <Chat
         key={id}
         id={id}

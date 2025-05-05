@@ -5,11 +5,10 @@ import ReactMarkdown, { type Components } from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import { CodeBlock } from './artifact/code/code-block';
+import { CodeComponent } from './components/code-block';
 
 const components: Partial<Components> = {
-  // @ts-expect-error
-  code: CodeBlock,
+  code: CodeComponent,
   pre: ({ children }) => <>{children}</>,
   ol: ({ node, children, ...props }) => {
     return (

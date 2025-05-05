@@ -16,7 +16,6 @@ import {
 } from '@/components/ui/sidebar';
 import Link from 'next/link';
 import { PlusIcon } from 'lucide-react';
-import { SidebarToggle } from './sidebar-toggle';
 
 export function AppSidebar({
   user,
@@ -27,13 +26,10 @@ export function AppSidebar({
 
   return (
     <Sidebar className="group-data-[side=left]:border-r-0" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="px-2 py-1">
         <SidebarMenu>
           <div className="flex flex-col justify-between items-center gap-2 relative">
-            <div className="flex w-full shrink-0 justify-center items-center transition-opacity delay-75 duration-75 font-semibold relative h-8">
-              <div className="pointer-events-auto absolute inset-0 z-50 flex flex-row">
-                <SidebarToggle className="-mx-1.5 size-8" />
-              </div>
+            <div className="flex w-full shrink-0 justify-center items-center transition-opacity delay-75 duration-75 font-semibold h-8">
               <Link
                 href="/"
                 onClick={() => {
@@ -48,7 +44,7 @@ export function AppSidebar({
               variant="default"
               type="button"
               size={'sm'}
-              className="gap-1.5 w-full border border-border font-semibold group/button"
+              className="gap-1.5 w-full border border-border font-semibold group/button rounded-lg"
               onClick={() => {
                 setOpenMobile(false);
                 router.push('/');
@@ -64,7 +60,7 @@ export function AppSidebar({
           </div>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className='scroll-shadow'>
         <SidebarHistory user={user} />
       </SidebarContent>
       <SidebarFooter>{user && <SidebarUserNav user={user} />}</SidebarFooter>

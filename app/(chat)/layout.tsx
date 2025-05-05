@@ -23,7 +23,7 @@ export default async function Layout({
       />
       <SidebarProvider defaultOpen={!isCollapsed}>
         <AppSidebar variant="inset" user={session?.user} />
-        <SidebarInset className="md:peer-data-[variant=inset]:shadow-none transition-transition-[width,height] md:peer-data-[variant=inset]:rounded-b-none md:peer-data-[variant=inset]:m-0 overflow-hidden">
+        <SidebarInset className="transition-transition-[width,height] overflow-hidden">
           {children}
         </SidebarInset>
       </SidebarProvider>

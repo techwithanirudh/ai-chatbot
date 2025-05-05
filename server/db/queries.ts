@@ -52,7 +52,11 @@ export async function deleteChatById({ id }: { id: string }) {
     await db.delete(vote).where(eq(vote.chatId, id));
     await db.delete(message).where(eq(message.chatId, id));
 
-    return await db.delete(chat).where(eq(chat.id, id));
+    const [chatsDeleted] = await db
+      .delete(chat)
+      .where(eq(chat.id, id))
+      .returning();
+    return chatsDeleted;
   } catch (error) {
     console.error('Failed to delete chat by id from database');
     throw error;
@@ -383,6 +387,21 @@ export async function updateChatVisiblityById({
     return await db.update(chat).set({ visibility }).where(eq(chat.id, chatId));
   } catch (error) {
     console.error('Failed to update chat visibility in database');
+    throw error;
+  }
+}
+
+export async function updateChatTitleById({
+  chatId,
+  title,
+}: {
+  chatId: string;
+  title: string;
+}) {
+  try {
+    return await db.update(chat).set({ title }).where(eq(chat.id, chatId));
+  } catch (error) {
+    console.error('Failed to update chat title in database');
     throw error;
   }
 }
