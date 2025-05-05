@@ -1,5 +1,13 @@
 import type { Session } from '@/lib/auth/types';
 
+// This dummy session should only be used in development
+if (
+  process.env.NODE_ENV === 'production' &&
+  process.env.DISABLE_AUTH === 'true'
+) {
+  console.warn('Warning: Using dummy session in production environment');
+}
+
 export const dummySession: Session = {
   session: {
     userId: 1,
@@ -30,4 +38,4 @@ export const dummySession: Session = {
     usagePlanned: null,
     botsApiKey: null,
   },
-};
+} as const;

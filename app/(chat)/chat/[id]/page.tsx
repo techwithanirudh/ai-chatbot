@@ -21,7 +21,7 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   const session = await getAuthSession();
 
   if (chat.visibility === 'private') {
-    if (!session || !session.user) {
+    if (!session || !session.user || !session.user.id) {
       return notFound();
     }
 

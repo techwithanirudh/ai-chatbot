@@ -4,9 +4,11 @@ export type MenuOption = {
   separator?: boolean;
 };
 
+const environment = process.env.ENVIRONMENT || '';
+
 const SETTINGS_URL =
   process.env.NEXT_PUBLIC_SETTINGS_REDIRECTION_URL ||
-  'https://settings.meetingbaas.com';
+  `https://settings.${environment}meetingbaas.com`;
 
 export const menuOptions: MenuOption[] = [
   {

@@ -30,6 +30,23 @@ export const UserMenu = ({
     window.location.href = '/';
   };
 
+  const renderMenuOptions = () =>
+    menuOptions.map((menuOption) => (
+      <Fragment key={menuOption.title}>
+        {menuOption.separator && <DropdownMenuSeparator />}
+        <DropdownMenuItem asChild>
+          <Link
+            rel="noopener noreferrer"
+            href={menuOption.href}
+            target="_blank"
+            className="cursor-pointer"
+          >
+            {menuOption.title}
+          </Link>
+        </DropdownMenuItem>
+      </Fragment>
+    ));
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -56,29 +73,13 @@ export const UserMenu = ({
       <DropdownMenuContent className="w-48">
         <DropdownMenuItem
           className="hover:!bg-popover inline-flex w-full justify-between py-1"
-          onSelect={(e: Event) => {
-            e.preventDefault();
-          }}
+          onSelect={(e) => e.preventDefault()}
         >
           <p>Theme</p>
           <ThemeToggle />
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        {menuOptions.map((menuOption) => (
-          <Fragment key={menuOption.title}>
-            {menuOption.separator && <DropdownMenuSeparator />}
-            <DropdownMenuItem asChild>
-              <Link
-                rel="noopener noreferrer"
-                href={menuOption.href}
-                target="_blank"
-                className="cursor-pointer"
-              >
-                {menuOption.title}
-              </Link>
-            </DropdownMenuItem>
-          </Fragment>
-        ))}
+        {renderMenuOptions()}
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <button

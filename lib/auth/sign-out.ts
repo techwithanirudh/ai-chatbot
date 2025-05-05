@@ -8,11 +8,15 @@ export async function signOut(): Promise<boolean> {
       throw new Error('Auth app URL is not configured');
     }
 
-    await fetch(`${authAppUrl}/api/auth/sign-out`, {
+    const response = await fetch(`${authAppUrl}/api/auth/sign-out`, {
       method: 'POST',
       body: JSON.stringify({}),
       credentials: 'include',
     });
+    if (!response.ok) {
+      throw new Error(`Sign out failed with status: ${response.status}`);
+    }
+
     return true;
   } catch (error) {
     console.error('Error signing out user:', error);
