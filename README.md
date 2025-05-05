@@ -35,7 +35,7 @@ This enhanced version of the Chat SDK template includes several key upgrades to 
   - Fully integrated authentication using [`better-auth`](https://www.better-auth.com)
   - Support for multiple providers
   - Single Sign On
-  - Optionally disable auth for local development
+  - Optionally disable auth for local development (useful when authentication app is on a different domain)
 - Redesigned Login & Register Pages
   - Modern, user-friendly layouts with improved UX and input validation
 - Home Page Makeover  
