@@ -22,21 +22,20 @@ An Open-Source AI Chatbot w/ MeetingBaas Integrated - Fork of [Vercel's AI Chatb
 - Data Persistence
   - [Neon Serverless Postgres](https://vercel.com/marketplace/neon) for saving chat history and user data
   - [Vercel Blob](https://vercel.com/storage/blob) for efficient file storage
-- [Auth.js](https://authjs.dev)
-  - Simple and secure authentication
-  - Support for several providers like Keycloak, Resend, and Google Authentication.
+- [Centralised authentication app integration](https://github.com/Meeting-Baas/better-auth-nextjs-starter)
+  - Simple and secure authentication. Built upon [better-auth](https://www.better-auth.com)
+  - Support for several providers like Google, Microsoft, GitHub, GitLab and Zoom.
 
 
 ## Upgrades
 
 This enhanced version of the Chat SDK template includes several key upgrades to improve authentication, UX, and functionality:
 
-- Auth System Revamp
-  - Fully refactored authentication using [`authjs`](https://authjs.dev) and `next-safe-action`
-  - Support for multiple providers:  
-    - Magic Link (Resend) with a custom Resend email template  
-    - Google Authentication
-    - Keycloak (Credentials) with included integration guide
+- Auth System Integration
+  - Fully integrated authentication using [`better-auth`](https://www.better-auth.com)
+  - Support for multiple providers
+  - Single Sign On
+  - Optionally disable auth for local development
 - Redesigned Login & Register Pages
   - Modern, user-friendly layouts with improved UX and input validation
 - Home Page Makeover  

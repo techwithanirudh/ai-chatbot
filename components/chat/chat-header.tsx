@@ -11,18 +11,21 @@ import { memo } from 'react';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 import { type VisibilityType, VisibilitySelector } from './visibility-selector';
 import Link from 'next/link';
-import { FishIcon } from 'lucide-react';
+import { UserMenu } from '@/components/chat/user-avatar/user-menu';
+import type { User } from '@/lib/auth/types';
 
 function PureChatHeader({
   chatId,
   selectedModelId,
   selectedVisibilityType,
   isReadonly,
+  user,
 }: {
   chatId: string;
   selectedModelId: string;
   selectedVisibilityType: VisibilityType;
   isReadonly: boolean;
+  user: User | undefined;
 }) {
   const router = useRouter();
   const { open } = useSidebar();
@@ -79,18 +82,7 @@ function PureChatHeader({
           </span>
         </Link>
       </Button>
-      <Button
-        variant="outline"
-        className="hidden md:flex py-1.5 px-2 h-fit md:h-[34px] order-4 "
-        asChild
-      >
-        <Link href="https://meetingbaas.com/" target="_blank">
-          <span className="flex items-center gap-2">
-            <FishIcon />
-            Open MeetingBaas
-          </span>
-        </Link>
-      </Button>
+      {user && <UserMenu user={user} />}
     </header>
   );
 }

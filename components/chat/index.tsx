@@ -18,6 +18,7 @@ import { unstable_serialize } from 'swr/infinite';
 import { getChatHistoryPaginationKey } from '@/components/sidebar/sidebar-history';
 import * as motion from 'motion/react-client';
 import { AnimatePresence } from 'motion/react';
+import type { User } from '@/lib/auth/types';
 
 export function Chat({
   id,
@@ -25,12 +26,14 @@ export function Chat({
   selectedChatModel,
   selectedVisibilityType,
   isReadonly,
+  user,
 }: {
   id: string;
   initialMessages: Array<UIMessage>;
   selectedChatModel: string;
   selectedVisibilityType: VisibilityType;
   isReadonly: boolean;
+  user: User | undefined;
 }) {
   const { mutate } = useSWRConfig();
 
@@ -75,6 +78,7 @@ export function Chat({
           selectedModelId={selectedChatModel}
           selectedVisibilityType={selectedVisibilityType}
           isReadonly={isReadonly}
+          user={user}
         />
 
         <div

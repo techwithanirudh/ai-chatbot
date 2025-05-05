@@ -1,15 +1,13 @@
 'use client';
 
-import type { User } from 'next-auth';
+import type { User } from '@/lib/auth/types';
 import { useRouter } from 'next/navigation';
 
 import { SidebarHistory } from '@/components/sidebar/sidebar-history';
-import { SidebarUserNav } from '@/components/sidebar/sidebar-user-nav';
 import { Button } from '@/components/ui/button';
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   useSidebar,
@@ -63,7 +61,6 @@ export function AppSidebar({
       <SidebarContent>
         <SidebarHistory user={user} />
       </SidebarContent>
-      <SidebarFooter>{user && <SidebarUserNav user={user} />}</SidebarFooter>
     </Sidebar>
   );
 }
