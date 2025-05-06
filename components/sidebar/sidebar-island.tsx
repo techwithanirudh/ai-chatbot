@@ -37,7 +37,7 @@ function PureSidebarIsland({
           <Button
             variant="ghost"
             className={cn('h-fit !px-2', {
-              'sm:pointer-events-none sm:-translate-x-[2.125rem] sm:opacity-0 sm:delay-0 sm:duration-150':
+              'md:pointer-events-none md:-translate-x-[2.125rem] md:opacity-0 md:delay-0 md:duration-150':
                 open,
             })}
             onClick={() => {
