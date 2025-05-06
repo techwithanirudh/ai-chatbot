@@ -88,7 +88,7 @@ export function CodeComponent({
                 />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Copy</TooltipContent>
+            <TooltipContent>{copied ? 'Copied' : 'Copy'}</TooltipContent>
           </Tooltip>
         </div>
       </div>
