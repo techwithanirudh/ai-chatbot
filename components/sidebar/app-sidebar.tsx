@@ -60,7 +60,7 @@ export function AppSidebar({
           </div>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className='scroll-shadow'>
+      <SidebarContent className="scroll-shadow">
         <SidebarHistory user={user} />
       </SidebarContent>
       <SidebarFooter>{user && <SidebarUserNav user={user} />}</SidebarFooter>
