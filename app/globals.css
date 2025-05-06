@@ -270,7 +270,7 @@
   }
 
   * {
-    @apply accent-primary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border dark:scrollbar-track-transparent scrollbar-thumb-rounded-full;
+    @apply accent-primary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border dark:scrollbar-track-transparent scrollbar-thumb-rounded-full scrollbar-track-rounded-full;
   }
 
   ::selection {

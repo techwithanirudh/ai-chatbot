@@ -43,8 +43,8 @@ export function AppSidebar({
             <Button
               variant="default"
               type="button"
-              size={'sm'}
-              className="gap-1.5 w-full border border-border font-semibold group/button rounded-lg h-9 px-3"
+              size={'lg'}
+              className="gap-1.5 w-full border border-border font-semibold group/button rounded-lg"
               onClick={() => {
                 setOpenMobile(false);
                 router.push('/');
