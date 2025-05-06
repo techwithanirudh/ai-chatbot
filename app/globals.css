@@ -280,6 +280,18 @@
     color: hsl(var(--foreground));
   }
 }
+
+@layer base {
+  a {
+    @apply [overflow-wrap:anywhere];
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
 @layer utilities {
   @media (prefers-reduced-motion: no-preference) {
     ::view-transition-new(theme-transition) {
