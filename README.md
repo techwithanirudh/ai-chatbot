@@ -38,6 +38,7 @@ This enhanced version of the Chat SDK template includes several key upgrades to 
   - Cleaner interface and layout for the chatbot landing page
 - Web Search Integration
   - Responses enriched via **OpenAI's Responses API**, adding contextual and real-time info
+- Upgrades from Tailwind v3 to Tailwind v4
 
 ## Model Providers
 
