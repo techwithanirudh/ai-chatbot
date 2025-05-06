@@ -36,7 +36,7 @@ function PureSidebarIsland({
         <TooltipTrigger asChild>
           <Button
             variant="ghost"
-            className={cn('h-fit px-2', {
+            className={cn('h-fit !px-2', {
               'sm:pointer-events-none sm:-translate-x-[2.125rem] sm:opacity-0 sm:delay-0 sm:duration-150':
                 open,
             })}

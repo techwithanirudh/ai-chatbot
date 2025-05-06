@@ -45,7 +45,7 @@ export function SidebarUserNav({ user }: { user: User }) {
                   className="rounded-full"
                 />
               )}
-              <span className="truncate">{user?.name}</span>
+              <span className="truncate">{user?.name ?? user.email}</span>
 
               <ChevronUp className="ml-auto" />
             </SidebarMenuButton>
