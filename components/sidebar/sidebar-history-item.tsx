@@ -57,13 +57,13 @@ const PureChatItem = ({
         asChild
         isActive={isActive}
         size="default"
-        className={cn('h-fit py-2 px-3', isEditing && '!p-0')}
+        className={cn('h-fit py-2 px-3', isEditing && 'p-0!')}
       >
         {isEditing ? (
           <div>
             <Input
               defaultValue={title}
-              className="h-fit p-0 bg-transparent border-none w-full rounded-md !ring-0 !outline-none py-2 px-3"
+              className="h-fit p-0 bg-transparent border-none w-full rounded-md ring-0! outline-hidden! py-2 px-3"
               autoFocus
               onKeyDown={(e) => {
                 if (e.key === 'Escape') setIsEditing(false);
@@ -92,7 +92,7 @@ const PureChatItem = ({
       <DropdownMenu modal={true}>
         <DropdownMenuTrigger asChild className={isEditing ? 'hidden' : ''}>
           <SidebarMenuAction
-            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground mr-0.5 !top-2"
+            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground mr-0.5 top-2!"
             showOnHover={!isActive}
           >
             <MoreHorizontalIcon />
