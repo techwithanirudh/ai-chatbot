@@ -3,6 +3,7 @@
 
 @plugin 'tailwind-scrollbar' {
   nocompatible: true;
+  preferredStrategy: 'pseudoelements';
 }
 
 @custom-variant dark (&:is(.dark *));
