@@ -31,7 +31,7 @@ export async function saveChat({
   title,
 }: {
   id: string;
-  userId: string;
+  userId: number;
   title: string;
 }) {
   try {
@@ -65,7 +65,7 @@ export async function getChatsByUserId({
   startingAfter,
   endingBefore,
 }: {
-  id: string;
+  id: number;
   limit: number;
   startingAfter: string | null;
   endingBefore: string | null;
@@ -215,7 +215,7 @@ export async function saveDocument({
   title: string;
   kind: ArtifactKind;
   content: string;
-  userId: string;
+  userId: number;
 }) {
   try {
     return await db

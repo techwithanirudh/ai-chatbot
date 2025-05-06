@@ -6,6 +6,8 @@ type MCPClientType = Awaited<ReturnType<typeof createMCPClient>>;
 let publicClient: MCPClientType | null = null;
 let privateClient: MCPClientType | null = null;
 
+const environment = process.env.ENVIRONMENT || '';
+
 export async function getMCPTools() {
   const baasSession = await meetingBaas.auth();
   if (!baasSession?.jwt || !baasSession?.apiKey) {
@@ -25,7 +27,7 @@ export async function getMCPTools() {
       privateClient = await createMCPClient({
         transport: {
           type: 'sse',
-          url: 'https://mcp-private.meetingbaas.com/sse',
+          url: `https://mcp-private.${environment}meetingbaas.com/sse`,
           headers: {
             Cookie: `jwt=${baasSession.jwt}`,
           },
@@ -50,7 +52,7 @@ export async function getMCPTools() {
       publicClient = await createMCPClient({
         transport: {
           type: 'sse',
-          url: 'https://mcp.meetingbaas.com/sse',
+          url: `https://mcp.${environment}meetingbaas.com/sse`,
           headers: {
             'x-meeting-baas-api-key': baasSession.apiKey,
           },

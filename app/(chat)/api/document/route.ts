@@ -1,4 +1,4 @@
-import { auth } from '@/server/auth';
+import { getAuthSession } from '@/lib/auth/session';
 import type { ArtifactKind } from '@/components/artifact';
 import {
   deleteDocumentsByIdAfterTimestamp,
@@ -14,7 +14,7 @@ export async function GET(request: Request) {
     return new Response('Missing id', { status: 400 });
   }
 
-  const session = await auth();
+  const session = await getAuthSession();
 
   if (!session?.user?.id) {
     return new Response('Unauthorized', { status: 401 });
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     return new Response('Missing id', { status: 400 });
   }
 
-  const session = await auth();
+  const session = await getAuthSession();
 
   if (!session?.user?.id) {
     return new Response('Unauthorized', { status: 401 });
@@ -90,7 +90,7 @@ export async function DELETE(request: Request) {
     return new Response('Missing timestamp', { status: 400 });
   }
 
-  const session = await auth();
+  const session = await getAuthSession();
 
   if (!session?.user?.id) {
     return new Response('Unauthorized', { status: 401 });

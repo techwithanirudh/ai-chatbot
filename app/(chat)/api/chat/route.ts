@@ -5,7 +5,7 @@ import {
   smoothStream,
   streamText,
 } from 'ai';
-import { auth } from '@/server/auth';
+import { getAuthSession } from '@/lib/auth/session';
 import { systemPrompt } from '@/lib/ai/prompts';
 import {
   deleteChatById,
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       selectedChatModel: string;
     } = await request.json();
 
-    const session = await auth();
+    const session = await getAuthSession();
     const baasSession = await meetingBaas.auth();
 
     if (!session || !session.user || !session.user.id) {
@@ -190,9 +190,9 @@ export async function DELETE(request: Request) {
     return new Response('Not Found', { status: 404 });
   }
 
-  const session = await auth();
+  const session = await getAuthSession();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     return new Response('Unauthorized', { status: 401 });
   }
 

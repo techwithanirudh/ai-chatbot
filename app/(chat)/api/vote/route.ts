@@ -1,4 +1,4 @@
-import { auth } from '@/server/auth';
+import { getAuthSession } from '@/lib/auth/session';
 import {
   getChatById,
   getVotesByChatId,
@@ -13,9 +13,9 @@ export async function GET(request: Request) {
     return new Response('chatId is required', { status: 400 });
   }
 
-  const session = await auth();
+  const session = await getAuthSession();
 
-  if (!session || !session.user || !session.user.email) {
+  if (!session || !session.user || !session.user.id) {
     return new Response('Unauthorized', { status: 401 });
   }
 
@@ -46,9 +46,9 @@ export async function PATCH(request: Request) {
     return new Response('messageId and type are required', { status: 400 });
   }
 
-  const session = await auth();
+  const session = await getAuthSession();
 
-  if (!session || !session.user || !session.user.email) {
+  if (!session || !session.user || !session.user.id) {
     return new Response('Unauthorized', { status: 401 });
   }
 

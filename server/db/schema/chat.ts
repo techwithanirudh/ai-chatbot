@@ -8,17 +8,15 @@ import {
   primaryKey,
   foreignKey,
   boolean,
+  integer,
 } from 'drizzle-orm/pg-core';
 import { createTable } from '../utils';
-import { user } from './auth';
 
 export const chat = createTable('chat', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
   createdAt: timestamp('createdAt').notNull(),
   title: text('title').notNull(),
-  userId: uuid('userId')
-    .notNull()
-    .references(() => user.id),
+  userId: integer('userId').notNull(),
   visibility: varchar('visibility', { enum: ['public', 'private'] })
     .notNull()
     .default('private'),
@@ -105,9 +103,7 @@ export const document = createTable(
     kind: varchar('text', { enum: ['text', 'code', 'image', 'sheet'] })
       .notNull()
       .default('text'),
-    userId: uuid('userId')
-      .notNull()
-      .references(() => user.id),
+    userId: integer('userId').notNull(),
   },
   (table) => {
     return {
@@ -128,9 +124,7 @@ export const suggestion = createTable(
     suggestedText: text('suggestedText').notNull(),
     description: text('description'),
     isResolved: boolean('isResolved').notNull().default(false),
-    userId: uuid('userId')
-      .notNull()
-      .references(() => user.id),
+    userId: integer('userId').notNull(),
     createdAt: timestamp('createdAt').notNull(),
   },
   (table) => ({

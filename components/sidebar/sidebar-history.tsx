@@ -2,7 +2,7 @@
 
 import { isToday, isYesterday, subMonths, subWeeks } from 'date-fns';
 import { useParams, useRouter } from 'next/navigation';
-import type { User } from 'next-auth';
+import type { User } from '@/lib/auth/types';
 import { useState } from 'react';
 import { toast } from 'sonner';
 import { motion } from 'motion/react';
