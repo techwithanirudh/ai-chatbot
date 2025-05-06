@@ -49,7 +49,7 @@ const PurePreviewMessage = ({
     <AnimatePresence>
       <motion.div
         data-testid={`message-${message.role}`}
-        className="w-full mx-auto max-w-3xl px-4 group/message"
+        className="w-full mx-auto max-w-3xl px-4 group/message nth-last-of-type-2:flex-1"
         initial={{ y: 5, opacity: 0 }}
         animate={{ y: 0, opacity: 1, transition: { delay: 0.15 } }}
         // exit={{ y: 5, opacity: 0, transition: { duration: 0.2 } }}
@@ -112,7 +112,7 @@ const PurePreviewMessage = ({
                               <Button
                                 data-testid="message-edit-button"
                                 variant="ghost"
-                                className="px-2 h-fit rounded-full text-muted-foreground opacity-0 group-hover/message:opacity-100"
+                                className="!px-2 h-fit rounded-full text-muted-foreground opacity-0 group-hover/message:opacity-100"
                                 onClick={() => {
                                   setMode('edit');
                                 }}

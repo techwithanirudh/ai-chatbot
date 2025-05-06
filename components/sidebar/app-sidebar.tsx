@@ -43,7 +43,7 @@ export function AppSidebar({
             <Button
               variant="default"
               type="button"
-              size={'sm'}
+              size={'lg'}
               className="gap-1.5 w-full border border-border font-semibold group/button rounded-lg"
               onClick={() => {
                 setOpenMobile(false);
@@ -60,7 +60,7 @@ export function AppSidebar({
           </div>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className='scroll-shadow'>
+      <SidebarContent className="scroll-shadow">
         <SidebarHistory user={user} />
       </SidebarContent>
       <SidebarFooter>{user && <SidebarUserNav user={user} />}</SidebarFooter>

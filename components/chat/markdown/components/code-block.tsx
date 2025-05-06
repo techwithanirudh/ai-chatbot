@@ -56,7 +56,9 @@ export function CodeComponent({
   };
 
   return (
-    <CodeBlock className={cn('overflow-auto max-w-2xl', 'code-block', className)}>
+    <CodeBlock
+      className={cn('overflow-auto max-w-2xl', 'code-block', className)}
+    >
       <CodeBlockGroup className="flex h-9 items-center justify-between px-4">
         <div className="text-muted-foreground py-1 pr-2 font-mono text-xs">
           {language}
@@ -86,7 +88,7 @@ export function CodeComponent({
                 />
               </Button>
             </TooltipTrigger>
-            <TooltipContent>Copy</TooltipContent>
+            <TooltipContent>{copied ? 'Copied' : 'Copy'}</TooltipContent>
           </Tooltip>
         </div>
       </div>

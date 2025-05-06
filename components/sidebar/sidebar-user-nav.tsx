@@ -45,17 +45,17 @@ export function SidebarUserNav({ user }: { user: User }) {
                   className="rounded-full"
                 />
               )}
-              <span className="truncate">{user?.name}</span>
+              <span className="truncate">{user?.name ?? user.email}</span>
 
               <ChevronUp className="ml-auto" />
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
             side="top"
-            className="w-[--radix-popper-anchor-width]"
+            className="w-(--radix-popper-anchor-width)"
           >
             <DropdownMenuItem
-              className="inline-flex justify-between w-full hover:!bg-background py-1"
+              className="inline-flex justify-between w-full hover:bg-background! py-1"
               onSelect={(e) => {
                 e.preventDefault();
               }}

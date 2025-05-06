@@ -34,7 +34,7 @@ const KeycloakButton = ({ disabled }: { disabled?: boolean }) => {
   return (
     <Button
       size="lg"
-      className="flex w-full flex-row items-center justify-center gap-2 shadow-sm"
+      className="flex w-full flex-row items-center justify-center gap-2 shadow-xs"
       variant="outline"
       disabled={isPending || disabled}
       formAction={submitAction}
@@ -64,7 +64,7 @@ export const GoogleButton = ({ disabled }: { disabled?: boolean }) => {
   return (
     <Button
       size="lg"
-      className="flex w-full flex-row items-center justify-center gap-2 shadow-sm"
+      className="flex w-full flex-row items-center justify-center gap-2 shadow-xs"
       variant="outline"
       disabled={isPending || disabled}
       formAction={submitAction}

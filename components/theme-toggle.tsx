@@ -26,7 +26,7 @@ const themes = [
 ];
 
 const itemVariants = cva(
-  'relative size-4.5 rounded-full p-1.5 text-fd-muted-foreground',
+  'relative size-6.5 rounded-full p-1.5 text-fd-muted-foreground',
   {
     variants: {
       active: {

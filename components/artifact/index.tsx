@@ -335,7 +335,7 @@ function PureArtifact({
                     setAttachments={setAttachments}
                     messages={messages}
                     append={append}
-                    className="bg-background dark:bg-muted"
+                    // className="bg-background dark:bg-muted"
                     setMessages={setMessages}
                     selectedModelId={selectedModelId}
                   />
@@ -449,7 +449,7 @@ function PureArtifact({
               />
             </div>
 
-            <div className="dark:bg-muted bg-background h-full overflow-y-scroll !max-w-full items-center">
+            <div className="dark:bg-muted bg-background h-full overflow-y-scroll max-w-full! items-center">
               <artifactDefinition.content
                 title={artifact.title}
                 content={
