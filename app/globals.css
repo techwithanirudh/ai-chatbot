@@ -116,10 +116,6 @@
         @apply scroll-smooth;
     }
 
-    * {
-        @apply accent-primary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border dark:scrollbar-track-transparent;
-    }
-
     ::selection {
         background-color: hsl(var(--accent));
         color: hsl(var(--foreground));
