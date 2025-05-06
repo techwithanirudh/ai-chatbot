@@ -1,7 +1,9 @@
 @import 'tailwindcss';
 @import "tw-animate-css";
 
-@plugin "tailwind-scrollbar";
+@plugin 'tailwind-scrollbar' {
+  nocompatible: true;
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -267,7 +269,7 @@
   }
 
   * {
-    @apply accent-primary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border dark:scrollbar-track-transparent;
+    @apply accent-primary scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border dark:scrollbar-track-transparent scrollbar-thumb-rounded-full;
   }
 
   ::selection {
