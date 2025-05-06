@@ -1,3 +1,6 @@
+/**
+ * Represents a user in the system
+ */
 export type User = {
   name: string;
   email: string;
@@ -7,6 +10,10 @@ export type User = {
   updatedAt: string;
   firstname: string;
   lastname: string | null;
+  /**
+   * User status code as per Meeting BaaS accounts table
+   * Status 4 represents a verified user, and is required for legacy services
+   */
   status: number;
   phone: string | null;
   companyName: string | null;
@@ -16,6 +23,10 @@ export type User = {
   id: number;
 };
 
+/**
+ * Represents an authenticated user session
+ * Contains both session metadata and the associated user information
+ */
 export type Session = {
   session: {
     expiresAt: string;

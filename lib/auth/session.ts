@@ -40,6 +40,13 @@ export async function getAuthSession(): Promise<Session | null> {
         Cookie: cookie,
       },
     });
+
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch session: ${response.status} ${response.statusText}`,
+      );
+    }
+
     const rawSession = await response.json();
 
     if (!rawSession?.session) {

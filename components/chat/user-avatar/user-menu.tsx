@@ -62,7 +62,10 @@ export const UserMenu = ({
             />
           ) : (
             <Avatar className="border size-7" aria-label="user menu">
-              <AvatarImage src={user.image ?? undefined} />
+              <AvatarImage
+                src={user.image ?? undefined}
+                alt={user.name ?? 'User avatar'}
+              />
               <AvatarFallback className="bg-primary">
                 <UserIcon className="size-4.5" />
               </AvatarFallback>

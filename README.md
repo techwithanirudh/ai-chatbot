@@ -26,6 +26,14 @@ An Open-Source AI Chatbot w/ MeetingBaas Integrated - Fork of [Vercel's AI Chatb
   - Simple and secure authentication. Built upon [better-auth](https://www.better-auth.com)
   - Support for several providers like Google, Microsoft, GitHub, GitLab and Zoom.
 
+## Migrating from previous auth system
+
+If you're upgrading from a previous version using Auth.js:
+
+1. Update your environment variables according to the new .env.example file
+2. Since userId is now an integer, **the current tables would be truncated, and data would be lost**
+3. Set `DISABLE_AUTH=true` for local development if needed
+4. For production, ensure the auth app is deployed and configured first
 
 ## Upgrades
 

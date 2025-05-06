@@ -4,6 +4,12 @@ if (!process.env.AUTH_COOKIE_NAME) {
   throw new Error('AUTH_COOKIE_NAME environment variable is not defined');
 }
 
+if (!process.env.NEXT_PUBLIC_AUTH_APP_URL) {
+  throw new Error(
+    'NEXT_PUBLIC_AUTH_APP_URL environment variable is not defined',
+  );
+}
+
 export async function middleware(request: NextRequest) {
   // Skip auth cookie check if disable auth is set to true
   if (process.env.DISABLE_AUTH === 'true') {

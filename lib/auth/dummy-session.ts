@@ -24,7 +24,7 @@ export const dummySession: Session = {
     id: 1,
     // These values can be anything for the dummy user
     name: 'John Doe',
-    email: 'test@email.com',
+    email: 'john.doe@example.com',
     emailVerified: true,
     image: 'https://avatar.vercel.sh/1',
     createdAt: '2025-05-03T08:38:14.839Z',
