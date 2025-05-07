@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 
 export const Greeting = () => {
   return (
-    <div key="overview" className="max-w-3xl mx-auto text-center text-2xl mb-6">
+    <div key="overview" className="max-w-3xl mx-auto md:mt-20 px-8 size-full flex text-center text-2xl justify-center md:size-auto md:mb-8">
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -14,7 +14,7 @@ export const Greeting = () => {
           },
         }}
         layout="position"
-        className="inline-flex gap-2 items-center text-2xl md:text-3xl lg:text-4xl font-medium"
+        className="inline-flex gap-2 items-center text-3xl lg:text-4xl font-medium"
       >
         {/* <BotIcon
           className="inline-block h-full size-6 md:size-8 lg:size-9 hover:scale-125 transition-transform"
