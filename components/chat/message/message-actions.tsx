@@ -24,8 +24,8 @@ const itemVariants = cva(
   {
     variants: {
       active: {
-        true: 'text-fd-accent-foreground',
-        false: 'text-fd-muted-foreground',
+        true: 'text-accent-foreground',
+        false: 'text-muted-foreground',
       },
     },
   },
@@ -56,7 +56,7 @@ export function PureMessageActions({
           <TooltipTrigger asChild>
             <Button
               size="icon"
-              className="p-1 w-fit h-fit text-muted-foreground rounded-md relative"
+              className={cn(itemVariants(), "w-fit text-muted-foreground rounded-md relative")}
               variant="ghost"
               onClick={async () => {
                 const textFromParts = message.parts
@@ -99,7 +99,7 @@ export function PureMessageActions({
               data-testid="message-upvote"
               className={cn(itemVariants(), 'pointer-events-auto!')}
               disabled={vote?.isUpvoted}
-              variant="outline"
+              variant="ghost"
               onClick={async () => {
                 const upvote = fetch('/api/vote', {
                   method: 'PATCH',
@@ -151,7 +151,7 @@ export function PureMessageActions({
             <Button
               data-testid="message-downvote"
               className={cn(itemVariants(), 'pointer-events-auto!')}
-              variant="outline"
+              variant="ghost"
               disabled={vote && !vote.isUpvoted}
               onClick={async () => {
                 const downvote = fetch('/api/vote', {
