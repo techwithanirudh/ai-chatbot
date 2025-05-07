@@ -1,5 +1,5 @@
-import { experimental_createMCPClient as createMCPClient } from 'ai';
 import * as meetingBaas from '@/server/meetingbaas';
+import { experimental_createMCPClient as createMCPClient } from 'ai';
 
 // Keep track of active clients
 type MCPClientType = Awaited<ReturnType<typeof createMCPClient>>;
