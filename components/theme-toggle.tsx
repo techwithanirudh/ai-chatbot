@@ -8,21 +8,9 @@ import { useTheme } from 'next-themes';
 import { type HTMLAttributes, useLayoutEffect, useState } from 'react';
 
 const themes = [
-  {
-    key: 'light',
-    icon: Sun,
-    label: 'Light theme',
-  },
-  {
-    key: 'dark',
-    icon: Moon,
-    label: 'Dark theme',
-  },
-  {
-    key: 'system',
-    icon: Airplay,
-    label: 'System theme',
-  },
+  { key: 'system', label: 'System', colors: ['#ffffff', '#1a1a1a'] },
+  { key: 'light', label: 'Light', colors: ['#ffffff'] },
+  { key: 'dark', label: 'Dark', colors: ['#1a1a1a'] },
 ];
 
 const itemVariants = cva(
@@ -50,7 +38,7 @@ export function ThemeToggle({
   const [mounted, setMounted] = useState(false);
 
   const container = cn(
-    'relative flex items-center rounded-full p-0.5 ring-1 ring-border',
+    'relative flex items-center rounded-md p-1 ring-1 ring-border',
     className,
   );
 
@@ -90,7 +78,7 @@ export function ThemeToggle({
       aria-label={mode === 'light-dark' ? 'Toggle Theme' : undefined}
       {...props}
     >
-      {themes.map(({ key, icon: Icon, label }) => {
+      {themes.map(({ key, label }) => {
         const isActive = value === key;
         if (mode === 'light-dark' && key === 'system') return;
 
@@ -115,10 +103,6 @@ export function ThemeToggle({
                 }}
               />
             )}
-            <Icon
-              className={'relative m-auto size-full text-muted-foreground'}
-              fill={'currentColor'}
-            />
           </button>
         );
       })}
