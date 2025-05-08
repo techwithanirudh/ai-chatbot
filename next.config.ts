@@ -3,6 +3,7 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   experimental: {
     ppr: true,
+    viewTransition: true,
     serverActions: {
       allowedOrigins: [
         'psychic-winner-55p45jg5x75276xj-3000.app.github.dev',

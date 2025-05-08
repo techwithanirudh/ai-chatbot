@@ -2,10 +2,9 @@
 
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
-import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import { type HTMLAttributes, useEffect, useState } from 'react';
-import { flushSync } from 'react-dom';
+import { startTransition, unstable_ViewTransition as ViewTransition } from 'react';
 
 const themes = [
   { key: 'system', label: 'System', colors: ['#ffffff', '#1a1a1a'] },
@@ -31,7 +30,7 @@ export function ThemeToggle({
   className,
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
-  const { setTheme, theme: currentTheme, resolvedTheme } = useTheme();
+  const { setTheme, theme: currentTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   const container = cn(
@@ -43,21 +42,11 @@ export function ThemeToggle({
     setMounted(true);
   }, []);
 
-  // https://malcolmkee.com/blog/view-transition-api-in-react-app/
-  const handleChangeTheme = async (theme: Theme) => {
-    function update() {
-      flushSync(() => {
-        setTheme(theme);
-      });
-    }
-
-    if (document.startViewTransition && theme !== resolvedTheme) {
-      document.documentElement.style.viewTransitionName = 'theme-transition';
-      await document.startViewTransition(update).finished;
-      document.documentElement.style.viewTransitionName = '';
-    } else {
-      update();
-    }
+  const handleChangeTheme = (theme: Theme) => {
+    // Use startTransition which is a View Transition trigger
+    startTransition(() => {
+      setTheme(theme);
+    });
   };
 
   const value = mounted ? currentTheme : null;
@@ -72,24 +61,18 @@ export function ThemeToggle({
             type="button"
             key={key}
             className={itemVariants({ active: isActive })}
-            onClick={() => {
-              handleChangeTheme(key as Theme);
-            }}
+            onClick={() => handleChangeTheme(key as Theme)}
             aria-label={label}
           >
             {isActive && (
-              <motion.div
-                layoutId="activeTheme"
-                className="absolute inset-0 rounded-md bg-accent"
-                transition={{
-                  type: 'easeOut',
-                  duration: 0.35,
-                }}
-              />
+              // Name the ViewTransition for consistent animation between states
+              <ViewTransition name="active-theme-indicator">
+                <div className="absolute inset-0 rounded-md bg-accent" />
+              </ViewTransition>
             )}
             <div className="relative z-10 space-y-2">
               <div className="mb-2 flex space-x-1">
-                {colors.map((color, i) => (
+                {colors.map((color) => (
                   <div
                     key={color}
                     className="border-border h-4 w-4 rounded-full border"
