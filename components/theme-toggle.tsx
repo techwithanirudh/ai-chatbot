@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
-import { type HTMLAttributes, useLayoutEffect, useState } from 'react';
+import { type HTMLAttributes, useEffect, useState } from 'react';
 import { flushSync } from 'react-dom';
 
 const themes = [
@@ -39,7 +39,7 @@ export function ThemeToggle({
     className,
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMounted(true);
   }, []);
 
