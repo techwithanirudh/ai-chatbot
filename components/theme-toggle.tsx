@@ -5,6 +5,7 @@ import { cva } from 'class-variance-authority';
 import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import { type HTMLAttributes, useLayoutEffect, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 const themes = [
   { key: 'system', label: 'System', colors: ['#ffffff', '#1a1a1a'] },
@@ -12,14 +13,17 @@ const themes = [
   { key: 'dark', label: 'Dark', colors: ['#1a1a1a'] },
 ];
 
-const itemVariants = cva('relative rounded-sm p-3 text-fd-muted-foreground grid', {
-  variants: {
-    active: {
-      true: 'text-fd-accent-foreground',
-      false: 'text-fd-muted-foreground',
+const itemVariants = cva(
+  'relative rounded-sm p-3 text-fd-muted-foreground grid',
+  {
+    variants: {
+      active: {
+        true: 'text-fd-accent-foreground',
+        false: 'text-fd-muted-foreground',
+      },
     },
   },
-});
+);
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -39,9 +43,12 @@ export function ThemeToggle({
     setMounted(true);
   }, []);
 
+  // https://malcolmkee.com/blog/view-transition-api-in-react-app/
   const handleChangeTheme = async (theme: Theme) => {
     function update() {
-      setTheme(theme);
+      flushSync(() => {
+        setTheme(theme);
+      });
     }
 
     if (document.startViewTransition && theme !== resolvedTheme) {
@@ -53,16 +60,10 @@ export function ThemeToggle({
     }
   };
 
-  const value = mounted
-    ? currentTheme
-    : null;
+  const value = mounted ? currentTheme : null;
 
   return (
-    <div
-      className={container}
-      data-theme-toggle=""
-      {...props}
-    >
+    <div className={container} data-theme-toggle="" {...props}>
       {themes.map(({ key, colors, label }) => {
         const isActive = value === key;
 
@@ -81,8 +82,8 @@ export function ThemeToggle({
                 layoutId="activeTheme"
                 className="absolute inset-0 rounded-md bg-accent"
                 transition={{
-                  type: 'spring',
-                  duration: 1.5,
+                  type: 'easeOut',
+                  duration: 0.6,
                 }}
               />
             )}
