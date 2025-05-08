@@ -83,7 +83,7 @@ export function ThemeToggle({
                 className="absolute inset-0 rounded-md bg-accent"
                 transition={{
                   type: 'easeOut',
-                  duration: 0.6,
+                  duration: 0.35,
                 }}
               />
             )}
