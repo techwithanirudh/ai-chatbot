@@ -301,18 +301,18 @@
       clip-path: inset(0 0 100% 0);
       animation: slide-in-from-top 0.65s forwards cubic-bezier(0.65, 0, 0.35, 1);
     }
-
+  
     ::view-transition-old(theme-transition) {
       animation: none;
     }
-
+  
     @keyframes slide-in-from-top {
       to {
         clip-path: inset(0 0 0 0);
       }
     }
   }
-
+  
   .skeleton {
     * {
       pointer-events: none !important;

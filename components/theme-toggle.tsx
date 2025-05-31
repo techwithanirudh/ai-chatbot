@@ -2,31 +2,19 @@
 
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
-import { Airplay, Moon, Sun } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
-import { type HTMLAttributes, useLayoutEffect, useState } from 'react';
+import { type HTMLAttributes, useEffect, useState } from 'react';
+import { flushSync } from 'react-dom';
 
 const themes = [
-  {
-    key: 'light',
-    icon: Sun,
-    label: 'Light theme',
-  },
-  {
-    key: 'dark',
-    icon: Moon,
-    label: 'Dark theme',
-  },
-  {
-    key: 'system',
-    icon: Airplay,
-    label: 'System theme',
-  },
+  { key: 'system', label: 'System', colors: ['#ffffff', '#1a1a1a'] },
+  { key: 'light', label: 'Light', colors: ['#ffffff'] },
+  { key: 'dark', label: 'Dark', colors: ['#1a1a1a'] },
 ];
 
 const itemVariants = cva(
-  'relative size-6.5 rounded-full p-1.5 text-fd-muted-foreground',
+  'relative rounded-sm p-3 text-fd-muted-foreground grid',
   {
     variants: {
       active: {
@@ -41,26 +29,26 @@ type Theme = 'light' | 'dark' | 'system';
 
 export function ThemeToggle({
   className,
-  mode = 'light-dark',
   ...props
-}: HTMLAttributes<HTMLDivElement> & {
-  mode?: 'light-dark' | 'light-dark-system';
-}) {
+}: HTMLAttributes<HTMLDivElement>) {
   const { setTheme, theme: currentTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   const container = cn(
-    'relative flex items-center rounded-full p-0.5 ring-1 ring-border',
+    'relative grid grid-cols-3 rounded-md p-0.5 ring-1 ring-border',
     className,
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMounted(true);
   }, []);
 
+  // https://malcolmkee.com/blog/view-transition-api-in-react-app/
   const handleChangeTheme = async (theme: Theme) => {
     function update() {
-      setTheme(theme);
+      flushSync(() => {
+        setTheme(theme);
+      });
     }
 
     if (document.startViewTransition && theme !== resolvedTheme) {
@@ -72,27 +60,12 @@ export function ThemeToggle({
     }
   };
 
-  const value = mounted
-    ? mode === 'light-dark'
-      ? resolvedTheme
-      : currentTheme
-    : null;
+  const value = mounted ? currentTheme : null;
 
   return (
-    // biome-ignore lint/nursery/noStaticElementInteractions: <explanation>
-    <div
-      className={container}
-      onClick={() => {
-        if (mode !== 'light-dark') return;
-        handleChangeTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
-      }}
-      data-theme-toggle=""
-      aria-label={mode === 'light-dark' ? 'Toggle Theme' : undefined}
-      {...props}
-    >
-      {themes.map(({ key, icon: Icon, label }) => {
+    <div className={container} data-theme-toggle="" {...props}>
+      {themes.map(({ key, colors, label }) => {
         const isActive = value === key;
-        if (mode === 'light-dark' && key === 'system') return;
 
         return (
           <button
@@ -100,7 +73,6 @@ export function ThemeToggle({
             key={key}
             className={itemVariants({ active: isActive })}
             onClick={() => {
-              if (mode === 'light-dark') return;
               handleChangeTheme(key as Theme);
             }}
             aria-label={label}
@@ -108,17 +80,25 @@ export function ThemeToggle({
             {isActive && (
               <motion.div
                 layoutId="activeTheme"
-                className="absolute inset-0 rounded-full bg-accent"
+                className="absolute inset-0 rounded-md bg-accent"
                 transition={{
-                  type: 'spring',
-                  duration: mode === 'light-dark' ? 1.5 : 1,
+                  type: 'easeOut',
+                  duration: 0.35,
                 }}
               />
             )}
-            <Icon
-              className={'relative m-auto size-full text-muted-foreground'}
-              fill={'currentColor'}
-            />
+            <div className="relative z-10 space-y-2">
+              <div className="mb-2 flex space-x-1">
+                {colors.map((color, i) => (
+                  <div
+                    key={color}
+                    className="border-border h-4 w-4 rounded-full border"
+                    style={{ backgroundColor: color }}
+                  />
+                ))}
+              </div>
+              <p className="text-left text-sm font-medium">{label}</p>
+            </div>
           </button>
         );
       })}

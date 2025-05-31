@@ -49,7 +49,7 @@ const PurePreviewMessage = ({
     <AnimatePresence>
       <motion.div
         data-testid={`message-${message.role}`}
-        className="w-full mx-auto max-w-3xl px-4 group/message nth-last-of-type-2:flex-1"
+        className="w-full mx-auto max-w-3xl px-4 group/message nth-last-of-type-2:flex-1 nth-last-of-type-2:[&_.message-actions]:opacity-100"
         initial={{ y: 5, opacity: 0 }}
         animate={{ y: 0, opacity: 1, transition: { delay: 0.15 } }}
         // exit={{ y: 5, opacity: 0, transition: { duration: 0.2 } }}
