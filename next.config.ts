@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
       {
         hostname: 'avatar.vercel.sh',
       },
+      {
+        // todo: store images locally
+        hostname: 'images.unsplash.com',
+      }
     ],
   },
 };

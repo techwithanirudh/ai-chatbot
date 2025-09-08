@@ -6,6 +6,8 @@ import { MagicLinkForm } from '@/components/auth/magic-form';
 
 import { MessageSquare } from 'lucide-react';
 import { abstractImages } from '@/lib/images';
+import { useMemo } from 'react';
+import BlurImage from '@/components/blur-image';
 
 export const metadata: Metadata = {
   title: 'Login',
@@ -15,25 +17,29 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 export default async function SignInPage() {
-  const image =
-    abstractImages[Math.floor(Math.random() * abstractImages.length)];
+  const image = useMemo(
+    () => abstractImages[Math.floor(Math.random() * abstractImages.length)],
+    [],
+  );
 
   return (
     <>
       <div className="container relative grid h-dvh flex-col items-center justify-center lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <div className="relative hidden h-full rounded-3xl overflow-hidden lg:block p-4">
-          <img
+        <div className="relative hidden h-full lg:block p-4">
+          <BlurImage
+            imageClassName="object-cover size-full rounded-3xl"
+            className="relative size-full rounded-3xl"
             src={image.url}
-            className="object-cover size-full rounded-3xl"
+            fill
             alt="Abstract background"
           />
-          <div className="absolute bottom-6 left-7 text-primary-foreground">
-            <p>
-              Credit:{' '}
-              <a href={image.author.url} className="underline">
-                {image.author.name}
-              </a>
-            </p>
+          <div className="absolute bottom-6 left-7 text-primary-foreground text-sm">
+            <a
+              href={image.author.url}
+              className="underline-offset-4 hover:underline"
+            >
+              {image.author.name}
+            </a>
           </div>
         </div>
         <div className="lg:p-8">
