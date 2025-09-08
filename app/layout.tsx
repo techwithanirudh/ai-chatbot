@@ -2,7 +2,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 
-import './globals.css';
+import '@/styles/globals.css';
 import { createMetadata } from '@/lib/metadata';
 import { baseUrl } from '@/lib/constants';
 

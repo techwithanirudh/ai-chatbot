@@ -22,3 +22,4 @@ reorganize folder structure (again)
 - take inspiration from zola.chat and rove, and intern3
 - add a global drag and drop dropzone for files
 - add a better model switcher,
+- move config files to ts from js
