@@ -6,9 +6,9 @@ import { SidebarToggle } from './sidebar-toggle';
 import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button';
-import { PlusIcon } from '../icons';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 import { useRouter } from 'next/navigation';
+import { PlusIcon } from 'lucide-react';
 
 export function SidebarControls({
   className,
@@ -32,7 +32,7 @@ export function SidebarControls({
         <TooltipTrigger asChild>
           <Button
             variant="ghost"
-            className={cn('h-fit px-2', {
+            className={cn('h-fit px-2 group/button', {
               'sm:pointer-events-none sm:-translate-x-[2.125rem] sm:opacity-0 sm:delay-0 sm:duration-150':
                 open,
             })}
@@ -41,7 +41,7 @@ export function SidebarControls({
               router.refresh();
             }}
           >
-            <PlusIcon />
+            <PlusIcon className="size-4 group-hover/button:rotate-90 transition-transform duration-300" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>New Chat</TooltipContent>

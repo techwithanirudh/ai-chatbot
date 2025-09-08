@@ -1,2 +1,7 @@
 - Add t3 env
 - Refactor the email thign
+- lefthook
+- cspell
+- biome?
+- replace icons.tsx with lucide
+- verify emal

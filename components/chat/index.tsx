@@ -69,8 +69,8 @@ export function Chat({
 
   return (
     <>
-      <div className="flex w-full bg-sidebar py-3 pr-3 transition-all md:group-has-data-[state=collapsed]/sidebar-wrapper:p-0 h-dvh min-w-0 max-md:p-0">
-        <div className="flex flex-col flex-1 min-w-0 md:group-has-data-[state=collapsed]/sidebar-wrapper:border-none bg-background rounded-xl  md:group-has-data-[state=collapsed]/sidebar-wrapper:rounded-none max-md:rounded-none border border-border p-2">
+      <div className="flex w-full bg-sidebar pt-3 transition-all md:group-has-data-[state=collapsed]/sidebar-wrapper:p-0 h-dvh min-w-0 max-md:p-0">
+        <div className="flex flex-col flex-1 min-w-0 md:group-has-data-[state=collapsed]/sidebar-wrapper:border-none bg-background rounded-tl-xl  md:group-has-data-[state=collapsed]/sidebar-wrapper:rounded-none max-md:rounded-none border border-border p-2">
           <ChatHeader
             chatId={id}
             selectedModelId={selectedChatModel}
