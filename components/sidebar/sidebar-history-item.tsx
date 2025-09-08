@@ -52,7 +52,7 @@ const PureChatItem = ({
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <SidebarMenuItem className="md:-mx-2">
+    <SidebarMenuItem className="md:-mx-2 active:scale-[0.96] active:after:absolute active:after:inset-0 active:after:scale-[1.06] transition-all">
       <SidebarMenuButton
         asChild
         isActive={isActive}
