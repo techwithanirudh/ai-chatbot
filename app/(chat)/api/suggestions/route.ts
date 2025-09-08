@@ -1,4 +1,4 @@
-import { auth } from '@/server/auth';
+import { auth } from '@clerk/nextjs/server';
 import { getSuggestionsByDocumentId } from '@/server/db/queries';
 
 export async function GET(request: Request) {

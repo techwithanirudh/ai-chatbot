@@ -5,7 +5,7 @@ import {
   smoothStream,
   streamText,
 } from 'ai';
-import { auth } from '@/server/auth';
+import { currentUser } from '@clerk/nextjs/server';
 import { systemPrompt } from '@/lib/ai/prompts';
 import {
   deleteChatById,
@@ -41,9 +41,9 @@ export async function POST(request: Request) {
       selectedChatModel: string;
     } = await request.json();
 
-    const session = await auth();
+    const user = await currentUser();
 
-    if (!session?.user?.id) {
+    if (!user?.id) {
       return new Response('Unauthorized', { status: 401 });
     }
 
@@ -60,9 +60,9 @@ export async function POST(request: Request) {
         message: userMessage,
       });
 
-      await saveChat({ id, userId: session.user.id, title });
+      await saveChat({ id, userId: user.id, title });
     } else {
-      if (chat.userId !== session.user.id) {
+      if (chat.userId !== user.id) {
         return new Response('Forbidden', { status: 403 });
       }
     }
@@ -101,16 +101,16 @@ export async function POST(request: Request) {
           experimental_generateMessageId: generateUUID,
           tools: {
             getWeather,
-            createDocument: createDocument({ session, dataStream }),
-            updateDocument: updateDocument({ session, dataStream }),
+            createDocument: createDocument({ user, dataStream }),
+            updateDocument: updateDocument({ user, dataStream }),
             requestSuggestions: requestSuggestions({
-              session,
+              user,
               dataStream,
             }),
             echo,
           },
           onFinish: async ({ response }) => {
-            if (session.user?.id) {
+            if (user?.id) {
               try {
                 const assistantId = getTrailingMessageId({
                   messages: response.messages.filter(

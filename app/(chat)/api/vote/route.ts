@@ -1,4 +1,4 @@
-import { auth } from '@/server/auth';
+import { auth } from '@clerk/nextjs/server';
 import {
   getChatById,
   getVotesByChatId,

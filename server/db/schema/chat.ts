@@ -10,15 +10,13 @@ import {
   boolean,
 } from 'drizzle-orm/pg-core';
 import { createTable } from '../utils';
-import { user } from './auth';
 
 export const chat = createTable('chat', {
   id: uuid('id').primaryKey().notNull().defaultRandom(),
   createdAt: timestamp('createdAt').notNull(),
   title: text('title').notNull(),
   userId: uuid('userId')
-    .notNull()
-    .references(() => user.id),
+    .notNull(),
   visibility: varchar('visibility', { enum: ['public', 'private'] })
     .notNull()
     .default('private'),

@@ -37,3 +37,6 @@ yarn-error.log*
 /playwright-report/
 /blob-report/
 /playwright/*
+
+# clerk configuration (can include secrets)
+/.clerk/

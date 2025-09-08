@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { signOut } from '@/server/auth';
+import { SignOutButton } from '@clerk/nextjs';
 
 export default function AuthSignoutPage() {
   return (
@@ -17,16 +17,11 @@ export default function AuthSignoutPage() {
         </CardHeader>
         <CardContent>Are you sure you want to sign out?</CardContent>
         <CardFooter>
-          <form
-            action={async () => {
-              'use server';
-              await signOut();
-            }}
-          >
+          <SignOutButton>
             <Button variant={'destructive'} type="submit">
               Sign out
             </Button>
-          </form>
+          </SignOutButton>
         </CardFooter>
       </Card>
     </div>

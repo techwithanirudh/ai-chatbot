@@ -1,6 +1,6 @@
 'use client';
 
-import type { User } from 'next-auth';
+import type { User } from '@clerk/nextjs/server';
 import { useRouter } from 'next/navigation';
 
 import { SidebarHistory } from '@/components/sidebar/sidebar-history';
@@ -20,7 +20,7 @@ import { PlusIcon } from 'lucide-react';
 export function AppSidebar({
   user,
   ...props
-}: { user: User | undefined } & React.ComponentProps<typeof Sidebar>) {
+}: { user: User | null } & React.ComponentProps<typeof Sidebar>) {
   const router = useRouter();
   const { setOpenMobile, open } = useSidebar();
 
