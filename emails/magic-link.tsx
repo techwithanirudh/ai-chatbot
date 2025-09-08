@@ -12,13 +12,14 @@ import {
   Text,
 } from '@react-email/components';
 import * as React from 'react';
+import { env } from '@/env';
 
 interface MagicLinkEmailProps {
   magicLink?: string;
 }
 
-const baseUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+const baseUrl = env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`
   : 'http://localhost:3000';
 
 export const MagicLinkEmail = ({ magicLink }: MagicLinkEmailProps) => (

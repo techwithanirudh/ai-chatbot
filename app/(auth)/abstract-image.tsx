@@ -5,19 +5,19 @@ import React from 'react';
 
 const getImage = unstable_cache(
   async () => {
-    const idx = Math.floor(Math.random() * abstractImages.length)
+    const idx = Math.floor(Math.random() * abstractImages.length);
     // Return a plain serializable object
-    const img = abstractImages[idx]
+    const img = abstractImages[idx];
     return {
       url: img.url,
       author: { name: img.author.name, url: img.author.url },
-    }
+    };
   },
   ['auth-bg'],
-  { revalidate: 60 * 60 * 24, tags: ['auth-bg'] }
-)
+  { revalidate: 60 * 60 * 24, tags: ['auth-bg'] },
+);
 
-export async function AbstractImage() {  
+export async function AbstractImage() {
   const image = await getImage();
 
   return (

@@ -2,6 +2,7 @@ import type { NextAuthConfig } from 'next-auth';
 import { DrizzleAdapter } from '@auth/drizzle-adapter';
 import { account, session, user, verificationToken } from '@/server/db/schema';
 import { db } from '@/server/db';
+import { env } from '@/env';
 
 export const authConfig = {
   pages: {
@@ -49,5 +50,5 @@ export const authConfig = {
       return true;
     },
   },
-  debug: process.env.NODE_ENV === 'development',
+  debug: env.NODE_ENV === 'development',
 } satisfies NextAuthConfig;

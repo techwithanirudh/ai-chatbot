@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
-import * as React from "react"
+import * as React from 'react';
 
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils';
 import {
   Dialog,
   DialogClose,
@@ -12,7 +12,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
+} from '@/components/ui/dialog';
 import {
   Drawer,
   DrawerClose,
@@ -22,21 +22,21 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer"
-import { useIsMobile } from "@/hooks/use-mobile"
+} from '@/components/ui/drawer';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface BaseProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 interface RootCredenzaProps extends BaseProps {
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 interface CredenzaProps extends BaseProps {
-  className?: string
-  asChild?: true
+  className?: string;
+  asChild?: true;
 }
 
 const CredenzaContext = React.createContext<{ isDesktop: boolean }>({
@@ -47,7 +47,7 @@ const useCredenzaContext = () => {
   const context = React.useContext(CredenzaContext);
   if (!context) {
     throw new Error(
-      "Credenza components cannot be rendered outside the Credenza Context",
+      'Credenza components cannot be rendered outside the Credenza Context',
     );
   }
   return context;
@@ -65,7 +65,6 @@ const Credenza = ({ children, ...props }: RootCredenzaProps) => {
     </CredenzaContext.Provider>
   );
 };
-
 
 const CredenzaTrigger = ({ className, children, ...props }: CredenzaProps) => {
   const { isDesktop } = useCredenzaContext();
@@ -139,7 +138,7 @@ const CredenzaTitle = ({ className, children, ...props }: CredenzaProps) => {
 
 const CredenzaBody = ({ className, children, ...props }: CredenzaProps) => {
   return (
-    <div className={cn("px-4 md:px-0", className)} {...props}>
+    <div className={cn('px-4 md:px-0', className)} {...props}>
       {children}
     </div>
   );
@@ -166,4 +165,4 @@ export {
   CredenzaTitle,
   CredenzaBody,
   CredenzaFooter,
-}
+};

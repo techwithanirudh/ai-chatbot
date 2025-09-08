@@ -1,16 +1,19 @@
 import { Toaster } from '@/components/ui/sonner';
-import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 
 import './globals.css';
+import { createMetadata } from '@/lib/metadata';
+import { baseUrl } from '@/lib/constants';
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://chat.techwithanirudh.com'),
-  title: 'AI Chatbot',
-  description:
-    'An upgraded version of the AI Chatbot built using Next.js and the AI SDK.',
-};
+export const metadata = createMetadata({
+  title: {
+    template: '%s | Starter Kit',
+    default: 'Starter Kit',
+  },
+  description: 'The Next.js framework for building documentation sites',
+  metadataBase: baseUrl,
+});
 
 export const viewport = {
   maximumScale: 1, // Disable auto-zoom on mobile Safari

@@ -1,9 +1,6 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-
-import { cn } from '@/lib/utils';
-import { useTheme } from 'next-themes';
 import { signOut } from 'next-auth/react';
 import type React from 'react';
 import type { User } from 'next-auth';
@@ -18,7 +15,6 @@ import {
   CredenzaTitle,
 } from '@/components/ui/credenza';
 import { ThemeToggle } from '../theme-toggle';
-
 
 type SettingsContentProps = {
   user: User;

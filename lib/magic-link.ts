@@ -3,8 +3,9 @@ import { MagicLinkEmail } from '@/emails/magic-link';
 
 import type { EmailConfig } from '@auth/core/providers';
 import type { Theme } from '@auth/core/types';
+import { env } from '@/env';
 
-const resend = new Resend(process.env.AUTH_RESEND_KEY);
+const resend = new Resend(env.AUTH_RESEND_KEY);
 
 interface VerificationProps {
   identifier: string;

@@ -56,7 +56,10 @@ export function PureMessageActions({
           <TooltipTrigger asChild>
             <Button
               size="icon"
-              className={cn(itemVariants(), "w-fit text-muted-foreground rounded-md relative")}
+              className={cn(
+                itemVariants(),
+                'w-fit text-muted-foreground rounded-md relative',
+              )}
               variant="ghost"
               onClick={async () => {
                 const textFromParts = message.parts
